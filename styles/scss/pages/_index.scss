@@ -1,0 +1,54 @@
+#index{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+
+    main{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        flex : 2;
+
+        .editor,.viewer{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .editor{
+            &-input{
+                width: 80%;
+                max-width: 80%;
+                height: 71vh;
+                border : 1px solid black;
+                overflow: auto;
+                overflow-wrap: anywhere;
+                padding: 2vh;
+            }
+        }
+
+        .viewer{
+            &-wrapper{
+                width: 80%;
+                height: 75vh;
+                embed{
+                    width: 100%;
+                    height: 100%;
+                    border : 1px solid grey;
+                }
+                
+            }
+
+        }
+    }
+}
