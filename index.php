@@ -14,8 +14,8 @@
 
         <main>
             <div class="editor">
-                <div class="editor-input" contenteditable="true">
-                    Markdown content here
+                <div class="editor-input" id="editable" contenteditable="true">
+                    Markdown *content* here
                 </div>
             </div>
             <div class="viewer">
@@ -28,5 +28,6 @@
         <footer>
             <p>EasyLatex - François Poguet &copy;</p>
         </footer>
+        <script src="js/main.js"></script>
     </body>
 </html>
