@@ -27,19 +27,20 @@
         
         .editor{
             &-input{
-                width: 80%;
-                max-width: 80%;
+                font-size: 2rem;
+                width: 86%;
+                max-width: 86%;
                 height: 71vh;
                 border : 1px solid black;
                 overflow: auto;
                 overflow-wrap: anywhere;
-                padding: 2vh;
+                padding: 2%;
             }
         }
 
         .viewer{
             &-wrapper{
-                width: 80%;
+                width: 90%;
                 height: 75vh;
                 embed{
                     width: 100%;

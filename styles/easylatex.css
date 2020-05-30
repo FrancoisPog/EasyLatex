@@ -52,6 +52,10 @@ table {
   border-spacing: 0;
 }
 
+html {
+  font-size: 10px;
+}
+
 strong {
   font-weight: bold;
 }
@@ -65,6 +69,11 @@ h3 {
   font-weight: bold;
 }
 
+h4 {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
 header {
   width: 90%;
   text-align: center;
@@ -73,11 +82,11 @@ header {
 
 header h1 {
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 header h2 {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 footer {
@@ -138,17 +147,18 @@ footer {
 }
 
 #index main .editor-input {
-  width: 80%;
-  max-width: 80%;
+  font-size: 2rem;
+  width: 86%;
+  max-width: 86%;
   height: 71vh;
   border: 1px solid black;
   overflow: auto;
   overflow-wrap: anywhere;
-  padding: 2vh;
+  padding: 2%;
 }
 
 #index main .viewer-wrapper {
-  width: 80%;
+  width: 90%;
   height: 75vh;
 }
 

@@ -15,8 +15,20 @@
         <main>
             <div class="editor">
                 <div class="editor-input" id="editable" contenteditable="true">
-                    Markdown *content* here
+                # Game mode <br>
+                <br>
+                ## File management<br>
+                - **Save** : Save the current map<br>
+                - **Open** : Open a map<br>
+                <br>
+                ## Game management<br>
+                To manually place the hunters on the board, just click on the cells, you can click again on a hunter to remove it.<br>
+
+
                 </div>
+            </div>
+            <div class="buttons">
+                <button id="btn-preview">Preview markdown</button>
             </div>
             <div class="viewer">
                 <div class="viewer-wrapper">
