@@ -1,34 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>EasyLatex</title>
-        <link rel="stylesheet" href="styles/easylatex.css">
-    </head>
-    <body id="index">
-        <header>
-            <h1>EasyLatex</h1>
-            <h2>Make Latex document without code !</h2>
-        </header>
+<?php
 
-        <main>
-            <div class="editor">
-                <textarea class="editor-input" name="" id="" placeholder="Your markdown here"></textarea>
-            </div>
-            <div class="buttons">
-                <button id="btn-preview">Preview markdown</button>
-            </div>
-            <div class="viewer">
-                <div class="viewer-wrapper">
-                    <embed  src="https://latexonline.cc/compile?url=https://francois.poguet.com/manual.tex" type="application/pdf">
-                </div>
-            </div>    
-        </main>
-        
-        <footer>
-            <p>EasyLatex - François Poguet &copy;</p>
-        </footer>
-        <script src="js/main.js"></script>
-    </body>
-</html>
+ob_start();
+
+function pog_print_index(){
+    echo '<!DOCTYPE html>',
+            '<html lang="en">',
+                '<head>',
+                    '<meta charset="UTF-8">',
+                    '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+                    '<title>EasyLatex</title>',
+                    '<link rel="stylesheet" href="styles/easylatex.css">',
+                '</head>',
+                '<body id="index">',
+                    '<header>',
+                        '<h1>EasyLatex</h1>',
+                        '<h2>Make Latex document without code !</h2>',
+                    '</header>',
+                    '<main>',
+                        '<form action="index.php" method="POST">',
+                            '<input type="hidden" name="latex">',
+                            '<div class="editor">',
+                                '<textarea class="editor-input" name="content" id="" placeholder="Your markdown here">',(isset($_POST['latex']))?$_POST['latex']:'','</textarea>',
+                            '</div>',
+                            '<div class="buttons">
+                                <button id="btn-preview">Preview markdown</button>',
+                                '<input id="btn-convert" name="btn-convert" type="submit" value="Convert in LaTex">',
+                            '</div>',
+                            '<div class="viewer">',
+                                '<div class="viewer-wrapper">',
+                                    '<embed  src="https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/output.tex" type="application/pdf">',
+                                '</div>',
+                            '</div>',
+                        '</form>',    
+                    '</main>',
+                    '<footer>',
+                        '<p>EasyLatex - François Poguet &copy;</p>',
+                    '</footer>',
+                    '<script src="js/main.js"></script>',
+                '</body>',
+            '</html>';
+}
+
+function pog_parseToLatex(){
+    $content = $_POST['latex'];
+
+    $file = fopen("output.tex",'w+');
+
+    $latex_begin = '\documentclass{article} \usepackage[utf8]{inputenc}\title{xdd}\author{francoispoguet }\date{May 2020}\begin{document}\maketitle ';
+
+    $latex_end = ' \end{document}';
+
+    fwrite($file,$latex_begin);
+
+    fwrite($file,$content);
+
+    fwrite($file,$latex_end);
+
+    fclose($file);
+}
+
+
+
+// MAIN
+
+if(isset($_POST['latex'])){
+    pog_parseToLatex();
+}
+
+pog_print_index();
+
