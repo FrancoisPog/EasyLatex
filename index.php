@@ -18,18 +18,19 @@ function pog_print_index(){
                     '</header>',
                     '<main>',
                         '<form action="index.php" method="POST">',
+                            '<input type="hidden" name="markdown">',
                             '<input type="hidden" name="latex">',
                             '<div class="editor">',
-                                '<textarea class="editor-input" name="content" id="" placeholder="Your markdown here">',(isset($_POST['latex']))?$_POST['latex']:'','</textarea>',
+                                '<textarea class="editor-input" name="content" id="" placeholder="Your markdown here">',(isset($_POST['markdown']))?$_POST['markdown']:'','</textarea>',
                             '</div>',
                             '<div class="buttons">
                                 <button id="btn-preview">Preview markdown</button>',
                                 '<input id="btn-convert" name="btn-convert" type="submit" value="Convert in LaTex">',
                             '</div>',
                             '<div class="viewer">',
-                                '<div class="viewer-wrapper">',
-                                    '<embed  src="https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/output.tex" type="application/pdf">',
-                                '</div>',
+                                '<iframe class="viewer-wrapper" src="https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/output.tex">',
+                                    
+                                '</iframe>',
                             '</div>',
                         '</form>',    
                     '</main>',
@@ -47,7 +48,7 @@ function pog_parseToLatex(){
 
     $file = fopen("output.tex",'w+');
 
-    $latex_begin = '\documentclass{article} \usepackage[utf8]{inputenc}\title{xdd}\author{francoispoguet }\date{May 2020}\begin{document}\maketitle ';
+    $latex_begin = '\documentclass{article} \usepackage[utf8]{inputenc}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents ';
 
     $latex_end = ' \end{document}';
 
@@ -63,7 +64,6 @@ function pog_parseToLatex(){
 
 
 // MAIN
-
 if(isset($_POST['latex'])){
     pog_parseToLatex();
 }

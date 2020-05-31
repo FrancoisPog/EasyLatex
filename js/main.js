@@ -26,8 +26,15 @@ btn_preview.addEventListener('click',function(e){
 
 form.addEventListener("submit",function(e){
     e.preventDefault();
-    form.elements[0].value = converter_to_latex();  ;
-    
+
+    if(preview_mode){
+        form.elements[0].value = markdown_svg;
+    }else{
+        form.elements[0].value = document.getElementsByClassName('editor-input')[0].value;
+    }
+
+
+    form.elements[1].value = converter_to_latex();
    form.submit();
 });
 

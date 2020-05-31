@@ -1,5 +1,5 @@
 // Regex
-const markdown_regex    = /(\[(.):(.*?):(\2)\]|(\#{1,3}) *([^\#]+?) *\#+)/gmi;
+const markdown_regex    = /(\[(.):(.*?):(\2)\]|(\#{1,3}\*?) *(.+?) *(<br>|$))/gmi;
 const preview_regex     = /<(.*?)>(.*?)<\/(\1)>/gmi;
 
 /**
@@ -22,19 +22,16 @@ function markdown_to_preview(match,no_used,text_type,text_content,no_used,title_
             title_content = title_content.replace(markdown_regex,markdown_to_preview);
         }
 
-        if(title_type == "#"){
-            return '<h3>'+title_content+'</h3>';
-        }
-        if(title_type == "##"){
-            return '<h4>'+title_content+'</h4>';
-        }
-        if(title_type == "###"){
-            return '<h5>'+title_content+'</h5>';
-        }
+        let title_types = ['#','#*','##','##*','###','###*'];
 
+        let title_number = title_types.indexOf(title_type)+1;
 
+        if(title_number <= 6){
+            return '<h'+title_number+'>'+title_content+'</h'+title_number+'>';
+        }
 
         debug("error title");
+        return;
     }
 
     if(text_content.match(markdown_regex)){
@@ -116,12 +113,28 @@ function preview_to_latex(match,tag_name,tag_content,no_used,offset,og){
         return '\\textbf{'+tag_content+'}';
     }
 
-    if(tag_name == 'h3'){
+    if(tag_name == 'h1'){
         return '\\section{'+tag_content+'}';
     }
 
-    if(tag_name == 'h4'){
+    if(tag_name == 'h2'){
+        return '\\section*{'+tag_content+'}';
+    }
+
+    if(tag_name == 'h3'){
         return '\\subsection{'+tag_content+'}';
+    }
+
+    if(tag_name == 'h4'){
+        return '\\subsection*{'+tag_content+'}';
+    }
+
+    if(tag_name == 'h5'){
+        return '\\subsubsection{'+tag_content+'}';
+    }
+
+    if(tag_name == 'h6'){
+        return '\\subsubsection*{'+tag_content+'}';
     }
 
     debug("error"+tag_name);
