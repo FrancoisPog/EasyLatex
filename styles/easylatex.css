@@ -230,6 +230,11 @@ footer {
   border-radius: 5px;
 }
 
+#index main form .viewer {
+  border-radius: 6px;
+  background-color: #cccccc;
+}
+
 #index main form .viewer-wrapper {
   border-radius: 5px;
   width: 100%;

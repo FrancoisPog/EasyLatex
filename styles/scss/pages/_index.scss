@@ -50,7 +50,8 @@
                 display: flex;
                 justify-content: center;
                 width: 40%;
-                margin : 0 auto
+                margin : 0 auto;
+                
             }
             
             .editor{
@@ -91,6 +92,8 @@
             }
 
             .viewer{
+                border-radius: 6px;
+                background-color: $text;
                 &-wrapper{
                     border-radius: 5px;  
                     width: 100%;             

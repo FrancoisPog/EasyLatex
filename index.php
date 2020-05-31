@@ -49,7 +49,7 @@ function pog_parseToLatex(){
 
     $file = fopen("output.tex",'w+');
 
-    $latex_begin = '\documentclass{article} \usepackage[utf8]{inputenc}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents ';
+    $latex_begin = '\documentclass{report} \usepackage[utf8]{inputenc}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents\newpage ';
 
     $latex_end = ' \end{document}';
 
