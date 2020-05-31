@@ -74,8 +74,15 @@ h4 {
   font-weight: bold;
 }
 
+body {
+  background-color: #2f3437;
+  color: #cccccc;
+  font-family: 'Chelsea Market', cursive;
+}
+
 header {
-  width: 90%;
+  width: 100%;
+  padding: 1rem 0;
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -86,14 +93,15 @@ header h1 {
 }
 
 header h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 footer {
+  font-size: 1.5rem;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 #index {
@@ -115,15 +123,11 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 
 #index main {
   width: 100%;
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  height: 100%;
 }
 
 #index main form {
@@ -134,7 +138,9 @@ footer {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  width: 100%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 100%;
 }
 
 #index main form .buttons {
@@ -148,35 +154,84 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 10%;
+}
+
+#index main form .buttons input, #index main form .buttons button {
+  margin: auto;
+  padding: 0.8rem;
+  font-family: "Chelsea Market",cursive;
+  border-radius: 3rem;
+  border: none;
+  -webkit-transition: bax-shadow 250ms, -webkit-transform 200ms;
+  transition: bax-shadow 250ms, -webkit-transform 200ms;
+  transition: bax-shadow 250ms, transform 200ms;
+  transition: bax-shadow 250ms, transform 200ms, -webkit-transform 200ms;
+}
+
+#index main form .buttons input:hover, #index main form .buttons button:hover {
+  -webkit-box-shadow: 0 0 20px 5px #474e53;
+          box-shadow: 0 0 20px 5px #474e53;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+#index main form .buttons input:active, #index main form .buttons button:active {
+  -webkit-transform: scale(1.1) translateY(5px);
+          transform: scale(1.1) translateY(5px);
 }
 
 #index main form .editor, #index main form .viewer {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 100%;
+  width: 40%;
+  margin: 0 auto;
+}
+
+#index main form .editor {
+  position: relative;
 }
 
 #index main form .editor-input {
-  font-size: 2rem;
-  width: 86%;
-  max-width: 86%;
-  height: 71vh;
+  font-size: 1.5rem;
+  width: 100%;
   border: 1px solid black;
   overflow: auto;
   overflow-wrap: anywhere;
-  padding: 2%;
+  padding: 2rem;
+  background-color: #cccccc;
+  font-family: 'Chelsea Market', cursive;
+  color: #2f3437;
+  border-radius: 5px;
+  border: 0px;
+  resize: none;
+}
+
+#index main form .editor-input:focus {
+  outline: none;
+}
+
+#index main form .editor div {
+  position: relative;
+}
+
+#index main form .editor div::after {
+  content: 'Preview';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: #cccccc;
+  padding: 1rem;
+  background-color: rgba(47, 52, 55, 0.9);
+  border-radius: 5px;
 }
 
 #index main form .viewer-wrapper {
-  width: 90%;
-  height: 75vh;
-  border: 1px solid grey;
+  border-radius: 5px;
+  width: 100%;
 }
 /*# sourceMappingURL=easylatex.css.map */

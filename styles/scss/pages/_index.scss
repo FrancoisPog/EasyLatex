@@ -9,49 +9,91 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
 
 
     main{
         width: 100%;
-        flex : 2;
-
+        height: 100%;
         form{
             display: flex;
             flex-direction: row;
-            width: 100%;
+            justify-content: space-around;
+            height: 100%;
+
+            
             .buttons{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                width: 10%;
+
+                input,button{
+                    margin: auto;
+                    padding:0.8rem;
+                    font-family: "Chelsea Market",cursive;
+                    border-radius: 3rem ;
+                    border : none;
+                    transition: bax-shadow 250ms, transform 200ms;
+
+                    &:hover{
+                        box-shadow: 0 0 20px 5px lighten($color: $body-bg, $amount: 10);
+                        transform: scale(1.1);
+                    }
+
+                    &:active{
+                        transform : scale(1.1) translateY(5px);
+                    }
+                }
             }
 
             .editor,.viewer{
-                flex: 1;
                 display: flex;
                 justify-content: center;
-                width: 100%;
+                width: 40%;
+                margin : 0 auto
             }
             
             .editor{
+                position: relative;
                 &-input{
-                    font-size: 2rem;
-                    width: 86%;
-                    max-width: 86%;
-                    height: 71vh;
+                    font-size: 1.5rem;
+                    width: 100%;
                     border : 1px solid black;
                     overflow: auto;
                     overflow-wrap: anywhere;
-                    padding: 2%;
+                    padding: 2rem;
+                    background-color: $text;
+                    font-family: 'Chelsea Market', cursive;
+                    color : $body-bg;
+                    border-radius: 5px;
+                    border : 0px;
+                    resize: none;
+                    &:focus{
+                        
+                        outline: none;
+                    }
+                }
+
+                div{
+                    position : relative;
+
+                    &::after{
+                        content: 'Preview';
+                        position: absolute;
+                        top: 0.5rem;
+                        right: 0.5rem;
+                        color : $text;
+                        padding: 1rem;
+                        background-color: transparentize($color: $body-bg, $amount: 0.1);
+                        border-radius: 5px;
+                    }
                 }
             }
 
             .viewer{
                 &-wrapper{
-                    width: 90%;
-                    height: 75vh;
-                    border : 1px solid grey;
-                                        
+                    border-radius: 5px;  
+                    width: 100%;             
                 }
 
             }

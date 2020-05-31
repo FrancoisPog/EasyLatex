@@ -1,5 +1,6 @@
 header{
-    width: 90%;
+    width: 100%;
+    padding : 1rem 0;
     //height : 15vh;
     text-align: center;
     //border-bottom: red 1px solid;;
@@ -11,13 +12,14 @@ header{
     }
 
     h2{
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
    
 }
 
 footer{
+    font-size: 1.5rem;
     height: max-content;
-    padding: 1rem;;
+    padding: 1.5rem;;
 }

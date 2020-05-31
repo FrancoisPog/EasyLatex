@@ -4,7 +4,7 @@ let btn_convert = document.getElementById('btn-convert');
 let form = document.querySelector('form');
 
 // Debug
-let DEBUG = false;
+let DEBUG = true;
 function debug($str){
     DEBUG && console.log($str);
 }
@@ -52,3 +52,5 @@ form.addEventListener("submit",function(e){
     preview.parentNode.replaceChild(area,preview);
     preview_mode = false;
 }
+
+
