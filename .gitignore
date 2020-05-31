@@ -1,2 +1,5 @@
 # Scss compiler files
 *.map
+
+# Tex files
+*.tex

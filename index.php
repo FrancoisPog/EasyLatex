@@ -36,6 +36,7 @@ function pog_print_index(){
                     '<footer>',
                         '<p>EasyLatex - François Poguet &copy;</p>',
                     '</footer>',
+                    '<script src="js/converter.js"></script>',
                     '<script src="js/main.js"></script>',
                 '</body>',
             '</html>';
