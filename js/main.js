@@ -1,6 +1,8 @@
 // Get elements
 let btn_preview = document.getElementById('btn-preview'); 
 let btn_convert = document.getElementById('btn-convert');
+let btn_italic = document.getElementById('btn-italic');
+let btn_bold = document.getElementById('btn-bold');
 let form = document.querySelector('form');
 
 // Debug
@@ -36,6 +38,9 @@ form.addEventListener("submit",function(e){
 
     form.elements[1].value = converter_to_latex();
    form.submit();
+
+
+
 });
 
 
@@ -54,3 +59,32 @@ form.addEventListener("submit",function(e){
 }
 
 
+btn_italic.addEventListener('click',(e)=>{
+    e.preventDefault();
+    change_selection_style('i');
+});
+
+btn_bold.addEventListener('click',(e)=>{
+    e.preventDefault();
+    change_selection_style('b');
+});
+
+
+
+function change_selection_style(tag){
+
+    let editor = document.getElementsByClassName("editor-input")[0];
+    
+    let s1 = editor.selectionStart;
+    let s2 = editor.selectionEnd;
+
+    
+
+    let text = editor.value;
+
+    editor.value = (text.substring(0,s1) + '['+tag+':' + text.substring(s1,s2) + ':'+tag+']' + text.substring(s2,text.lenght));
+
+    editor.focus();
+
+    debug(s1+":"+s2);
+}

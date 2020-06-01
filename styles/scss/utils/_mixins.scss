@@ -1,0 +1,9 @@
+@mixin whiteOnBlack(){
+    color : $white;
+    background-color: $black;
+}
+
+@mixin blackOnWhite(){
+    color : $black;
+    background-color: $white;
+}

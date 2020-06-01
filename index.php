@@ -23,11 +23,14 @@ function pog_print_index(){
                             '<input type="hidden" name="latex">',
                             '<div class="editor">',
                                 '<textarea class="editor-input" name="content" id="" placeholder="Your markdown here">',(isset($_POST['markdown']))?$_POST['markdown']:'','</textarea>',
+                                '<aside class="editor-tools">',
+                                    '<button id="btn-italic" title="italicize the selected text">italic</button>',
+                                    '<button id="btn-bold" title="bold the selected text">bold</button>',
+                                '</aside>',
                             '</div>',
-                            '<div class="buttons">
-                                <button id="btn-preview">Preview markdown</button>',
+                            '<div class="buttons">',
+                                '<button id="btn-preview">Preview markdown</button>',
                                 '<input id="btn-convert" name="btn-convert" type="submit" value="Convert in LaTex">',
-                                //'<input id="btn-copy_italic" name="btn-copy_italic" type="button" value="[i::i]">',
                             '</div>',
                             '<div class="viewer">',
                                 '<iframe class="viewer-wrapper" src="https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/output.tex">',
@@ -49,7 +52,7 @@ function pog_parseToLatex(){
 
     $file = fopen("output.tex",'w+');
 
-    $latex_begin = '\documentclass{report} \usepackage[utf8]{inputenc}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents\newpage ';
+    $latex_begin = '\documentclass{report} \usepackage[utf8]{inputenc}\usepackage[french]{babel}\renewcommand{\thesection}{\arabic{section}}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents\newpage ';
 
     $latex_end = ' \end{document}';
 

@@ -1,6 +1,8 @@
 // Regex
 const markdown_regex    = /(\[(.):(.*?):(\2)\]|(\#{1,3}\*?) *(.+?) *(<br>|$))/gmi;
-const preview_regex     = /<(.*?)>(.*?)<\/(\1)>/gmi;
+const preview_regex     = /<(.*?)>[0-9\. ]*(.*?)<\/(\1)>/gmi;
+var title_count = 0;
+var subtitle_count = 0;
 
 /**
  * Parse the markdown to preview html code
@@ -16,6 +18,7 @@ const preview_regex     = /<(.*?)>(.*?)<\/(\1)>/gmi;
  */
 function markdown_to_preview(match,no_used,text_type,text_content,no_used,title_type,title_content,offset,og){
     debug(match,"\t- ",no_used,"\t- ",text_type,"\t- ",text_content,"\t- ",no_used,"\t- ",title_type,"\t- ",title_content,"\t- ",offset,"\t- ",og);
+    console.log(title_count);
 
     if(typeof(text_content) == "undefined"){
         if(title_content.match(markdown_regex)){
@@ -24,10 +27,20 @@ function markdown_to_preview(match,no_used,text_type,text_content,no_used,title_
 
         let title_types = ['#','#*','##','##*','###','###*'];
 
-        let title_number = title_types.indexOf(title_type)+1;
+        let title_index = title_types.indexOf(title_type)+1;
 
-        if(title_number <= 6){
-            return '<h'+title_number+'>'+title_content+'</h'+title_number+'>';
+        if(title_index <= 6){
+            let title_number = "";
+            if(title_index == 1){
+                title_count++;
+                subtitle_count = 0;
+                title_number = title_count;
+            }else if(title_index == 3){
+                subtitle_count++;
+                title_number = title_count+"."+subtitle_count;
+            }   
+
+            return '<h'+title_index+'>'+title_number+" "+title_content+'</h'+title_index+'>';
         }
 
         debug("error title");
@@ -58,6 +71,8 @@ function converter_to_preview(){
     let editor = document.getElementsByClassName("editor-input")[0];
     let content = editor.value;
 
+    
+
     markdown_svg = content;
     
     if(content.match(/\[(.):([^\[\]])*(\[\1)/gmi)){
@@ -76,6 +91,8 @@ function converter_to_preview(){
 
     debug(content);
     
+    title_count = 0;
+    subtitle_count = 0;
 
     let preview = document.createElement("div");
     preview.classList.add('editor-input');
