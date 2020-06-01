@@ -78,7 +78,7 @@ body {
 header {
   width: 100%;
   padding: 1rem 0;
-  height: 15%;
+  height: 15vh;
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -98,7 +98,7 @@ footer {
   height: -moz-max-content;
   height: max-content;
   padding: 1.5rem;
-  height: 5%;
+  height: 5vh;
 }
 
 #index {
@@ -106,7 +106,7 @@ footer {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -123,8 +123,11 @@ footer {
 }
 
 #index main {
+  position: relative;
   width: 100%;
-  height: 80%;
+  height: 80vh;
+  min-height: 80vh;
+  max-height: 80vh;
 }
 
 #index main form {
@@ -137,6 +140,8 @@ footer {
           flex-direction: row;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  position: relative;
+  height: 100%;
 }
 
 #index main form .buttons {
@@ -198,9 +203,9 @@ footer {
   content: '';
   position: absolute;
   top: 5rem;
-  left: 0%;
+  left: 2rem;
   height: 1px;
-  width: 100%;
+  right: 2rem;
   background-color: rgba(47, 52, 55, 0.3);
   z-index: 2;
 }
@@ -219,6 +224,7 @@ footer {
   border: 0px;
   resize: none;
   line-height: 2rem;
+  margin: 0;
 }
 
 #index main form .editor-input:focus {

@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -12,13 +12,17 @@
 
 
     main{
+        position: relative;
         width: 100%;
-        height : 80%;
+        height : 80vh;
+        min-height: 80vh;
+        max-height: 80vh;
         form{
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            
+            position: relative;
+            height: 100%;
 
             
             .buttons{
@@ -61,9 +65,9 @@
                     content: '';
                     position: absolute;
                     top: 5rem;
-                    left : 0%;
+                    left : 2rem;
                     height: 1px;
-                    width: 100%;
+                    right: 2rem;
                     background-color: transparentize($color: $black, $amount: 0.7);
                     z-index: 2;
                 }
@@ -81,6 +85,7 @@
                     border : 0px;
                     resize: none;
                     line-height: 2rem;
+                    margin: 0;
                     &:focus{
                         outline: none;
                     }
