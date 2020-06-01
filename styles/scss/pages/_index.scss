@@ -13,12 +13,12 @@
 
     main{
         width: 100%;
-        height: 100%;
+        height : 80%;
         form{
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            height: 100%;
+            
 
             
             .buttons{
@@ -56,6 +56,7 @@
             
             .editor{
                 position: relative;
+               
                 &::before{
                     content: '';
                     position: absolute;
@@ -67,7 +68,6 @@
                     z-index: 2;
                 }
                 &-input{
-
                     font-size: 1.5rem;
                     width: 100%;
                     border : 1px solid black;
