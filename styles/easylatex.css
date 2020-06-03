@@ -154,8 +154,8 @@ footer {
   left: 50%;
   -webkit-transform: translate(-50%, -50%) scale(1);
           transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 250ms, z-index 0s 350ms;
-  transition: opacity 250ms, z-index 0s 350ms;
+  -webkit-transition: opacity 350ms, z-index 0s 350ms;
+  transition: opacity 350ms, z-index 0s 350ms;
   width: 80%;
   height: 85%;
   background-color: rgba(47, 52, 55, 0.99);
@@ -179,8 +179,8 @@ footer {
 }
 
 #index main .md-syntax.open {
-  -webkit-transition: opacity 250ms, z-index 0s;
-  transition: opacity 250ms, z-index 0s;
+  -webkit-transition: opacity 350ms, z-index 0s;
+  transition: opacity 350ms, z-index 0s;
   z-index: 10;
   opacity: 1;
 }
@@ -312,17 +312,20 @@ footer {
 
 #index main form .editor {
   position: relative;
+  overflow: hidden;
 }
 
-#index main form .editor::before {
-  content: '';
+#index main form .editor.preview::after {
+  content: 'Preview';
   position: absolute;
-  top: 5rem;
-  left: 2rem;
-  height: 1px;
+  top: 0.5rem;
   right: 2rem;
-  background-color: rgba(47, 52, 55, 0.3);
-  z-index: 2;
+  color: #cccccc;
+  padding: 1rem;
+  background-color: rgba(47, 52, 55, 0.8);
+  border-radius: 5px;
+  z-index: 10;
+  font-size: 1.5rem;
 }
 
 #index main form .editor-input {
@@ -356,60 +359,54 @@ footer {
   background-color: rgba(47, 52, 55, 0.99);
 }
 
-#index main form .editor div {
+#index main form .editor-input.preview {
   position: relative;
   z-index: 3;
+  text-align: justify;
 }
 
-#index main form .editor div::after {
-  content: 'Preview';
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  color: #cccccc;
-  padding: 1rem;
-  background-color: rgba(47, 52, 55, 0.9);
-  border-radius: 5px;
-}
-
-#index main form .editor div h1, #index main form .editor div h2 {
+#index main form .editor-input.preview h1, #index main form .editor-input.preview h2 {
   font-weight: bold;
   font-size: 2.5rem;
 }
 
-#index main form .editor div h3, #index main form .editor div h4 {
+#index main form .editor-input.preview h3, #index main form .editor-input.preview h4 {
   font-weight: bold;
   font-size: 1.8rem;
 }
 
-#index main form .editor div h5, #index main form .editor div h6 {
+#index main form .editor-input.preview h5, #index main form .editor-input.preview h6 {
   font-weight: bold;
   font-size: 1.5rem;
 }
 
-#index main form .editor aside {
-  display: none;
-}
-
-#index main form .editor textarea {
+#index main form .editor-input.input {
   padding-top: 6rem;
+  padding-bottom: 1rem;
   position: relative;
   z-index: 1;
 }
 
-#index main form .editor textarea + aside {
+#index main form .editor-input.input + aside {
   display: block;
-  position: absolute;
-  top: 1%;
-  left: 2rem;
-  width: auto;
-  border: 2px solid #2f3437;
-  border-radius: 5px;
-  padding: 0.5rem 1%;
-  z-index: 2;
 }
 
-#index main form .editor textarea + aside button {
+#index main form .editor aside {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0rem;
+  right: 0rem;
+  padding: 1rem 0.5rem;
+  z-index: 2;
+  background-color: rgba(204, 204, 204, 0.9);
+  -webkit-box-shadow: 0px 5px 10px 1px #474e53;
+          box-shadow: 0px 5px 10px 1px #474e53;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#index main form .editor aside button {
   font-family: "Chelsea Market",cursive;
   margin: 0 .5rem;
   border: none;
@@ -419,21 +416,21 @@ footer {
   padding: 0.4rem 0.5rem;
 }
 
-#index main form .editor textarea + aside button img {
+#index main form .editor aside button img {
   width: 100%;
   height: 100%;
 }
 
-#index main form .editor textarea + aside button:active {
+#index main form .editor aside button:active {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
 
-#index main form .editor textarea + aside #btn-bold {
+#index main form .editor aside #btn-bold {
   font-weight: bold;
 }
 
-#index main form .editor textarea + aside #btn-italic {
+#index main form .editor aside #btn-italic {
   font-style: italic;
 }
 

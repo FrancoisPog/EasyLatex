@@ -27,7 +27,7 @@
             top: 50%;
             left: 50%;
             transform : translate(-50%,-50%) scale(1);
-            transition: opacity 250ms, z-index 0s 350ms;
+            transition: opacity 350ms, z-index 0s 350ms;
             width: 80%;
             height: 85%;
             background-color: transparentize($color: $black, $amount: 0.01);
@@ -45,7 +45,7 @@
             
 
             &.open{
-                transition: opacity 250ms, z-index 0s;
+                transition: opacity 350ms, z-index 0s;
                 z-index: 10;
                 //transform: translate(-50%,-50%) scale(1);
                 opacity: 1;
@@ -146,17 +146,23 @@
             
             .editor{
                 position: relative;
-               
-                &::before{
-                    content: '';
+                overflow: hidden;
+
+                &.preview::after{
+                    content: 'Preview';
                     position: absolute;
-                    top: 5rem;
-                    left : 2rem;
-                    height: 1px;
+                    top: 0.5rem;
                     right: 2rem;
-                    background-color: transparentize($color: $black, $amount: 0.7);
-                    z-index: 2;
+                    color : $white;
+                    padding: 1rem;
+                    background-color: transparentize($color: $black, $amount: 0.2);
+                    border-radius: 5px;
+                    z-index: 10;
+                    font-size: 1.5rem;
+
+                    
                 }
+               
                 &-input{
                     font-size: 1.5rem;
                     width: 100%;
@@ -180,87 +186,83 @@
                         @include whiteOnBlack;
                     }
 
+
+                    &.preview{
+                        position : relative;
+                        z-index: 3;
+                       text-align: justify;
+    
+                        h1,h2{
+                            font-weight: bold;
+                            font-size: 2.5rem;
+                        }
+    
+                        h3,h4{
+                            font-weight: bold;
+                            font-size: 1.8rem;
+                        }
+    
+                        h5,h6{
+                            font-weight: bold;
+                            font-size: 1.5rem;
+                        }
+                    }
             
-                    
-                }
-
-                div{
-                    position : relative;
-                    z-index: 3;
-                    &::after{
-                        content: 'Preview';
-                        position: absolute;
-                        top: 0.5rem;
-                        right: 0.5rem;
-                        color : $white;
-                        padding: 1rem;
-                        background-color: transparentize($color: $black, $amount: 0.1);
-                        border-radius: 5px;
-                    }
-
-                    h1,h2{
-                        font-weight: bold;
-                        font-size: 2.5rem;
-                    }
-
-                    h3,h4{
-                        font-weight: bold;
-                        font-size: 1.8rem;
-                    }
-
-                    h5,h6{
-                        font-weight: bold;
-                        font-size: 1.5rem;
+                    &.input{
+                        padding-top: 6rem;
+                        padding-bottom: 1rem;
+                        position: relative;
+                        z-index: 1;
+                        
+                        + aside{
+                            display: block;
+                            
+                        }
                     }
                 }
+
+                
 
                 aside{
                     display: none;
-                }
+                    position: absolute;
+                    top: 0;
+                    left: 0rem;
+                    right: 0rem;
+                    padding: 1rem 0.5rem;
+                    z-index: 2;
+                    background-color: transparentize($white,0.1);
+                    box-shadow: 0px 5px 10px 1px lighten($black,10);
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
 
-                textarea{
-                    padding-top: 6rem;
-                    position: relative;
-                    z-index: 1;
-
-
-                    + aside{
-                        display: block;
-                        position: absolute;
-                        top: 1%;
-                        left: 2rem;
-                        width: auto;
-                        border: 2px solid $black;
-                        border-radius: 5px;
-                        padding: 0.5rem 1%;
-                        z-index: 2;
-                        button{
-                            font-family: "Chelsea Market",cursive;
-                            margin: 0 .5rem;
-                            border: none;
-                            border-radius: 2px;
-                            @include whiteOnBlack;
-                            padding : 0.4rem 0.5rem;
-                            img{
-                                width: 100%;
-                                height: 100%;
-                            }
-
-                            &:active{
-                                transform: scale(1.05);
-                            }
+                    button{
+                        font-family: "Chelsea Market",cursive;
+                        margin: 0 .5rem;
+                        border: none;
+                        border-radius: 2px;
+                        @include whiteOnBlack;
+                        padding : 0.4rem 0.5rem;
+                        img{
+                            width: 100%;
+                            height: 100%;
                         }
 
-                        #btn-bold{
-                            font-weight: bold;
+                        &:active{
+                            transform: scale(1.05);
                         }
-
-                        #btn-italic{
-                            font-style: italic;
-                        }
-
                     }
+
+                    #btn-bold{
+                        font-weight: bold;
+                    }
+
+                    #btn-italic{
+                        font-style: italic;
+                    }
+
                 }
+
             }
 
             .viewer{
