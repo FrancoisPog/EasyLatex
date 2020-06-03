@@ -1,3 +1,4 @@
+/** COMMON **/
 html{
     font-size : 10px;
 }
@@ -18,5 +19,5 @@ body{
 }
 
 *::selection{
-    @include selection();
+    @include blackOnWhite();
 }

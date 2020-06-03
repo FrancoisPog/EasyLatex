@@ -1,3 +1,5 @@
+/** Main page **/
+
 #index{
     position: absolute;
     top: 0;
@@ -24,10 +26,10 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform : translate(-50%,-50%) scale(0);
-            transition: all 450ms;
+            transform : translate(-50%,-50%) scale(1);
+            transition: opacity 250ms, z-index 0s 350ms;
             width: 80%;
-            height: 80%;
+            height: 85%;
             background-color: transparentize($color: $black, $amount: 0.01);
             z-index: 10;
             padding : 5rem;
@@ -36,12 +38,16 @@
             align-content: flex-start;
             flex-wrap: wrap;
             justify-content: space-around;
+            z-index: -10;
             opacity: 0;
-            box-shadow: 0 0 .5rem 1.5rem transparentize($color: $black, $amount: 0.01);
+
+            //box-shadow: 0 0 .5rem 1.5rem transparentize($color: $black, $amount: 0.01);
             
 
             &.open{
-                transform: translate(-50%,-50%) scale(1);
+                transition: opacity 250ms, z-index 0s;
+                z-index: 10;
+                //transform: translate(-50%,-50%) scale(1);
                 opacity: 1;
             }
 
@@ -110,6 +116,7 @@
                 width: 10%;
 
                 input,button{
+                    outline: none;
                     cursor: pointer;
                     margin: auto;
                     padding:0.8rem;
@@ -169,10 +176,11 @@
                         outline: none;
                     }
 
-                    &::selection ,*::selection {
-                        @include whiteOnBlack();
+                    &::selection{
+                        @include whiteOnBlack;
                     }
 
+            
                     
                 }
 

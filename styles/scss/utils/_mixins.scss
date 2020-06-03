@@ -1,18 +1,11 @@
 @mixin whiteOnBlack(){
     color : $white;
-    background-color: $black;
+    background-color: transparentize($color: $black, $amount: 0.01);
 }
 
 @mixin blackOnWhite(){
     color : $black;
-    background-color: $white;
+    background-color: transparentize($color: $white, $amount: 0.01);
 }
 
 
-@mixin selection() {
-    @if background-color = $black {
-        @include blackOnWhite();
-    }@else{
-        @include whiteOnBlack();
-    }
-}
