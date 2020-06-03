@@ -1,6 +1,6 @@
 // Regex
 const markdown_regex    = /(\[(.):(.*?):(\2)\]|(\#{1,3}\*?) *(.+?) *(<br>|$))/gmi;
-const preview_regex     = /<(.*?) class="(.*?)">[0-9\. ]*(.*?)<\/(\1)>/gmi;
+const preview_regex     = /<(.*?)( class="(.*?)")?>[0-9\. ]*(.*?)<\/(\1)>/gmi;
 var title_count = 0;
 var subtitle_count = 0;
 
@@ -94,7 +94,7 @@ function converter_to_preview(){
     preview_mode = true;
 }
 
-
+DEBUG = true;
 
 /**
  * Parse the preview to latex
@@ -105,8 +105,9 @@ function converter_to_preview(){
  * @param {String} offset The offset in the original
  * @param {String} og The original string
  */
-function preview_to_latex(match,tag_name,tag_class,tag_content,no_used,offset,og){
-    //debug(match,"\t- ",tag_name,"\t- ",tag_content,"\t- ",no_used,"\t- ",offset,"\t- ",og);
+function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,no_used,offset,og){
+    debug([match,tag_name,tag_content,tag_class]);
+    
 
     if(tag_content.match(preview_regex)){
         tag_content = tag_content.replace(preview_regex,preview_to_latex);
@@ -170,7 +171,7 @@ function converter_to_latex(){
     let content = "";
 
     if(editor.tagName != "DIV"){
-        content = content.replace(markdown_regex,markdown_to_preview);
+        content = markdown_to_preview(editor.value);
     }else{
         content = editor.innerHTML;
     }
