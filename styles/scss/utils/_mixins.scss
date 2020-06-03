@@ -7,3 +7,12 @@
     color : $black;
     background-color: $white;
 }
+
+
+@mixin selection() {
+    @if background-color = $black {
+        @include blackOnWhite();
+    }@else{
+        @include whiteOnBlack();
+    }
+}

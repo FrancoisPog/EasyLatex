@@ -1,6 +1,11 @@
 // Get elements
 let btn_preview = document.getElementById('btn-preview'); 
 let btn_convert = document.getElementById('btn-convert');
+
+let btn_syntax = document.getElementById('btn-syntax');
+let elt_syntax = document.getElementsByClassName('md-syntax')[0];
+let btn_exit_syntax = document.getElementById('md-syntax-exit');
+
 let btn_italic = document.getElementById('btn-italic');
 let btn_bold = document.getElementById('btn-bold');
 let form = document.querySelector('form');
@@ -88,3 +93,18 @@ function change_selection_style(tag){
 
     debug(s1+":"+s2);
 }
+
+
+
+btn_syntax.addEventListener('click',(e)=>{
+    e.preventDefault();
+    elt_syntax.classList.add('open');
+    form.classList.add('blurred');
+
+});
+
+btn_exit_syntax.addEventListener('click',(e)=>{
+    e.preventDefault();
+    elt_syntax.classList.remove('open');
+    form.classList.remove('blurred');
+});

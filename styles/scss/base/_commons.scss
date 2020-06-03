@@ -9,10 +9,14 @@ strong{
 em{
     font-style: italic;
 }
-
+sup {font-size:xx-small; vertical-align:super;}
 
 body{
     background-color: $black;
     color : $white;
     font-family: 'Chelsea Market', cursive;
+}
+
+*::selection{
+    @include selection();
 }

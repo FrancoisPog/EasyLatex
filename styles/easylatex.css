@@ -69,10 +69,25 @@ em {
   font-style: italic;
 }
 
+sup {
+  font-size: xx-small;
+  vertical-align: super;
+}
+
 body {
   background-color: #2f3437;
   color: #cccccc;
   font-family: 'Chelsea Market', cursive;
+}
+
+*::-moz-selection {
+  color: #2f3437;
+  background-color: #cccccc;
+}
+
+*::selection {
+  color: #2f3437;
+  background-color: #cccccc;
 }
 
 header {
@@ -130,6 +145,90 @@ footer {
   max-height: 80vh;
 }
 
+#index main .md-syntax {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: all 450ms;
+  transition: all 450ms;
+  width: 80%;
+  height: 80%;
+  background-color: rgba(47, 52, 55, 0.99);
+  z-index: 10;
+  padding: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  opacity: 0;
+  -webkit-box-shadow: 0 0 0.5rem 1.5rem rgba(47, 52, 55, 0.99);
+          box-shadow: 0 0 0.5rem 1.5rem rgba(47, 52, 55, 0.99);
+}
+
+#index main .md-syntax.open {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+#index main .md-syntax #md-syntax-exit {
+  position: absolute;
+  top: 4rem;
+  right: 10rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 1rem;
+  font-size: 4rem;
+  -webkit-transition: all 450ms;
+  transition: all 450ms;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#index main .md-syntax #md-syntax-exit:hover {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+#index main .md-syntax h2 {
+  font-size: 3.4rem;
+  font-weight: bold;
+  width: 100%;
+  margin-bottom: 6rem;
+  padding-left: 3rem;
+}
+
+#index main .md-syntax section h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+#index main .md-syntax section table {
+  font-size: 1.5rem;
+}
+
+#index main .md-syntax section table td {
+  padding: 1rem;
+}
+
 #index main form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -142,6 +241,17 @@ footer {
       justify-content: space-around;
   position: relative;
   height: 100%;
+  -webkit-transition: -webkit-filter 450ms;
+  transition: -webkit-filter 450ms;
+  transition: filter 450ms;
+  transition: filter 450ms, -webkit-filter 450ms;
+  -webkit-filter: none;
+          filter: none;
+}
+
+#index main form.blurred {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
 }
 
 #index main form .buttons {
@@ -159,6 +269,7 @@ footer {
 }
 
 #index main form .buttons input, #index main form .buttons button {
+  cursor: pointer;
   margin: auto;
   padding: 0.8rem;
   font-family: "Chelsea Market",cursive;
@@ -324,7 +435,7 @@ footer {
 
 #index main form .viewer {
   border-radius: 6px;
-  background-color: #cccccc;
+  background-color: #484848;
 }
 
 #index main form .viewer-wrapper {
