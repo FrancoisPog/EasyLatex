@@ -19,9 +19,9 @@ var first_call_m2p = 1;
  * @param {String} og The original string
  */
 function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,title_type,title_content,offset,og){
-    debug(match,["\t- ",no_used,"\t- ",text_type,"\t- ",text_content,"\t- ",no_used,"\t- ",title_type,"\t- ",title_content,"\t- ",offset,"\t- ",og]);
-    console.log(title_count);
+    debug([match,text_type,text_content,title_type,title_content]);
 
+    // Title case
     if(typeof(text_content) == "undefined"){
         if(title_content.match(markdown_regex)){
             title_content = title_content.replace(markdown_regex,markdown_to_preview_rec);
@@ -49,6 +49,7 @@ function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,ti
         return match;
     }
 
+    // Text case
     if(text_content.match(markdown_regex)){
         text_content = text_content.replace(markdown_regex,markdown_to_preview_rec);
     }
@@ -68,7 +69,18 @@ function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,ti
 function markdown_to_preview(text){
     title_count = 0;
     subtitle_count = 0;
-    return text.replace(/\n/gmi,'<br>').replace(markdown_regex,markdown_to_preview_rec).replace(/\[:nl:\]/gmi,'<span class="nl">&#8617;</span>').replace(/\[:np:\]/gmi,'<span class="np">&#9552;</span>');
+    single_tags_regex = {   
+                            '<span class="nl">&#8617;</span><br>' : /\[:nl:\]/gmi,
+                            '<br><span class="np">&#9552;</span><br>' : /\[:np:\]/gmi
+                        }
+
+    content =  text.replace(/\n/gmi,'<br>').replace(markdown_regex,markdown_to_preview_rec);
+
+    for(let tag in single_tags_regex){
+        content = content.replace(single_tags_regex[tag],tag);
+    }
+
+    return content+"<br><br>";
 }
 
 /**
@@ -94,7 +106,6 @@ function converter_to_preview(){
     preview_mode = true;
 }
 
-DEBUG = true;
 
 /**
  * Parse the preview to latex
@@ -163,6 +174,14 @@ function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,n
 
 }
 
+function preview_correcter($text){
+    let errors = new Array();
+
+
+
+    return errors;
+}
+
 /**
  * Convert to latex from editor
  */
@@ -176,12 +195,15 @@ function converter_to_latex(){
         content = editor.innerHTML;
     }
 
-    debug(content);
+    let errors = preview_correcter(content);
+    console.log(errors);
+    if(!errors.length){
+        return ['<h3>Title</h3><p>Content</p>'];
+    };
 
     let latex = content.replace(/<br>/gmi,'');
     latex = latex.replace(preview_regex,preview_to_latex);
 
-    debug(latex);
 
     return latex;
 }
