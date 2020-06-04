@@ -444,11 +444,11 @@ footer {
 #index main form .viewer-wrapper {
   border-radius: 5px;
   width: 100%;
-  display: none;
 }
 
 #index main form .viewer .errors {
   position: absolute;
+  display: none;
   top: 0;
   right: 0;
   height: 100%;
@@ -483,6 +483,11 @@ footer {
   padding-left: 1rem;
   font-size: 1.5rem;
   border-left: 1px solid #cccccc;
+}
+
+#index main form .viewer .errors-list p .invalid_char {
+  font-size: 2rem;
+  text-decoration: underline;
 }
 
 #index main form .viewer .errors-list li:not(:last-child) {

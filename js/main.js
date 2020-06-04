@@ -52,9 +52,8 @@ form.addEventListener("submit",function(e){
     res = converter_to_latex();
 
     
-    
-    
     if(Array.isArray(res)){
+        //console.log(res);
         errors.style.display = 'block';
         errors_list.innerHTML = '';
 
@@ -68,7 +67,7 @@ form.addEventListener("submit",function(e){
     }
 
     form.elements[1].value = res;
-    //form.submit();
+    form.submit();
 
 
 

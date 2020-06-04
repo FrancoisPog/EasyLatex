@@ -273,11 +273,12 @@
                 &-wrapper{
                     border-radius: 5px;  
                     width: 100%;  
-                    display: none;   
+                    //display: none;   
                 }
 
                 .errors{
                     position: absolute;
+                    display: none;
                     top: 0;
                     right: 0;
                     height: 100%;
@@ -308,8 +309,13 @@
                             padding: 0.5rem;
                             padding-left: 1rem;
                             font-size: 1.5rem;
-
+                            
                             border-left: 1px solid $white;
+
+                            .invalid_char{
+                                font-size: 2rem;
+                                text-decoration: underline;
+                            }
                         }
 
                         li{

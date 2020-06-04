@@ -174,9 +174,16 @@ function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,n
 
 }
 
-function preview_correcter($text){
+function preview_correcter(text){
     let errors = new Array();
 
+    errors_match = [...text.matchAll(/.{0,40}(\/|\$).{0,40}/gmi)];
+
+    for(let match of errors_match){
+        match[0] = match[0].replace(/(\/|\$)/gmi,'<span class="invalid_char">$1</span>').replace(/<br>/gmi,'');
+        
+        errors.push('<h3>Unescaped invalid character</h3><p>'+match[0]+'</p>');
+    }
 
 
     return errors;
@@ -196,9 +203,10 @@ function converter_to_latex(){
     }
 
     let errors = preview_correcter(content);
-    console.log(errors);
-    if(!errors.length){
-        return ['<h3>Title</h3><p>Content</p>'];
+    
+    
+    if(errors.length > 0){
+        return errors;
     };
 
     let latex = content.replace(/<br>/gmi,'');
