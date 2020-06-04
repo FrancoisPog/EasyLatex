@@ -177,16 +177,23 @@ function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,n
 function preview_correcter(text){
     let errors = new Array();
 
-    errors_match = [...text.matchAll(/.{0,40}(\/|\$).{0,40}/gmi)];
+    errors_match = [...text.matchAll(/[^><]{0,40}(\\)[^<>]{0,40}/gmi)];
 
     for(let match of errors_match){
-        match[0] = match[0].replace(/(\/|\$)/gmi,'<span class="invalid_char">$1</span>').replace(/<br>/gmi,'');
+        match[0] = match[0].replace(/(\\)/gmi,'<span class="invalid_char">$1</span>').replace(/<br>/gmi,'');
         
-        errors.push('<h3>Unescaped invalid character</h3><p>'+match[0]+'</p>');
+        errors.push('<h3>Invalid character</h3><p>'+match[0]+'</p>');
     }
 
 
     return errors;
+}
+
+
+function escape_special_chars(text){
+    
+    return text.replace(/\$/gmi,'\\$');
+
 }
 
 /**
@@ -202,12 +209,16 @@ function converter_to_latex(){
         content = editor.innerHTML;
     }
 
+
+
     let errors = preview_correcter(content);
-    
+     
     
     if(errors.length > 0){
         return errors;
     };
+
+    content = escape_special_chars(content);
 
     let latex = content.replace(/<br>/gmi,'');
     latex = latex.replace(preview_regex,preview_to_latex);

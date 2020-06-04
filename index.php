@@ -98,7 +98,7 @@ function pog_print_index(){
                                 '<iframe class="viewer-wrapper" src="https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/output.tex">',
                                 '</iframe>',
                                 '<div class="errors">',
-                                    '<h2>Syntax errors</h2>',
+                                    '<h2>Markdown errors</h2>',
                                     '<ul class="errors-list">',
                                         '<li>',
                                             '<h3>Unescaped invalid character</h3>',
