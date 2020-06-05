@@ -10,6 +10,7 @@ let btn_italic = document.getElementById('btn-italic');
 let btn_bold = document.getElementById('btn-bold');
 let btn_newline = document.getElementById('btn-newline');
 let btn_newpage = document.getElementById('btn-newpage');
+let btn_newpar = document.getElementById('btn-newpar');
 
 let form = document.querySelector('form');
 let errors = document.getElementsByClassName('errors')[0];
@@ -114,7 +115,11 @@ btn_newpage.addEventListener('click',(e)=>{
     change_selection_style('np',true);
 });
 
-
+// New paragraph
+btn_newpar.addEventListener('click',(e)=>{
+    e.preventDefault();
+    change_selection_style('par',1);
+});
 
 // Selection style
 function change_selection_style(tag, isSingle = false){

@@ -369,16 +369,23 @@ footer {
 #index main form .editor-input.preview h1, #index main form .editor-input.preview h2 {
   font-weight: bold;
   font-size: 2.5rem;
+  margin: 2rem 0;
 }
 
 #index main form .editor-input.preview h3, #index main form .editor-input.preview h4 {
   font-weight: bold;
   font-size: 1.8rem;
+  margin: 1.5rem 0;
 }
 
 #index main form .editor-input.preview h5, #index main form .editor-input.preview h6 {
   font-weight: bold;
   font-size: 1.5rem;
+  margin: 1.5rem 0 .8rem 0;
+}
+
+#index main form .editor-input.preview span.np {
+  font-size: 2rem;
 }
 
 #index main form .editor-input.input {
@@ -486,8 +493,8 @@ footer {
 }
 
 #index main form .viewer .errors-list p .invalid_char {
-  font-size: 2rem;
-  text-decoration: underline;
+  font-size: 1.7rem;
+  border-bottom: 1px solid #cccccc;
 }
 
 #index main form .viewer .errors-list li:not(:last-child) {

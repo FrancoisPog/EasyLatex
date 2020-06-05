@@ -191,21 +191,28 @@
                     &.preview{
                         position : relative;
                         z-index: 3;
-                       text-align: justify;
+                        text-align: justify;
     
                         h1,h2{
                             font-weight: bold;
                             font-size: 2.5rem;
+                            margin: 2rem 0;
                         }
     
                         h3,h4{
                             font-weight: bold;
                             font-size: 1.8rem;
+                            margin: 1.5rem 0;
                         }
     
                         h5,h6{
                             font-weight: bold;
                             font-size: 1.5rem;
+                            margin: 1.5rem 0 .8rem 0 ;
+                        }
+
+                        span.np{
+                            font-size: 2rem;
                         }
                     }
             
@@ -214,7 +221,6 @@
                         padding-bottom: 1rem;
                         position: relative;
                         z-index: 1;
-                        
                         + aside{
                             display: block;
                             
@@ -313,8 +319,8 @@
                             border-left: 1px solid $white;
 
                             .invalid_char{
-                                font-size: 2rem;
-                                text-decoration: underline;
+                                font-size: 1.7rem;
+                                border-bottom: 1px solid $white;
                             }
                         }
 

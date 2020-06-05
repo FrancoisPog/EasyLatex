@@ -72,6 +72,10 @@ function pog_print_index(){
                                             '<td>New page</td>',
                                             '<td>[:np:]</td>',
                                         '</tr>',
+                                        '<tr>',
+                                            '<td>Paragraph beginning</td>',
+                                            '<td>[:par:]</td>',
+                                        '</tr>',
                                     '</table>',
                                 '</section>',
                                 
@@ -86,6 +90,7 @@ function pog_print_index(){
                                     '<button id="btn-bold" title="bold the selected text">bold</button>',
                                     '<button id="btn-newline" title="insert a new line">New line</button>',
                                     '<button id="btn-newpage" title="insert a new page">New page</button>',
+                                    '<button id="btn-newpar" title="insert a new paragraph">New paragraph</button>',
                                 '</aside>',
                             '</div>',
                             '<div class="buttons">',
@@ -100,30 +105,6 @@ function pog_print_index(){
                                 '<div class="errors">',
                                     '<h2>Markdown errors</h2>',
                                     '<ul class="errors-list">',
-                                        '<li>',
-                                            '<h3>Unescaped invalid character</h3>',
-                                            '<p>rojet, Jean-Michel Hufflen. L\'ob\jectif était de développer une carte',
-                                        '</li>',
-                                        '<li>',
-                                            '<h3>Unescaped invalid character</h3>',
-                                            '<p>rojet, Jean-Michel Hufflen. L\'ob\jectif était de développer une carte',
-                                        '</li>',
-                                        '<li>',
-                                            '<h3>Unescaped invalid character</h3>',
-                                            '<p>rojet, Jean-Michel Hufflen. L\'ob\jectif était de développer une carte',
-                                        '</li>',
-                                        '<li>',
-                                            '<h3>Unescaped invalid character</h3>',
-                                            '<p>rojet, Jean-Michel Hufflen. L\'ob\jectif était de développer une carte',
-                                        '</li>',
-                                        '<li>',
-                                            '<h3>Unescaped invalid character</h3>',
-                                            '<p>rojet, Jean-Michel Hufflen. L\'ob\jectif était de développer une carte',
-                                        '</li>',
-                                        '<li>',
-                                            '<h3>Unescaped invalid character</h3>',
-                                            '<p>rojet, Jean-Michel Hufflen. L\'ob\jectif était de développer une carte',
-                                        '</li>',
                                     '</ul>',
                                 '</div>',
                             '</div>',
@@ -143,7 +124,7 @@ function pog_parseToLatex(){
 
     $file = fopen("output.tex",'w+');
 
-    $latex_begin = '\documentclass{report} \usepackage[utf8]{inputenc}\usepackage[french]{babel}\renewcommand{\thesection}{\arabic{section}}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents\newpage ';
+    $latex_begin = '\documentclass{report}\usepackage[T1]{fontenc} \usepackage[utf8]{inputenc}\usepackage[english]{babel}\renewcommand{\thesection}{\arabic{section}}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents\newpage ';
 
     $latex_end = ' \end{document}';
 
