@@ -86,6 +86,8 @@ form.addEventListener("submit",function(e){
     preview.parentNode.classList.remove('preview');
     area.value = markdown_svg;
     area.name = "content";
+    area.onfocus = () => {editorIsFocused = true;};
+    area.onblur = (e) => {editorIsFocused = false};   
 
     preview.parentNode.replaceChild(area,preview);
     preview_mode = false;
@@ -122,17 +124,25 @@ btn_newpar.addEventListener('click',(e)=>{
 });
 
 // Selection style
-function change_selection_style(tag, isSingle = false){
+function change_selection_style(tag, isSingleTag = false){
     let editor = document.getElementsByClassName("editor-input")[0];
     let s1 = editor.selectionStart;
     let s2 = editor.selectionEnd;
     let text = editor.value;
-    if(isSingle){
+
+    if(isSingleTag){
         editor.value = text.substring(0,s2) + '[:' + tag + ':]' + text.substring(s2,text.lenght);
         return;
     }
+
     editor.value = (text.substring(0,s1) + '['+tag+':' + text.substring(s1,s2) + ':'+tag+']' + text.substring(s2,text.lenght));
-    debug(s1+":"+s2);
+    
+    if(s1 == s2){
+        setSelectionRange(editor,s2+3,s2+3);
+    }else{
+        setSelectionRange(editor,s2+6,s2+6);
+    }
+    
 }
 
 
@@ -150,3 +160,52 @@ btn_exit_syntax.addEventListener('click',(e)=>{
     elt_syntax.classList.remove('open');
     form.classList.remove('blurred');
 });
+
+
+
+function setSelectionRange(input, selectionStart, selectionEnd) {
+    if (input.setSelectionRange) {
+      input.focus();
+      input.setSelectionRange(selectionStart, selectionEnd);
+    }else if (input.createTextRange) {
+      let range = input.createTextRange();
+      range.collapse(true);
+      range.moveEnd('character', selectionEnd);
+      range.moveStart('character', selectionStart);
+      range.select();
+    }
+  }
+  
+  function setCaretToPos (input, pos) {
+     setSelectionRange(input, pos, pos);
+  }
+
+
+  
+function setKeyboardShortcuts(){
+    document.onkeydown = (e) => {
+        if(!editorIsFocused){
+            return;
+        }
+        if(e.ctrlKey){
+            if(e.which == 66){
+                e.preventDefault();
+                change_selection_style('b');
+            }else if(e.which == 73){
+                e.preventDefault();
+                change_selection_style('i');
+            }
+        }
+    }
+}
+
+let editor = document.getElementsByClassName('editor-input')[0];
+let editorIsFocused = false;
+
+setKeyboardShortcuts();
+
+editor.onfocus = () => {editorIsFocused = true;};
+
+editor.onblur = (e) => {editorIsFocused = false};
+
+console.log(editor);
