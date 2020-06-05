@@ -54,7 +54,6 @@ form.addEventListener("submit",function(e){
 
     
     if(Array.isArray(res)){
-        //console.log(res);
         errors.style.display = 'block';
         errors_list.innerHTML = '';
 
@@ -132,15 +131,17 @@ function change_selection_style(tag, isSingleTag = false){
 
     if(isSingleTag){
         editor.value = text.substring(0,s2) + '[:' + tag + ':]' + text.substring(s2,text.lenght);
+        console.log(tag.length);
+        setSelectionRange(editor,s2+4+tag.length,s2+4+tag.length);
         return;
     }
 
     editor.value = (text.substring(0,s1) + '['+tag+':' + text.substring(s1,s2) + ':'+tag+']' + text.substring(s2,text.lenght));
     
     if(s1 == s2){
-        setSelectionRange(editor,s2+3,s2+3);
+        setSelectionRange(editor,s2+2+tag.length,s2+2+tag.length);
     }else{
-        setSelectionRange(editor,s2+6,s2+6);
+        setSelectionRange(editor,s2+4+2*tag.length,s2+4+2*tag.length);
     }
     
 }
@@ -194,11 +195,16 @@ function setKeyboardShortcuts(){
             }else if(e.which == 73){
                 e.preventDefault();
                 change_selection_style('i');
+            }else if(e.keyCode == 13){
+                e.preventDefault();
+                change_selection_style('nl',true);
             }
         }
     }
 }
 
+
+// TODO make an editor constructor
 let editor = document.getElementsByClassName('editor-input')[0];
 let editorIsFocused = false;
 
@@ -206,6 +212,6 @@ setKeyboardShortcuts();
 
 editor.onfocus = () => {editorIsFocused = true;};
 
-editor.onblur = (e) => {editorIsFocused = false};
+editor.onblur = () => {editorIsFocused = false};
 
 console.log(editor);
