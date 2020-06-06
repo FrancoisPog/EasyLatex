@@ -1,20 +1,6 @@
 /** Main page **/
 
 #index{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-    
-
-
     main{
         position: relative;
         width: 100%;
@@ -41,14 +27,11 @@
             z-index: -10;
             opacity: 0;
             border-radius: 25px;
-
-            //box-shadow: 0 0 .5rem 1.5rem transparentize($color: $black, $amount: 0.01);
             
 
             &.open{
                 transition: opacity 350ms, z-index 0s;
                 z-index: 10;
-                //transform: translate(-50%,-50%) scale(1);
                 opacity: 1;
             }
 
@@ -115,28 +98,8 @@
                 flex-direction: column;
                 align-items: center;
                 width: 10%;
-
-                input,button{
-                    outline: none;
-                    cursor: pointer;
-                    margin: auto;
-                    padding:0.8rem;
-                    font-family: "Chelsea Market",cursive;
-                    border-radius: 3rem ;
-                    border : none;
-                    transition: bax-shadow 250ms, transform 200ms;
-                    @include blackOnWhite;
-                    &:hover{
-                        box-shadow: 0 0 20px 5px lighten($color: $black, $amount: 10);
-                        transform: scale(1.1);
-                    }
-
-                    &:active{
-                        transform : scale(1.1) translateY(5px);
-                    }
-                }
             }
-
+            
             .editor,.viewer{
                 display: flex;
                 justify-content: center;

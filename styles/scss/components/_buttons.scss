@@ -1,0 +1,20 @@
+input[type='button'].btn,input[type='submit'].btn,button.btn{
+    outline: none;
+    cursor: pointer;
+    margin: auto;
+    padding:0.8rem;
+    font-family: "Chelsea Market",cursive;
+    border-radius: 3rem ;
+    border : none;
+    transition: bax-shadow 250ms, transform 200ms;
+    @include blackOnWhite;
+
+    &:hover{
+        box-shadow: 0 0 20px 5px lighten($color: $black, $amount: 10);
+        transform: scale(1.1);
+    }
+
+    &:active{
+        transform : scale(1.1) translateY(5px);
+    }
+}

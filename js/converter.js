@@ -71,11 +71,12 @@ function markdown_to_preview(text){
     single_tags_regex = {   
                             '<span class="nl"><br></span>' : /\[:nl:\]/gmi,
                             '<span class="np"><br>--<br></span>' : /\[:np:\]/gmi,
+                            '<span class="par">&nbsp;&nbsp;</span>' : /^\[:par:\]/gmi,
                             'h$1\><span class="par">&nbsp;&nbsp;</span>' : /h([1-6])\> *\[:par:\]/gmi,
                             '<span class="par"><br><br>&nbsp;&nbsp;</span>' : /\[:par:\]/gmi
                         }
 
-    content =  text.replace(/\n/gmi,'<br>').replace(markdown_regex,markdown_to_preview_rec).replace(/<br>/gmi,'');
+    content =  text.replace(/\n/gmi,'<br>').replace(markdown_regex,markdown_to_preview_rec).replace(/<br>/gmi,' ');
 
     for(let tag in single_tags_regex){
         content = content.replace(single_tags_regex[tag],tag);
@@ -160,21 +161,23 @@ function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,n
 function markdown_correcter(text){
     let errors = new Array();
 
-    invalid_chars_errors = [...text.matchAll(/.{0,40}(\\).{0,40}/gmi)];
+    text = text.replace(/\n/gmi,' ');
+
+    invalid_chars_errors = [...text.matchAll(/.{0,50}(\\).{0,50}/gmi)];
 
     for(let match of invalid_chars_errors){
         match[0] = match[0].replace(/(\\)/gmi,'<span class="invalid_char">$1</span>').replace(/<br>/gmi,'');
         errors.push('<h3>Invalid character</h3><p>... '+match[0]+' ...</p>');
     }
 
-    double_np_errors = [...text.matchAll(/.{0,40}(\[:np:\]){2,}.{0,40}/gmi)];
+    double_np_errors = [...text.matchAll(/.{0,50}(\[:np:\]){2,}.{0,50}/gmi)];
    
     for(let match of double_np_errors){
         match[0] = match[0].replace(/(\[:np:\])/gmi,'<span class="invalid_char">[:np:]</span>');
         errors.push('<h3>Too many successive new pages</h3><p>... '+match[0]+' ...</p>');
     }
 
-    empty_tags_errors = [...text.matchAll(/.{0,40}\[(i|b): *:\1\].{0,40}/gmi)];
+    empty_tags_errors = [...text.matchAll(/.{0,50}\[(i|b): *:\1\].{0,50}/gmi)];
 
     for(let match of empty_tags_errors){
         match[0] = match[0].replace(/\[(i|b):( *):\1\]/gmi,'<span class="invalid_char">[$1:$2:$1]</span>');
@@ -189,7 +192,7 @@ function markdown_correcter(text){
  * @param {String} text The text to escape
  */
 function escape_special_chars(text){
-    return text.replace(/(\$|\{|\}|\&)/gmi,'\\\$1');
+    return text.replace(/(\$|\{|\}|\&|\%)/gmi,'\\\$1');
 }
 
 /**
