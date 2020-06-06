@@ -3,3 +3,6 @@
 
 # Tex files
 *.tex
+
+# private php file
+private_data.php

@@ -1,11 +1,15 @@
+@import 'scss/utils/variables';
+@import 'scss/utils/mixins';
 @import 'scss/base/reset';
 
 /** EASYLATEX STYLES **/
-@import 'scss/utils/variables';
-@import 'scss/utils/mixins';
+
+
+@import 'scss/base/commons';
 @import 'scss/components/tooltips';
 @import 'scss/components/buttons';
-@import 'scss/base/commons';
 @import 'scss/layouts/header';
+@import 'scss/layouts/forms';
 @import 'scss/pages/index';
+@import 'scss/pages/project';
 

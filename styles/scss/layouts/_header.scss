@@ -1,10 +1,11 @@
+/* --- HEADER --- */
 header{
     width: 100%;
     padding : 1rem 0;
     height : 15vh;
     text-align: center;
-    //border-bottom: red 1px solid;;
     margin-bottom: 1rem;
+    user-select: none;
 
     h1{
         font-weight: bold;
@@ -18,7 +19,9 @@ header{
    
 }
 
+/* --- FOOTER --- */
 footer{
+    user-select: none;
     font-size: 1.5rem;
     height: max-content;
     padding: 1.5rem;;

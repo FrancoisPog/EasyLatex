@@ -1,3 +1,5 @@
+/* --- TOOLTIPS --- */
+
 .tooltip{
     position: relative;
     &-tip{
@@ -11,7 +13,8 @@
         left: 1rem;
         padding: 1rem;
         font-size: 1.3rem;
-        transition : all 100ms;
+        transition : opacity 100ms, transform 0s 100ms;
+        transform: scale(0);
 
         &:before{
             @include whiteOnBlack;
@@ -29,6 +32,7 @@
     &:hover &-tip:not(:hover){
         opacity: 1;
         z-index: 5;
-        transition: all 100ms 500ms ;
+        transition: opacity 100ms 500ms;
+        transform: scale(1);
     }
 }
