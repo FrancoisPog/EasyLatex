@@ -114,6 +114,7 @@ function pog_print_index(){
                         '<p>EasyLatex - François Poguet &copy;</p>',
                     '</footer>',
                     '<script src="js/converter.js"></script>',
+                    '<script src="js/editor-shortcuts.js"></script>',
                     '<script src="js/main.js"></script>',
                 '</body>',
             '</html>';
@@ -124,7 +125,7 @@ function pog_parseToLatex(){
 
     $file = fopen("output.tex",'w+');
 
-    $latex_begin = '\documentclass{report}\usepackage[T1]{fontenc} \usepackage[utf8]{inputenc}\usepackage[english]{babel}\renewcommand{\thesection}{\arabic{section}}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents\newpage ';
+    $latex_begin = '\documentclass{report}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[english]{babel}\setlength{\parindent}{0cm}\renewcommand{\thesection}{\arabic{section}}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents\newpage ';
 
     $latex_end = ' \end{document}';
 

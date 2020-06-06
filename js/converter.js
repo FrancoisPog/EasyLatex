@@ -1,13 +1,12 @@
 // Regex
 const markdown_regex    = /(\[(.):(.*?):(\2)\]|(\#{1,3}\*?) *(.+?) *(<br>|$))/gmi;
 const preview_regex     = /<(.*?)( class="(.*?)")?>[0-9\. ]*(.*?)<\/(\1)>/gmi;
+
 var title_count = 0;
 var subtitle_count = 0;
 
-var first_call_m2p = 1;
-
 /**
- * Parse the markdown to preview html code
+ * Parse the markdown recursively to preview html code
  * @param {String} match The string matched
  * @param {String} no_used Useless
  * @param {String} text_type The text type (undefined if title)
@@ -19,8 +18,6 @@ var first_call_m2p = 1;
  * @param {String} og The original string
  */
 function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,title_type,title_content,offset,og){
-    debug([match,text_type,text_content,title_type,title_content]);
-
     // Title case
     if(typeof(text_content) == "undefined"){
         if(title_content.match(markdown_regex)){
@@ -28,7 +25,6 @@ function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,ti
         }
 
         let title_types = ['#','#*','##','##*','###','###*'];
-
         let title_index = title_types.indexOf(title_type)+1;
 
         if(title_index <= 6){
@@ -44,8 +40,7 @@ function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,ti
 
             return '<h'+title_index+'>'+title_number+" "+title_content+'</h'+title_index+'>';
         }
-
-        
+       
         return match;
     }
 
@@ -66,6 +61,10 @@ function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,ti
     
 }
 
+/**
+ * Parse a markdown text to html preview
+ * @param {String} text The text to parse
+ */
 function markdown_to_preview(text){
     title_count = 0;
     subtitle_count = 0;
@@ -78,8 +77,6 @@ function markdown_to_preview(text){
 
     content =  text.replace(/\n/gmi,'<br>').replace(markdown_regex,markdown_to_preview_rec).replace(/<br>/gmi,'');
 
-    console.log(content);
-
     for(let tag in single_tags_regex){
         content = content.replace(single_tags_regex[tag],tag);
     }
@@ -91,7 +88,7 @@ function markdown_to_preview(text){
  * Get the markdown code from editor and parse it for the preview
  */
 function converter_to_preview(){
-    let editor = document.getElementsByClassName("editor-input")[0];
+    let editor = get_editor_input();
     let content = editor.value;
 
     markdown_svg = content;
@@ -121,67 +118,46 @@ function converter_to_preview(){
  * @param {String} og The original string
  */
 function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,no_used,offset,og){
-    debug([match,tag_name,tag_content,tag_class]);
-    
-
     if(tag_content.match(preview_regex)){
         tag_content = tag_content.replace(preview_regex,preview_to_latex);
     }
 
-
     switch(tag_name){
-        case 'em': {
-            return '\\textit{'+tag_content+'}';
-        }
-
-        case 'strong' : {
+        case 'em': 
+            return '\\textit{'+tag_content+'}';     
+        case 'strong' : 
             return '\\textbf{'+tag_content+'}';
-        }
-
-        case 'h1' : {
-            return '\\section{'+tag_content+'}';
-        }
-
-        case 'h2' : {
+        case 'h1' : 
+            return '\\section{'+tag_content+'}';   
+        case 'h2' : 
             return '\\section*{'+tag_content+'}';
-        }
-
-        case 'h3' : {
+        case 'h3' : 
             return '\\subsection{'+tag_content+'}';
-        }
-
-        case 'h4' : {
+        case 'h4' : 
             return '\\subsection*{'+tag_content+'}';
-        }
-
-        case 'h5' : {
+        case 'h5' : 
             return '\\subsubsection{'+tag_content+'}';
-        }
-
-        case 'h6' : {
+        case 'h6' : 
             return '\\subsubsection*{'+tag_content+'}';
-        }
-
         case 'span' :  {
-            if(tag_class == 'nl'){
-                return "\\\\";
+            switch (tag_class) {
+                case 'nl':
+                    return "\\\\";            
+                case 'np':
+                    return "\\newpage ";
+                case 'par' :
+                    return '\\paragraph{}'; 
             }
-            if(tag_class == 'np'){
-                return "\\newpage ";
-            }
-            if(tag_class == 'par'){
-                return '\\paragraph{}';
-            }
+
         }
     }
-
-    
-
-    debug("error"+tag_name);
-
 }
 
-function preview_correcter(text){
+/**
+ * Markdown correcter
+ * @param {String} text The text to correct
+ */
+function markdown_correcter(text){
     let errors = new Array();
 
     invalid_chars_errors = [...text.matchAll(/.{0,40}(\\).{0,40}/gmi)];
@@ -191,10 +167,8 @@ function preview_correcter(text){
         errors.push('<h3>Invalid character</h3><p>... '+match[0]+' ...</p>');
     }
 
-    
     double_np_errors = [...text.matchAll(/.{0,40}(\[:np:\]){2,}.{0,40}/gmi)];
    
-
     for(let match of double_np_errors){
         match[0] = match[0].replace(/(\[:np:\])/gmi,'<span class="invalid_char">[:np:]</span>');
         errors.push('<h3>Too many successive new pages</h3><p>... '+match[0]+' ...</p>');
@@ -210,22 +184,20 @@ function preview_correcter(text){
     return errors;
 }
 
-
+/**
+ * Escape the latex specials characters
+ * @param {String} text The text to escape
+ */
 function escape_special_chars(text){
-    
-
     return text.replace(/(\$|\{|\}|\&)/gmi,'\\\$1');
-
 }
 
 /**
  * Convert to latex from editor
  */
 function converter_to_latex(){
-    let editor = document.getElementsByClassName("editor-input")[0];
+    let editor = get_editor_input();
     let content = "";
-
-
     if(editor.tagName != "DIV"){
         content = markdown_to_preview(editor.value);
         markdown_svg = editor.value;
@@ -233,13 +205,9 @@ function converter_to_latex(){
         content = editor.innerHTML;
     }
     
-    
-
-
-    let errors = preview_correcter(markdown_svg);
+    let errors = markdown_correcter(markdown_svg);
      
-    
-    if(errors.length > 0){
+    if(errors.length){
         return errors;
     };
 
@@ -247,9 +215,5 @@ function converter_to_latex(){
 
     let latex = content.replace(/<br>/gmi,'');
 
-
-    latex = latex.replace(preview_regex,preview_to_latex);
-
-
-    return latex;
+    return latex.replace(preview_regex,preview_to_latex);
 }
