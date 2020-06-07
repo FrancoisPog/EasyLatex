@@ -25,8 +25,10 @@ function pog_print_index(){
                 pog_html_input('el_signup_lastname','Last name'),
                 
                 pog_html_input('el_signup_passwordRepeat','Confirm password','password'),
+                
+                pog_html_checkbox('remember','Remember me'),
                 pog_html_button('signup','Sign up','submit'),
-            '</form>',
+                '</form>',
             pog_html_script('js/index.js');
             
             
