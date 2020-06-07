@@ -43,8 +43,35 @@ function pog_print_header($deepness,$page_name){
 function pog_print_footer(){
     echo    '</main>',
             '<footer>',
-                '<p>EasyLatex - François Poguet &copy;</p>',
+                '<p>François Poguet - ',date('Y'),' &copy;</p>',
             '</footer>',
         '</body>',
     '</html>';
+}
+
+/**
+ * Print a text input 
+ * @param String $name The input's name/id
+ * @param String $label The input label 
+ */
+function pog_html_input($name, $label,$type = 'text'){
+    return "<div class='form-input-text'><input type='${type}' name='${name}' id='${name}' placeholder=' ' autocomplete='off' /><label for='${name}'>${label}</label></div>";
+}
+
+
+/**
+ * Print a tooltip
+ * @param String $label The tooltip content
+ * @param String $inner_element The inner element of tooltip
+ */
+function pog_html_tooltip($label,$inner_element){
+    return "<span class='tooltip'><span class='tooltip-tip'>${label}</span>${inner_element}</span>";
+}
+
+function pog_html_button($id,$label,$type = 'button'){
+    return "<button class='btn' name='${id}' type='${type}' id='${id}'>${label}</button>";
+}
+
+function pog_html_script($path){
+    return "<script src='${path}'></script>";
 }

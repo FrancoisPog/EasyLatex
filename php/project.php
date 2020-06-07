@@ -70,24 +70,24 @@ function pog_print_project(){
                         '</section>',
                         
                 '</article>',
-                '<form action="index.php" method="POST">',
+                '<form action="project.php" method="POST">',
                     '<input type="hidden" name="markdown">',
                     '<input type="hidden" name="latex">',
                     '<div class="editor">',
-                        '<textarea class="editor-input input" name="content" placeholder="Your markdown here">',(isset($_POST['markdown']))?$_POST['markdown']:'','</textarea>',
+                        '<textarea class="editor-input input" name="content" placeholder="Your markdown here">',(isset($_POST['markdown']))?pog_db_protect_outputs($_POST['markdown']):'','</textarea>',
                         '<aside class="editor-tools">',
-                            '<span class="tooltip"><span class="tooltip-tip">Italicize the selected text | ctrl+i</span><button id="btn-italic">italic</button></span>',
-                            '<span class="tooltip"><span class="tooltip-tip">Bold the selected text | ctrl+b</span><button id="btn-bold" >bold</button></span>',
-                            '<span class="tooltip"><span class="tooltip-tip">Insert a new line | ctrl+l</span><button id="btn-newline" >New line</button></span>',
-                            '<span class="tooltip"><span class="tooltip-tip">Insert a new page | ctrl+p</span><button id="btn-newpage" >New page</button></span>',
-                            '<span class="tooltip"><span class="tooltip-tip">Insert a new paragraph | ctrl+§</span><button id="btn-newpar" >New paragraph</button></span>',
+                            pog_html_tooltip('Italicize the selected text | ctrl+i','<button id="btn-italic" >italic</button>'),
+                            pog_html_tooltip('Bold the selected text | ctrl+b','<button id="btn-bold" >bold</button>'),
+                            pog_html_tooltip('Insert a new line | ctrl+l','<button id="btn-newline" >New line</button>'),
+                            pog_html_tooltip('Insert a new page | ctrl+p','<button id="btn-newpage" >New page</button>'),
+                            pog_html_tooltip('Insert a new paragraph | ctrl+§','<button id="btn-newpar" >New paragraph</button>'),
                         '</aside>',
                     '</div>',
                     '<div class="buttons">',
-                        '<button class="btn" id="btn-preview">See preview</button>',
-                        '<input class="btn" id="btn-convert" name="btn-convert" type="submit" value="Convert in LaTex">',
-                        '<button class="btn" id="btn-syntax">Markdown syntax</button>',
-                        '<button class="btn" id="btn-help">Help</button>',
+                        pog_html_button('btn-preview','See preview'),
+                        pog_html_button('btn-convert','Convert in LaTex','submit'),
+                        pog_html_button('btn-syntax','Markdown syntax'),
+                        pog_html_button('btn-help','Help'),
                     '</div>',
                     '<div class="viewer">',
                         '<iframe class="viewer-wrapper" src="https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/output.tex">',
@@ -99,10 +99,11 @@ function pog_print_project(){
                         '</div>',
                     '</div>',
                 '</form>',    
-            '<script src="../js/converter.js"></script>',
-            '<script src="../js/editor-shortcuts.js"></script>',
-            '<script src="../js/main.js"></script>';
-    pog_print_footer();
+                pog_html_script('../js/converter.js'),
+                pog_html_script('../js/editor-shortcuts.js'),
+                pog_html_script('../js/project.js');
+                
+                pog_print_footer();
                     
 }
 
@@ -122,7 +123,6 @@ function pog_parseToLatex(){
 
     fclose($file);
 }
-
 
 
 // MAIN

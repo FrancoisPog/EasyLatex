@@ -30,18 +30,9 @@ body{
     justify-content: space-between;
 }
 
-main{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
 *::selection{
     @include blackOnWhite();
 }
-
-
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 

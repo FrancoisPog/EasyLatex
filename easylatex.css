@@ -100,22 +100,6 @@ body {
           justify-content: space-between;
 }
 
-main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
 *::-moz-selection {
   color: #2f3437;
   background-color: rgba(204, 204, 204, 0.99);
@@ -256,13 +240,12 @@ footer {
   height: 5vh;
 }
 
-.form-input-text {
-  width: 20rem;
+.form-control {
   position: relative;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid currentColor;
 }
 
-.form-input-text::after {
+.form-control::after {
   position: absolute;
   content: "";
   left: 0;
@@ -274,19 +257,18 @@ footer {
           transform: scaleX(0);
   -webkit-transform-origin: left;
           transform-origin: left;
-  -webkit-transition: 450ms;
-  transition: 450ms;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-.form-input-text:focus-within::after {
+.form-control:focus-within::after {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
 }
 
-.form-input-text input {
-  width: 100%;
+.form-control input {
   font-family: 'Chelsea Market', cursive;
-  padding: 0.8rem 0;
+  padding: 8px 0;
   font-size: inherit;
   font-weight: inherit;
   color: currentColor !important;
@@ -298,27 +280,27 @@ footer {
   background-color: rgba(47, 52, 55, 0.99);
 }
 
-.form-input-text input:invalid ~ label {
+.form-control input:invalid ~ label {
   color: #cccccc;
 }
 
-.form-input-text input:valid ~ label {
+.form-control input:valid ~ label {
   color: #cccccc;
 }
 
-.form-input-text input:placeholder-shown ~ label {
+.form-control input:placeholder-shown ~ label {
   color: #cccccc;
 }
 
-.form-input-text input:focus ~ label,
-.form-input-text input:not(:placeholder-shown) ~ label {
+.form-control input:focus ~ label,
+.form-control input:not(:placeholder-shown) ~ label {
   -webkit-transform: translateY(-120%) scale(0.75);
           transform: translateY(-120%) scale(0.75);
 }
 
-.form-input-text label {
+.form-control label {
   position: absolute;
-  top: 0.8rem;
+  top: 8px;
   left: 0;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -326,7 +308,7 @@ footer {
           transform-origin: left;
 }
 
-.form {
+.login-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -337,7 +319,7 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 5rem 4rem;
+  padding: 50px 40px;
   color: #cccccc;
   background-color: rgba(47, 52, 55, 0.99);
   border-radius: 10px;
@@ -345,56 +327,18 @@ footer {
   font-size: 2rem;
 }
 
-.form.signup {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 45%;
+.login-form h1 {
+  margin: 0 0 24px 0;
+  font-size: 36px;
 }
 
-.form.signup h1 {
+.login-form .form-control {
+  margin: 18px 0;
+}
+
+.login-form .btn {
   width: 100%;
-}
-
-.form.signup .form-input-text, .form.signup #signup {
-  margin: 1.8rem;
-  width: 20rem;
-}
-
-.form p {
-  font-size: 1.5rem;
-}
-
-.form h1 {
-  margin-bottom: 1rem;
-  font-size: 3.6rem;
-  text-align: center;
-}
-
-.form .form-input-text {
-  margin: 1.8rem 0;
-}
-
-.form button.btn {
-  width: 100%;
-  margin: 1.8rem 0;
-}
-
-.form .tooltip-tip {
-  color: #2f3437;
-  background-color: rgba(204, 204, 204, 0.99);
-  bottom: -2.5rem;
-}
-
-.form .tooltip-tip:before {
-  color: #2f3437;
-  background-color: rgba(204, 204, 204, 0.99);
+  margin: 18px 0 9px 0;
 }
 
 #index header {
@@ -407,10 +351,6 @@ footer {
 
 #index footer {
   margin-bottom: 1rem;
-}
-
-#index #signup-form {
-  display: none;
 }
 
 /* --- PROJECT --- */
@@ -508,7 +448,6 @@ footer {
 }
 
 #project main form {
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
