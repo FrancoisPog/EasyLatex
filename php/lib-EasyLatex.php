@@ -68,8 +68,9 @@ function pog_html_tooltip($label,$inner_element){
     return "<div class='tooltip'><span class='tooltip-tip'>${label}</span>${inner_element}</div>";
 }
 
-function pog_html_button($id,$label,$type = 'button'){
-    return "<button class='btn' name='${id}' type='${type}' id='${id}'>${label}</button>";
+function pog_html_button($id,$label,$type = 'button',$disabled = false){
+    $disabled = ($disabled)?'disabled':'';
+    return "<button class='btn' ${disabled} name='${id}' type='${type}' id='${id}'>${label}</button>";
 }
 
 function pog_html_script($path){

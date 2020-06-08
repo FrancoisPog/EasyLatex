@@ -32,7 +32,7 @@ function pog_print_index(){
                 pog_html_input('el_signup_passwordRepeat','Confirm password','password'),
                 
                 pog_html_checkbox('el_signup_remember','Remember me',true),
-                pog_html_button('el_signup','Sign up','submit'),
+                pog_html_button('el_signup','Sign up','submit',true),
                 "<input type='hidden' name='el_signup_token' value='${token}'>",
             '</form>',
             pog_html_script('js/index.js'),

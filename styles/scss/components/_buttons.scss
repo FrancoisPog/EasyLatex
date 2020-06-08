@@ -11,12 +11,18 @@ input[type='button'].btn,input[type='submit'].btn,button.btn{
     transition: bax-shadow 250ms, transform 200ms;
     @include blackOnWhite;
 
-    &:hover{
+    &:hover:not(:disabled){
         box-shadow: 0 0 20px 5px lighten($color: $black, $amount: 10);
         transform: scale(1.1);
     }
 
-    &:active{
+    &:active:not(:disabled){
         transform : scale(1.1) translateY(5px);
+    }
+
+    &:disabled{
+        transform: scale(.8);
+        background-color: darken($color: $white, $amount: 10);
+        cursor: not-allowed;
     }
 }

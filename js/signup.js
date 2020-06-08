@@ -1,6 +1,7 @@
 let form = document.getElementById('signup-form');
 
 form.onsubmit = (e) => {
+    console.log('ee');
     e.preventDefault();
 };
 
@@ -8,21 +9,51 @@ form.onsubmit = (e) => {
 let username = form.elements.el_signup_username;
 let firstname = form.elements.el_signup_firstname;
 let lastname = form.elements.el_signup_lastname;
+let password = form.elements.el_signup_password;
+let passwordRepeat = form.elements.el_signup_passwordRepeat;
+let submit = form.elements.el_signup;
+
+
+
 
 
 firstname.onblur = () => {
     setValidity(firstname,firstname.value.match(/^[^<>]{1,50}$/),'The first name must contains less than 50 characters, without HTML tags');
+    formValidity();
 }
 
 lastname.onblur= () => {
     setValidity(lastname,lastname.value.match(/^[^<>]{1,50}$/),'The last name must contains less than 50 characters, without HTML tags');
+    formValidity();
 }
 
 username.onblur = () => {
     setValidity(username,username.value.match(/^[0-9a-zA-Z]{6,20}$/),'The username must contains between 6 and 20 letters and digits');
+    formValidity();
+}
+
+password.onblur = () => {
+    setValidity(password,password.value.length > 0,'The password can\'t be empty');
+    formValidity();
+}
+
+passwordRepeat.onblur = () => {
+    setValidity(passwordRepeat,passwordRepeat.value == password.value,'The two passwords don`t match');
+    formValidity();
 }
 
 
+
+function formValidity(){
+    for(let elt of [firstname,lastname,username,password,passwordRepeat]){
+        if(elt.parentNode.classList.contains('tooltip') || elt.value.length == 0){
+            submit.setAttribute('disabled','');
+            return;
+        }
+    }
+    submit.removeAttribute('disabled');
+    return ;
+}
 
 
 /**
