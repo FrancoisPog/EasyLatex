@@ -145,7 +145,7 @@ select:-webkit-autofill:focus {
 /* --- TOOLTIPS --- */
 .tooltip {
   position: relative;
-  display: inline;
+  display: inline-block;
 }
 
 .tooltip-tip {
@@ -162,10 +162,10 @@ select:-webkit-autofill:focus {
   left: 1rem;
   padding: 1rem;
   font-size: 1.3rem;
-  -webkit-transition: opacity 100ms, -webkit-transform 0s 100ms;
-  transition: opacity 100ms, -webkit-transform 0s 100ms;
-  transition: opacity 100ms, transform 0s 100ms;
-  transition: opacity 100ms, transform 0s 100ms, -webkit-transform 0s 100ms;
+  -webkit-transition: opacity 100ms, z-index 0s 100ms, -webkit-transform 0s 100ms;
+  transition: opacity 100ms, z-index 0s 100ms, -webkit-transform 0s 100ms;
+  transition: opacity 100ms, transform 0s 100ms, z-index 0s 100ms;
+  transition: opacity 100ms, transform 0s 100ms, z-index 0s 100ms, -webkit-transform 0s 100ms;
   -webkit-transform: scale(0);
           transform: scale(0);
 }
@@ -257,10 +257,98 @@ footer {
   height: 5vh;
 }
 
+.form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5rem 4rem 2rem 4rem;
+  color: #cccccc;
+  background-color: rgba(47, 52, 55, 0.99);
+  border-radius: 10px;
+  border: #cccccc 1px solid;
+  font-size: 2rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.form.signup {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 45%;
+}
+
+.form.signup h1 {
+  width: 100%;
+}
+
+.form.signup .form-input-text, .form.signup #el_signup, .form.signup .cbx {
+  margin: 1.8rem;
+  width: 20rem;
+}
+
+.form p {
+  font-size: 1.5rem;
+}
+
+.form h1 {
+  margin-bottom: 1rem;
+  font-size: 3.6rem;
+  text-align: center;
+}
+
+.form .form-input-text {
+  margin: 1.8rem 0;
+}
+
+.form button.btn {
+  width: 100%;
+  margin: 1.8rem 0;
+}
+
+.form .tooltip-tip {
+  color: #2f3437;
+  background-color: rgba(204, 204, 204, 0.99);
+  width: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 120%;
+  left: 0;
+  bottom: unset;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.form .tooltip-tip:before {
+  color: #2f3437;
+  background-color: rgba(204, 204, 204, 0.99);
+}
+
+/* Text input */
 .form-input-text {
   width: 20rem;
   position: relative;
   border-bottom: 1px solid #cccccc;
+}
+
+.form-input-text.invalid::before {
+  content: '\26A0';
+  position: absolute;
+  font-size: 3rem;
+  left: -4rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 .form-input-text::after {
@@ -327,77 +415,7 @@ footer {
           transform-origin: left;
 }
 
-.form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 5rem 4rem;
-  color: #cccccc;
-  background-color: rgba(47, 52, 55, 0.99);
-  border-radius: 10px;
-  border: #cccccc 1px solid;
-  font-size: 2rem;
-}
-
-.form.signup {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 45%;
-}
-
-.form.signup h1 {
-  width: 100%;
-}
-
-.form.signup .form-input-text, .form.signup #signup, .form.signup .cbx {
-  margin: 1.8rem;
-  width: 20rem;
-}
-
-.form p {
-  font-size: 1.5rem;
-}
-
-.form h1 {
-  margin-bottom: 1rem;
-  font-size: 3.6rem;
-  text-align: center;
-}
-
-.form .form-input-text {
-  margin: 1.8rem 0;
-}
-
-.form button.btn {
-  width: 100%;
-  margin: 1.8rem 0;
-}
-
-.form .tooltip-tip {
-  color: #2f3437;
-  background-color: rgba(204, 204, 204, 0.99);
-  bottom: -2.5rem;
-}
-
-.form .tooltip-tip:before {
-  color: #2f3437;
-  background-color: rgba(204, 204, 204, 0.99);
-}
-
+/* Checkbox input */
 .cbx {
   margin: auto;
   -webkit-user-select: none;
@@ -405,6 +423,7 @@ footer {
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .cbx span {
@@ -419,8 +438,8 @@ footer {
   width: 18px;
   height: 18px;
   border-radius: 3px;
-  -webkit-transform: scale(1);
-          transform: scale(1);
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
   vertical-align: middle;
   border: 1px solid #9098A9;
   -webkit-transition: all .2s ease;
@@ -487,15 +506,15 @@ footer {
 
 @-webkit-keyframes wave {
   50% {
-    -webkit-transform: scale(0.9);
-            transform: scale(0.9);
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
   }
 }
 
 @keyframes wave {
   50% {
-    -webkit-transform: scale(0.9);
-            transform: scale(0.9);
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
   }
 }
 

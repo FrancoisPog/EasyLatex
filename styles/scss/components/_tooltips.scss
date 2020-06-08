@@ -3,7 +3,7 @@
 
 .tooltip{
     position: relative;
-    display: inline;
+    display: inline-block;
     &-tip{
         border-radius: 5px;
         opacity: 0;
@@ -15,7 +15,7 @@
         left: 1rem;
         padding: 1rem;
         font-size: 1.3rem;
-        transition : opacity 100ms, transform 0s 100ms;
+        transition : opacity 100ms, transform 0s 100ms, z-index 0s 100ms;
         transform: scale(0);
 
         &:before{

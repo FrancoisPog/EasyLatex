@@ -1,5 +1,72 @@
 // /* --- FORMS --- */
 
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 4rem 2rem 4rem;
+  @include whiteOnBlack;
+  border-radius: 10px;
+  border : $white 1px solid;
+  font-size: 2rem;
+  justify-content: space-around;
+
+  &.signup{
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    width: 45%;
+
+    h1{
+      width: 100%;
+    }
+
+    .form-input-text, #el_signup ,.cbx{
+      margin : 1.8rem;
+      width : 20rem;        
+    }
+  }
+  
+  p{
+    font-size: 1.5rem;
+  }
+  
+  h1 {
+    margin-bottom: 1rem;
+    font-size: 3.6rem;
+    text-align: center;
+  }
+
+  .form-input-text {
+    margin: 1.8rem 0;
+  }
+
+  button.btn {
+    width: 100%;
+    margin: 1.8rem 0 ;
+  }
+
+  
+
+  .tooltip-tip{
+    @include blackOnWhite;
+    width: 100%;
+    transform: translateX(-50%);
+    top: 120%;
+    left: 0;
+    bottom: unset;
+    transform-origin: center;
+
+
+    &:before{
+      @include blackOnWhite;
+     // left: 50%;
+    }
+  }
+}
+
+/* Text input */
 .form-input-text {
     $invalid-color: $white;
     $valid-color: $white;
@@ -7,6 +74,15 @@
     width: 20rem;
     position: relative;
     border-bottom: 1px solid $border-bottom-color;
+
+    &.invalid::before{
+      content: '\26A0';
+      position: absolute;
+      font-size: 3rem;
+      left: -4rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   
     &::after {
       position: absolute;
@@ -66,67 +142,12 @@
   }
   
   
-  
-.form{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5rem 4rem;
-  @include whiteOnBlack;
-  border-radius: 10px;
-  border : $white 1px solid;
-  font-size: 2rem;
-
-  &.signup{
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 45%;
-
-    h1{
-      width: 100%;
-    }
-
-    .form-input-text, #signup,.cbx{
-      margin : 1.8rem;
-      width : 20rem;        
-    }
-  }
-  
-  p{
-    font-size: 1.5rem;
-  }
-  
-  h1 {
-    margin-bottom: 1rem;
-    font-size: 3.6rem;
-    text-align: center;
-  }
-
-  .form-input-text {
-    margin: 1.8rem 0;
-  }
-
-  button.btn {
-    width: 100%;
-    margin: 1.8rem 0 ;
-  }
-
-  .tooltip-tip{
-    @include blackOnWhite;
-    bottom: -2.5rem;
-    &:before{
-      @include blackOnWhite;
-    }
-  }
-}
-
-$cb : #506EEC;
-  
+/* Checkbox input */
 .cbx{
   margin: auto;
   user-select: none;
   cursor: pointer;
+  font-size: 1.5rem;
 
   span{
     display: inline-block;
@@ -138,7 +159,7 @@ $cb : #506EEC;
       width: 18px;
       height: 18px;
       border-radius: 3px;
-      transform: scale(1);
+      transform: scale(.8);
       vertical-align: middle;
       border: 1px solid #9098A9;
       transition: all .2s ease;
@@ -197,6 +218,6 @@ $cb : #506EEC;
 
 @keyframes wave {
   50% {
-    transform: scale(.9);
+    transform: scale(.7);
   }
 }
