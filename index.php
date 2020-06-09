@@ -13,6 +13,9 @@ $_SESSION['security_token'] = md5(uniqid(microtime()));
 function pog_print_index(){
     pog_print_header(0,'index');
     $token = $_SESSION['security_token'];
+
+    echo '<noscript><div class="noscript" ><p>Error</p></div></noscript>';
+
     echo '<form class="form login" id="login-form" action="php/login.php" method="POST" autocomplete="off">',
                 '<h1>Login</h1>',
                 pog_html_input('el_login_username','Username'),
