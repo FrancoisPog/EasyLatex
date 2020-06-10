@@ -1,0 +1,42 @@
+/* NAV */
+
+header nav{
+    position: absolute;
+    top: 0;
+    right: 10rem;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    width: fit-content;
+    a{
+        color : $white;
+        
+        text-decoration: none;
+
+        &:hover{
+            color : $white;
+            text-decoration: none;
+        }
+    }
+
+    p,i{
+        font-size: 2rem;
+        margin : 0 1rem;
+    }
+
+    i{
+        transform: scale(0);
+        transition: all 450ms;
+    }
+
+    &:hover i{
+        transform: scale(1);
+    }
+
+
+
+}
+

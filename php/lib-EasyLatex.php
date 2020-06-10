@@ -27,13 +27,17 @@ function pog_print_header($deepness,$page_name){
                     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
                     '<title>EasyLatex</title>',
                     "<link rel='stylesheet' href='${path}styles/easylatex.css'>",
+                    '<script src="https://kit.fontawesome.com/a076d05399.js"></script>',
                 '</head>',
                 "<body id='${page_name}'>",
                     '<header>',
                         '<h1>EasyLatex</h1>',
                         '<h2>Make LaTex document without code !</h2>',
+                        pog_html_nav(),
                     '</header>',
                     '<main>';
+                    
+    pog_print_noscript();
 }
 
 /**
@@ -48,6 +52,15 @@ function pog_print_footer(){
     '</html>';
 }
 
+function pog_html_nav(){
+    if(!pog_isLogged()){
+        return '';
+    }
+
+    $username = $_SESSION['username'];
+
+    return "<nav><p>${username}</p><a href='exit'><i class='fas fa-sign-out-alt'></i></a></nav>";
+}
 
 function pog_print_noscript(){
     echo '<noscript><div class="noscript" ><h1>JavaScript is disabled</h1><p>This website need JavaScript to work, please activate it to continue.</p></div></noscript>';

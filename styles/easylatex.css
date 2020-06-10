@@ -321,6 +321,7 @@ input[type='button'].btn:disabled, input[type='submit'].btn:disabled, button.btn
 
 /* --- HEADER --- */
 header {
+  position: relative;
   width: 100%;
   padding: 1rem 0;
   height: 15vh;
@@ -353,6 +354,58 @@ footer {
   height: max-content;
   padding: 1.5rem;
   height: 5vh;
+}
+
+/* NAV */
+header nav {
+  position: absolute;
+  top: 0;
+  right: 10rem;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+header nav a {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+header nav a:hover {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+header nav p, header nav i {
+  font-size: 2rem;
+  margin: 0 1rem;
+}
+
+header nav i {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 450ms;
+  transition: all 450ms;
+}
+
+header nav:hover i {
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .form {

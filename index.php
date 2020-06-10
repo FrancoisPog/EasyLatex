@@ -15,7 +15,6 @@ function pog_print_index($mode = 'login' ,$error = ''){
     $_SESSION['security_token'] = md5(uniqid(microtime()));
     $token = $_SESSION['security_token'];
 
-    pog_print_noscript();
 
     echo '<form class="form login" ',($mode == 'login')?'':'style="display : none;"',' id="login-form" action="index.php" method="POST" autocomplete="off">',
                 '<h1>Login</h1>',
