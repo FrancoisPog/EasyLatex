@@ -127,6 +127,9 @@ function pog_parseToLatex(){
 
 
 // MAIN
+
+pog_isLogged('../');
+
 if(isset($_POST['latex'])){
     pog_parseToLatex();
 }
