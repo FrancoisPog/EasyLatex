@@ -82,3 +82,34 @@ select:-webkit-autofill:focus {
     }
 
 }
+
+
+.error{
+    width: 100%;
+    text-align: center;
+    position: relative;
+
+    p{
+        width: max-content;
+        margin: 2rem auto 1rem auto;
+        position: relative;
+        font-size: 2rem !important;
+
+        &::before, &::after{
+            content: '\26A0';
+            position: absolute;
+            font-size: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &::before{
+            left : -4rem;
+        }
+
+        &::after{
+            right: -4rem;
+        }
+    }
+    
+}

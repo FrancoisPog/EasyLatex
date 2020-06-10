@@ -1,9 +1,9 @@
 let form = document.getElementById('signup-form');
 
-form.onsubmit = (e) => {
-    console.log('ee');
-    e.preventDefault();
-};
+// form.onsubmit = (e) => {
+//     console.log('ee');
+//     e.preventDefault();
+// };
 
 
 let username = form.elements.el_signup_username;

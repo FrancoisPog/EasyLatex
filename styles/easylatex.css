@@ -200,6 +200,38 @@ select:-webkit-autofill:focus {
   font-size: 2rem;
 }
 
+.error {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.error p {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 2rem auto 1rem auto;
+  position: relative;
+  font-size: 2rem !important;
+}
+
+.error p::before, .error p::after {
+  content: '\26A0';
+  position: absolute;
+  font-size: 3rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.error p::before {
+  left: -4rem;
+}
+
+.error p::after {
+  right: -4rem;
+}
+
 /* --- TOOLTIPS --- */
 .tooltip {
   position: relative;
@@ -593,10 +625,6 @@ footer {
 
 #index footer {
   margin-bottom: 1rem;
-}
-
-#index #signup-form {
-  display: none;
 }
 
 /* --- PROJECT --- */

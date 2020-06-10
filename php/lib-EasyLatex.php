@@ -59,8 +59,9 @@ function pog_print_noscript(){
  * @param String $name The input's name/id
  * @param String $label The input label 
  */
-function pog_html_input($name, $label,$type = 'text'){
-    return "<div class='form-input-text'><input type='${type}' name='${name}' id='${name}' placeholder=' ' autocomplete='off' /><label for='${name}'>${label}</label></div>";
+function pog_html_input($name, $label,$value = '',$type = 'text'){
+    $value = ($value!='')?"value='${value}'":'';
+    return "<div class='form-input-text'><input type='${type}' name='${name}' ${value} id='${name}' placeholder=' ' autocomplete='off' /><label for='${name}'>${label}</label></div>";
 }
 
 
@@ -141,4 +142,11 @@ function pog_session_exit($page){
  */
 function pog_str_containsHTML($str){
     return ($str != str_replace(['>','<'],'',$str));
+}
+
+
+
+function pog_getDate(){
+    date_default_timezone_set('Europe/Paris');
+    return date('YmdHi');
 }
