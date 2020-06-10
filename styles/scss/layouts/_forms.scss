@@ -11,6 +11,12 @@
   border : $white 1px solid;
   font-size: 2rem;
   justify-content: space-around;
+  width: 45%;
+
+  .form-input-text, .btn ,.cbx{
+    margin : 1.8rem;
+    width : 20rem;        
+  }
 
   &.signup{
     flex-direction: row;
@@ -22,10 +28,7 @@
       width: 100%;
     }
 
-    .form-input-text, #el_signup ,.cbx{
-      margin : 1.8rem;
-      width : 20rem;        
-    }
+    
   }
   
   p{
@@ -38,14 +41,7 @@
     text-align: center;
   }
 
-  .form-input-text {
-    margin: 1.8rem 0;
-  }
-
-  button.btn {
-    width: 100%;
-    margin: 1.8rem 0 ;
-  }
+  
 
   
 

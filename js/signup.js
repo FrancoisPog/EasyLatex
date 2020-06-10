@@ -1,11 +1,5 @@
+// Get form elements
 let form = document.getElementById('signup-form');
-
-// form.onsubmit = (e) => {
-//     console.log('ee');
-//     e.preventDefault();
-// };
-
-
 let username = form.elements.el_signup_username;
 let firstname = form.elements.el_signup_firstname;
 let lastname = form.elements.el_signup_lastname;
@@ -14,15 +8,12 @@ let passwordRepeat = form.elements.el_signup_passwordRepeat;
 let submit = form.elements.el_signup;
 
 
-
-
-
 firstname.onblur = () => {
     setValidity(firstname,firstname.value.match(/^[^<>]{1,50}$/),'The first name must contains less than 50 characters, without HTML tags');
     formValidity();
 }
 
-lastname.onblur= () => {
+lastname.onblur = () => {
     setValidity(lastname,lastname.value.match(/^[^<>]{1,50}$/),'The last name must contains less than 50 characters, without HTML tags');
     formValidity();
 }
@@ -43,7 +34,9 @@ passwordRepeat.onblur = () => {
 }
 
 
-
+/**
+ * Update the submit button state
+ */
 function formValidity(){
     for(let elt of [firstname,lastname,username,password,passwordRepeat]){
         if(elt.parentNode.classList.contains('tooltip') || elt.value.length == 0){
@@ -57,24 +50,24 @@ function formValidity(){
 
 
 /**
- * 
- * @param {Element} element 
+ * Set the validity of an input
+ * @param {Element} input   A form input  
  */
-function setValidity(element, isValid, tip = ''){
+function setValidity(input, isValid, tip = ''){
     if(isValid){
-        remove_tooltip(element);
-        element.parentNode.classList.remove('invalid');
+        remove_tooltip(input);
+        input.parentNode.classList.remove('invalid');
     }else{
-        element.parentNode.classList.add('invalid');
-        add_tooltip(element,tip);
+        input.parentNode.classList.add('invalid');
+        add_tooltip(input,tip);
     }
 }
     
 
 /**
- * 
- * @param {Element} input 
- * @param {String} content 
+ * Add a tooltip to an input
+ * @param {Element} input A form input
+ * @param {String} content The tooltip content
  */
 function add_tooltip(input, content){
     if(input.parentNode.classList.contains('tooltip')){
@@ -98,8 +91,8 @@ function add_tooltip(input, content){
 }
 
 /**
- * 
- * @param {Element} input 
+ * Remove a tooltip from an input
+ * @param {Element} input A form input
  */
 function remove_tooltip(input){
     let tooltip = input.parentNode;

@@ -58,6 +58,8 @@ function pog_print_noscript(){
  * Generate html for text input
  * @param String $name The input's name/id
  * @param String $label The input label 
+ * @param String $value The input default value
+ * @param String $type The input type (text/password)
  */
 function pog_html_input($name, $label,$value = '',$type = 'text'){
     $value = ($value!='')?"value='${value}'":'';
@@ -66,7 +68,7 @@ function pog_html_input($name, $label,$value = '',$type = 'text'){
 
 
 /**
- * Print a tooltip
+ * Generate html for a tooltip
  * @param String $label The tooltip content
  * @param String $inner_element The inner element of tooltip
  */
@@ -74,18 +76,60 @@ function pog_html_tooltip($label,$inner_element){
     return "<div class='tooltip'><span class='tooltip-tip'>${label}</span>${inner_element}</div>";
 }
 
+/**
+ * Generate html for button
+ * @param string $id The button id
+ * @param string $label The button label
+ * @param string $type The button type
+ * @param boolean $disabled True for a disabled button
+ */
 function pog_html_button($id,$label,$type = 'button',$disabled = false){
     $disabled = ($disabled)?'disabled':'';
     return "<button class='btn' ${disabled} name='${id}' type='${type}' id='${id}'>${label}</button>";
 }
 
+/**
+ * Generate html for script
+ * @param string $path The script path
+ */
 function pog_html_script($path){
     return "<script src='${path}'></script>";
 }
 
+/**
+ * Generate html for checkbox
+ * @param string $id The checkbox id
+ * @param string $label The checkbox label
+ * @param string $isChecked True for a checked checkbox
+ */
 function pog_html_checkbox($id,$label,$isChecked = false){
     $isChecked = ($isChecked)?'checked':'';
     return "<input class='inp-cbx' id='${id}' name='${id}' ${isChecked} type='checkbox' style='display: none'/><label class='cbx' for='${id}'><span><svg width='12px' height='10px' viewbox='0 0 12 10'><polyline points='1.5 6 4.5 9 10.5 1'></polyline></svg></span><span>${label}</span></label>";
+}
+
+/**
+ * Generate html for an error
+ * @param string $content The error message
+ */
+function pog_html_error($content){
+    return "<div class='error'><p>${content}</p></div>";
+}
+
+/**
+ * Test if the user is logged
+ * @param string $page_to_redirect An optional page to redirect the user if he's not logged
+ */
+function pog_isLogged($page_to_redirect = null){
+    if(isset($_SESSION['username'])){
+        return true;
+    }
+
+    if(!$page_to_redirect){
+        return false;
+    }
+
+    header("Location: ${page_to_redirect}");
+    exit(0);
 }
 
 /**
@@ -145,7 +189,9 @@ function pog_str_containsHTML($str){
 }
 
 
-
+/**
+ * Get the current date in 'YYYYMMDDHHmm' format
+ */
 function pog_getDate(){
     date_default_timezone_set('Europe/Paris');
     return date('YmdHi');

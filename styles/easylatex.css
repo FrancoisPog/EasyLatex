@@ -134,6 +134,7 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
 }
 
 *::-moz-selection {
@@ -373,6 +374,12 @@ footer {
   font-size: 2rem;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  width: 45%;
+}
+
+.form .form-input-text, .form .btn, .form .cbx {
+  margin: 1.8rem;
+  width: 20rem;
 }
 
 .form.signup {
@@ -389,11 +396,6 @@ footer {
   width: 100%;
 }
 
-.form.signup .form-input-text, .form.signup #el_signup, .form.signup .cbx {
-  margin: 1.8rem;
-  width: 20rem;
-}
-
 .form p {
   font-size: 1.5rem;
 }
@@ -402,15 +404,6 @@ footer {
   margin-bottom: 1rem;
   font-size: 3.6rem;
   text-align: center;
-}
-
-.form .form-input-text {
-  margin: 1.8rem 0;
-}
-
-.form button.btn {
-  width: 100%;
-  margin: 1.8rem 0;
 }
 
 .form .tooltip-tip {
