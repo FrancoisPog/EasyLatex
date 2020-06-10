@@ -23,7 +23,6 @@ function pog_signup_checkInputErrors(){
     foreach(['el_signup_firstname','el_signup_lastname'] as $input){
         pog_str_containsHTML($_POST[$input]) and pog_session_exit('../');
         (strlen($_POST[$input]) <= 50 && strlen($_POST[$input]) > 0 ) or pog_session_exit('../'); 
-
     }
 
     // Username

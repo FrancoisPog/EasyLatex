@@ -27,7 +27,6 @@ function pog_print_header($deepness,$page_name){
                     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
                     '<title>EasyLatex</title>',
                     "<link rel='stylesheet' href='${path}styles/easylatex.css'>",
-                    '<link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet"> ',
                 '</head>',
                 "<body id='${page_name}'>",
                     '<header>',
@@ -48,6 +47,12 @@ function pog_print_footer(){
         '</body>',
     '</html>';
 }
+
+
+function pog_print_noscript(){
+    echo '<noscript><div class="noscript" ><h1>JavaScript is disabled</h1><p>This website need JavaScript to work, please activate it to continue.</p></div></noscript>';
+}
+
 
 /**
  * Generate html for text input
