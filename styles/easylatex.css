@@ -147,6 +147,16 @@ main {
   background-color: rgba(204, 204, 204, 0.99);
 }
 
+a {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #cccccc;
+  text-decoration: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -379,16 +389,6 @@ header nav {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-}
-
-header nav a {
-  color: #cccccc;
-  text-decoration: none;
-}
-
-header nav a:hover {
-  color: #cccccc;
-  text-decoration: none;
 }
 
 header nav a, header nav img {
@@ -1013,5 +1013,24 @@ header nav img {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+#dashboard main table {
+  width: 45%;
+  font-size: 1.5rem;
+}
+
+#dashboard main table td, #dashboard main table th {
+  border: 1px solid #cccccc;
+  padding: 1rem;
+}
+
+#dashboard main table td:first-child, #dashboard main table th:first-child {
+  width: 80%;
+  text-align: left;
+}
+
+#dashboard main table td:last-child, #dashboard main table th:last-child {
+  text-align: center;
 }
 /*# sourceMappingURL=easylatex.css.map */

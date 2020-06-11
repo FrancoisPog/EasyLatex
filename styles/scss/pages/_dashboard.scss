@@ -4,4 +4,25 @@
     form{
         flex-direction: row;
     }
+
+    table{
+        width: 45%;
+        font-size: 1.5rem;
+        td,th{
+            border: 1px solid $white;
+            padding: 1rem;
+            
+
+            &:first-child{
+                width: 80%;
+                text-align: left;
+            }
+
+            &:last-child{
+                text-align: center;
+            }
+        }
+    }
+
+
 }

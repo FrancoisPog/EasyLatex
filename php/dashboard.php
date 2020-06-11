@@ -4,19 +4,29 @@ ob_start();
 session_start();
 require_once('lib-EasyLatex.php');
 
-function pog_fecth_project(){
+/**
+ * Fetch the user project
+ */
+function pog_fecth_projects(){
     $db = pog_db_connecter();
 
-    $query = "SELECT pr_id
-                FROM el_project";
+    $author = $_SESSION['username'];
+
+    $query = "SELECT pr_id, pr_name
+                FROM el_project
+                WHERE pr_author = '${author}'";
 
     $projects = pog_db_execute($db,$query);
 
     mysqli_close($db);
 
-    return $projects;
+    return ($projects)?$projects:[];
 }
 
+/**
+ * Print the user dashboard
+ * @param $projects The user projects
+ */
 function pog_print_dashboard($projects){
     pog_print_header(1,'dashboard');
 
@@ -26,12 +36,25 @@ function pog_print_dashboard($projects){
                 pog_html_input('el_newproject_name','Project name'),
                 pog_html_button('el_newproject','Create','submit',false),
             '</form>',
-            '<h2>Current projects</h2>';
+            '<h2>Current projects</h2>',
+            '<table>',
+                '<thead>',
+                    '<tr>',
+                        '<th>Name</th>',
+                        '<th>Last changes</th>',
+                    '</tr>',
+                '</thead>',
+                '<tbody>';
 
-            foreach($projects as $project){
-                $id = cp_encrypt_url([$project['pr_id']]);
-                echo "<a href='project.php?data=${id}'>Link</a>";
-            }
+                foreach($projects as $project){
+                    $id = pog_encrypt_url([$project['pr_id']]);
+                    $name = $project['pr_name'];
+                    echo "<tr><td><a href='project.php?data=${id}'>$name</a></td><td>Yesterday</td>";
+                }
+
+    echo        '</tbody>',
+            '</table>';
+            
 
 
     pog_print_footer();
@@ -41,7 +64,7 @@ function pog_print_dashboard($projects){
 // MAIN
 pog_isLogged('../');
 
-$projects = pog_fecth_project();
+$projects = pog_fecth_projects();
 
 pog_print_dashboard($projects);
 

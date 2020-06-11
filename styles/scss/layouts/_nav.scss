@@ -11,16 +11,7 @@ header nav{
     align-items: center;
     padding: 2rem;
     width: fit-content;
-    a{
-        color : $white;
-        
-        text-decoration: none;
-
-        &:hover{
-            color : $white;
-            text-decoration: none;
-        }
-    }
+    
 
     a,img{
         font-size: 2rem;

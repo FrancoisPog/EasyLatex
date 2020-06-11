@@ -14,6 +14,7 @@ require_once('lib-database.php');
 /**
  * Print the page header
  * @param int $deepness The page deepness from root
+ * @param string $page_name The name of the page
  */
 function pog_print_header($deepness,$page_name){
     $path='';
@@ -52,6 +53,18 @@ function pog_print_footer(){
     '</html>';
 }
 
+
+function pog_print_error($content){
+    echo '<section class="error_section">',
+            '<h2>Something wrong...</h2>',
+            "<p>${content}</p>",
+        '</section>';
+}
+
+
+/**
+ * Generate the html code for the navigation menu
+ */
 function pog_html_nav(){
     if(!pog_isLogged()){
         return '';
@@ -59,9 +72,12 @@ function pog_html_nav(){
 
     $username = $_SESSION['username'];
 
-    return "<nav><a id='dashboard_link' href='dashboard'>${username}</a><a href='exit'><img src='../styles/icons/exit.svg'></a></nav>";
+    return "<nav><a id='dashboard_link' href='dashboard.php'>${username}</a><a href='exit.php'><img alt='exit-icon' title='Exit' src='../styles/icons/exit.svg'></a></nav>";
 }
 
+/**
+ * Print the noscript element
+ */
 function pog_print_noscript(){
     echo '<noscript><div class="noscript" ><h1>JavaScript is disabled</h1><p>This website need JavaScript to work, please activate it to continue.</p></div></noscript>';
 }
@@ -217,9 +233,9 @@ function pog_getDate(){
  * @param Array $data       All data to crypt in an array
  * @return String|false     The encrypted and signed url is success, false if failure
  */
-function cp_encrypt_url($data){
+function pog_encrypt_url($data){
     if(!defined('ENCRYPTION_KEY')){
-        throw new Exception('[cp_encrypt_url] : The constant \'ENCRYPTION_KEY\' must be defined');
+        throw new Exception('[pog_encrypt_url] : The constant \'ENCRYPTION_KEY\' must be defined');
     }
     $data = implode('§',$data);
 
@@ -242,9 +258,9 @@ function cp_encrypt_url($data){
  * @param int $field    The number of field expected
  * @return Array|false  Decrypted and authenticated data if success, false if failure
  */
-function cp_decrypt_url($url,$field){
+function pog_decrypt_url($url,$field){
     if(!defined('ENCRYPTION_KEY')){
-        throw new Exception('[cp_decrypt_url] : The constant \'ENCRYPTION_KEY\' must be defined');
+        throw new Exception('[pog_decrypt_url] : The constant \'ENCRYPTION_KEY\' must be defined');
     }
     if($url == ""){
         return false;

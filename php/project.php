@@ -76,7 +76,7 @@ function pog_print_project($project){
                     '<input type="hidden" name="markdown">',
                     '<input type="hidden" name="latex">',
                     '<div class="editor">',
-                        '<textarea class="editor-input input" name="content" placeholder="Your markdown here">',/*(isset($_POST['markdown']))?pog_db_protect_outputs($_POST['markdown']):"${content}"*/$content,'</textarea>',
+                        '<textarea class="editor-input input" name="content" placeholder="Your markdown here">',(isset($_POST['markdown']))?pog_db_protect_outputs($_POST['markdown']):"${content}",'</textarea>',
                         '<aside class="editor-tools">',
                             pog_html_tooltip('Italicize the selected text | ctrl+i','<button id="btn-italic" >italic</button>'),
                             pog_html_tooltip('Bold the selected text | ctrl+b','<button id="btn-bold" >bold</button>'),
@@ -88,6 +88,7 @@ function pog_print_project($project){
                     '<div class="buttons">',
                         pog_html_button('btn-preview','See preview'),
                         pog_html_button('btn-convert','Convert in LaTex','submit'),
+                        pog_html_button('btn-save','Save project','submit'),
                         pog_html_button('btn-syntax','Markdown syntax'),
                         pog_html_button('btn-help','Help'),
                     '</div>',
@@ -127,14 +128,21 @@ function pog_parseToLatex($project){
     fclose($file);
 }
 
+/**
+ * Fetch a project in database
+ * @param int $id The project id
+ * @return Array
+ */
 function pog_fetch_project($id){
     $db = pog_db_connecter();
 
     $id = pog_db_protect_inputs($db,$id);
+    $user = $_SESSION['username'];
 
     $query = "SELECT *
                 FROM el_project
-                WHERE pr_id = '${id}'";
+                WHERE pr_id = '${id}'
+                AND pr_author = '${user}'";
 
     $project = pog_db_execute($db,$query);
 
@@ -147,9 +155,26 @@ function pog_fetch_project($id){
 
 pog_isLogged('../');
 
-$id = cp_decrypt_url($_GET['data'],1)[0];
+pog_check_param($_GET,['data']) or pog_session_exit('../');
+
+
+$id = pog_decrypt_url($_GET['data'],1)[0];
+
+if(!$id){
+    pog_print_header(1,'project');
+    pog_print_error('No project found');
+    pog_print_footer();
+    exit(0);
+}
 
 $project = pog_fetch_project($id);
+
+if(!$project){
+    pog_print_header(1,'project');
+    pog_print_error('Access denied');
+    pog_print_footer();
+    exit(0);
+}
 
 if(isset($_POST['latex'])){
     pog_parseToLatex($project);
