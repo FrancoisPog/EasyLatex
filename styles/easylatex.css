@@ -360,7 +360,7 @@ footer {
 header nav {
   position: absolute;
   top: 0;
-  right: 10rem;
+  right: 2rem;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -391,21 +391,13 @@ header nav a:hover {
   text-decoration: none;
 }
 
-header nav p, header nav i {
+header nav a, header nav img {
   font-size: 2rem;
   margin: 0 1rem;
 }
 
-header nav i {
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  -webkit-transition: all 450ms;
-  transition: all 450ms;
-}
-
-header nav:hover i {
-  -webkit-transform: scale(1);
-          transform: scale(1);
+header nav img {
+  height: 2.5rem;
 }
 
 .form {
@@ -1007,5 +999,19 @@ header nav:hover i {
 
 #project main form .viewer .errors-list li:not(:last-child) {
   margin-bottom: 2rem;
+}
+
+#dashboard main {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#dashboard main form {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 /*# sourceMappingURL=easylatex.css.map */

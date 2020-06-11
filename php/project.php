@@ -7,9 +7,10 @@ require_once('lib-EasyLatex.php');
 /**
  * Print the project page
  */
-function pog_print_project(){
+function pog_print_project($project){
     pog_print_header(1,'project');
-
+    $content = $project['pr_content'];
+    $filename = $project['pr_filename'];
     echo    '<article class="md-syntax">',
                         '<h2>Markdown syntax</h2>',
                         '<span id="md-syntax-exit">&times;</span>',
@@ -71,11 +72,11 @@ function pog_print_project(){
                         '</section>',
                         
                 '</article>',
-                '<form action="project.php" method="POST">',
+                '<form action="project.php?data=',urlencode($_GET['data']),'" method="POST">',
                     '<input type="hidden" name="markdown">',
                     '<input type="hidden" name="latex">',
                     '<div class="editor">',
-                        '<textarea class="editor-input input" name="content" placeholder="Your markdown here">',(isset($_POST['markdown']))?pog_db_protect_outputs($_POST['markdown']):'','</textarea>',
+                        '<textarea class="editor-input input" name="content" placeholder="Your markdown here">',/*(isset($_POST['markdown']))?pog_db_protect_outputs($_POST['markdown']):"${content}"*/$content,'</textarea>',
                         '<aside class="editor-tools">',
                             pog_html_tooltip('Italicize the selected text | ctrl+i','<button id="btn-italic" >italic</button>'),
                             pog_html_tooltip('Bold the selected text | ctrl+b','<button id="btn-bold" >bold</button>'),
@@ -91,7 +92,7 @@ function pog_print_project(){
                         pog_html_button('btn-help','Help'),
                     '</div>',
                     '<div class="viewer">',
-                        '<iframe class="viewer-wrapper" src="https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/output.tex">',
+                        "<iframe class='viewer-wrapper' src='https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/projects/${filename}.tex'>",
                         '</iframe>',
                         '<div class="errors">',
                             '<h2>Markdown errors</h2>',
@@ -111,8 +112,9 @@ function pog_print_project(){
 /**
  * Write the latex code on a file
  */
-function pog_parseToLatex(){
-    $file = fopen("output.tex",'w+');
+function pog_parseToLatex($project){
+    $filename = $project['pr_filename'];
+    $file = fopen("../projects/${filename}.tex",'w+');
 
     $latex_begin = '\documentclass{report}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[english]{babel}\setlength{\parindent}{0cm}\renewcommand{\thesection}{\arabic{section}}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents\newpage ';
     $latex_end = ' \end{document}';
@@ -125,14 +127,33 @@ function pog_parseToLatex(){
     fclose($file);
 }
 
+function pog_fetch_project($id){
+    $db = pog_db_connecter();
+
+    $id = pog_db_protect_inputs($db,$id);
+
+    $query = "SELECT *
+                FROM el_project
+                WHERE pr_id = '${id}'";
+
+    $project = pog_db_execute($db,$query);
+
+    return $project[0];
+    
+}
+
 
 // MAIN
 
 pog_isLogged('../');
 
+$id = cp_decrypt_url($_GET['data'],1)[0];
+
+$project = pog_fetch_project($id);
+
 if(isset($_POST['latex'])){
-    pog_parseToLatex();
+    pog_parseToLatex($project);
 }
 
-pog_print_project();
+pog_print_project($project);
 

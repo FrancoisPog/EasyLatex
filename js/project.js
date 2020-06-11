@@ -69,6 +69,18 @@ btn_exit_syntax.onclick = (e)=>{
     form.classList.remove('blurred');
 };
 
+// --- CHANGE NAV CONTENT ---
+
+let dashboard_link = document.getElementById('dashboard_link');
+var username = dashboard_link.textContent;
+
+dashboard_link.onmouseover = () =>{
+    dashboard_link.textContent = "My projects";
+};
+
+dashboard_link.onmouseleave = () => {
+    dashboard_link.textContent = username;
+}
 
 
 // --- FUNCTIONS --- 
@@ -110,3 +122,6 @@ function get_editor_input(){
 
     return editor;
 }
+
+
+

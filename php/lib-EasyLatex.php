@@ -27,7 +27,7 @@ function pog_print_header($deepness,$page_name){
                     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
                     '<title>EasyLatex</title>',
                     "<link rel='stylesheet' href='${path}styles/easylatex.css'>",
-                    '<script src="https://kit.fontawesome.com/a076d05399.js"></script>',
+                    //'<script src="https://kit.fontawesome.com/a076d05399.js"></script>',
                 '</head>',
                 "<body id='${page_name}'>",
                     '<header>',
@@ -59,7 +59,7 @@ function pog_html_nav(){
 
     $username = $_SESSION['username'];
 
-    return "<nav><p>${username}</p><a href='exit'><i class='fas fa-sign-out-alt'></i></a></nav>";
+    return "<nav><a id='dashboard_link' href='dashboard'>${username}</a><a href='exit'><img src='../styles/icons/exit.svg'></a></nav>";
 }
 
 function pog_print_noscript(){
@@ -208,4 +208,61 @@ function pog_str_containsHTML($str){
 function pog_getDate(){
     date_default_timezone_set('Europe/Paris');
     return date('YmdHi');
+}
+
+
+
+/**
+ * Crypt and sign url.
+ * @param Array $data       All data to crypt in an array
+ * @return String|false     The encrypted and signed url is success, false if failure
+ */
+function cp_encrypt_url($data){
+    if(!defined('ENCRYPTION_KEY')){
+        throw new Exception('[cp_encrypt_url] : The constant \'ENCRYPTION_KEY\' must be defined');
+    }
+    $data = implode('§',$data);
+
+    $method = 'aes-128-gcm';
+    $initVectorLen = openssl_cipher_iv_length($method);
+    $initVector = openssl_random_pseudo_bytes($initVectorLen);
+    $data = openssl_encrypt($data,$method,base64_decode(ENCRYPTION_KEY),OPENSSL_RAW_DATA,$initVector,$tag);
+    if($data == false){
+        return false;
+    }
+    $url = $initVector.$tag.$data;
+    $url = base64_encode($url);
+    return urlencode($url);
+
+}
+
+/**
+ * Decrypts and authenticates the url. 
+ * @param String $url   The url to decrypt
+ * @param int $field    The number of field expected
+ * @return Array|false  Decrypted and authenticated data if success, false if failure
+ */
+function cp_decrypt_url($url,$field){
+    if(!defined('ENCRYPTION_KEY')){
+        throw new Exception('[cp_decrypt_url] : The constant \'ENCRYPTION_KEY\' must be defined');
+    }
+    if($url == ""){
+        return false;
+    }
+    $method = 'aes-128-gcm';
+    $url = base64_decode($url);
+    $initVectorLen = openssl_cipher_iv_length($method);
+    $initVector = substr($url,0,$initVectorLen);
+    $tagLen = 16;
+    $tag = substr($url,$initVectorLen,$tagLen);
+    $data = substr($url,$tagLen+$initVectorLen);
+    
+    $data = openssl_decrypt($data,$method,base64_decode(ENCRYPTION_KEY),OPENSSL_RAW_DATA,$initVector,$tag);
+    
+    if(!$data){
+        return false;
+    }
+    $data = explode('§',$data);
+    return (count($data) == $field)?$data:false ;
+
 }
