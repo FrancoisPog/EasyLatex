@@ -12,7 +12,7 @@ input[type='button'].btn,input[type='submit'].btn,button.btn{
     @include blackOnWhite;
 
     &:hover:not(:disabled){
-        box-shadow: 0 0 20px 5px lighten($color: $black, $amount: 10);
+        box-shadow: 0 0 20px 5px $shadow;
         transform: scale(1.1);
     }
 
@@ -22,7 +22,7 @@ input[type='button'].btn,input[type='submit'].btn,button.btn{
 
     &:disabled{
         transform: scale(.8);
-        background-color: darken($color: $white, $amount: 10);
+        background-color: darken($color: $secondary, $amount: 10);
         cursor: not-allowed;
     }
 }

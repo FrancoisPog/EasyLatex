@@ -8,7 +8,7 @@
   padding: 5rem 4rem 2rem 4rem;
   @include whiteOnBlack;
   border-radius: 10px;
-  border : $white 1px solid;
+  border : $secondary 1px solid;
   font-size: 2rem;
   justify-content: space-around;
   width: 45%;
@@ -64,9 +64,9 @@
 
 /* Text input */
 .form-input-text {
-    $invalid-color: $white;
-    $valid-color: $white;
-    $border-bottom-color: $white;
+    $invalid-color: $secondary;
+    $valid-color: $secondary;
+    $border-bottom-color: $secondary;
     width: 20rem;
     position: relative;
     border-bottom: 1px solid $border-bottom-color;
@@ -119,7 +119,7 @@
       }
   
       &:placeholder-shown ~ label {
-        color: $white;
+        color: $secondary;
       }
   
       &:focus ~ label,
@@ -164,7 +164,7 @@
         top: 3px;
         left: 2px;
         fill: none;
-        stroke: $black;
+        stroke: $primary;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
@@ -178,7 +178,7 @@
         content: "";
         width: 100%;
         height: 100%;
-        background: $white;
+        background: $secondary;
         display: block;
         transform: scale(0);
         opacity: 1;
@@ -190,15 +190,15 @@
     }
   }
   &:hover span:first-child{
-    border-color: $white;
+    border-color: $secondary;
   }
 }
  
 .inp-cbx:checked + .cbx{
   span{
     &:first-child{
-      background: $white;
-      border-color: $white;
+      background: $secondary;
+      border-color: $secondary;
       animation: wave .4s ease;
       svg{
         stroke-dashoffset: 0;

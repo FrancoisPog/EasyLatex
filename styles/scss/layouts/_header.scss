@@ -8,6 +8,8 @@ header{
     margin-bottom: 1rem;
     user-select: none;
 
+    @include blackOnWhite;
+
     h1{
         font-weight: bold;
         font-size: 4rem;
@@ -27,4 +29,7 @@ footer{
     height: max-content;
     padding: 1.5rem;;
     height: 5vh;
+    width: 100%;
+    text-align: center;
+    @include blackOnWhite;
 }

@@ -13,9 +13,10 @@ header nav{
     width: fit-content;
     
 
-    a,img{
+    a,a:hover,img{
         font-size: 2rem;
         margin : 0 1rem;
+        color : $primary;
     }
 
     img{

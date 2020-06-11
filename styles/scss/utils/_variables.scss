@@ -1,4 +1,11 @@
 // Colors
 
-$black : rgb(47, 52, 55);
-$white : darken(white,20);
+// $primary : rgb(47, 52, 55);
+// $secondary : darken(white,20);
+
+// $primary : darken(white,20);
+// $secondary : rgb(13, 13, 110);
+
+$primary : #fdf0d5;
+$secondary :#1d3461;
+$shadow : transparentize($color: #1f487e , $amount: 0.8);

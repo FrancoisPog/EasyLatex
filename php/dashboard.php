@@ -31,30 +31,32 @@ function pog_print_dashboard($projects){
     pog_print_header(1,'dashboard');
 
     echo    
-            '<form class="form" id="newproject" action="projects_manager" method="POST">',
-            '<h2>New projects</h2>',
+            '<form  class="section form" id="newproject" action="projects_manager" method="POST">',
+            '<h2>New project</h2>',
                 pog_html_input('el_newproject_name','Project name'),
                 pog_html_button('el_newproject','Create','submit',false),
             '</form>',
-            '<h2>Current projects</h2>',
-            '<table>',
-                '<thead>',
-                    '<tr>',
-                        '<th>Name</th>',
-                        '<th>Last changes</th>',
-                    '</tr>',
-                '</thead>',
-                '<tbody>';
+            '<section class="section">',
+                '<h2>Current projects</h2>',
+                '<table>',
+                    '<thead>',
+                        '<tr>',
+                            '<th>Name</th>',
+                            '<th>Last changes</th>',
+                        '</tr>',
+                    '</thead>',
+                    '<tbody>';
 
-                foreach($projects as $project){
-                    $id = pog_encrypt_url([$project['pr_id']]);
-                    $name = $project['pr_name'];
-                    echo "<tr><td><a href='project.php?data=${id}'>$name</a></td><td>Yesterday</td>";
-                }
+                    foreach($projects as $project){
+                        $id = pog_encrypt_url([$project['pr_id']]);
+                        $name = $project['pr_name'];
+                        echo "<tr><td><a href='project.php?data=${id}'>$name</a></td><td>Yesterday</td>";
+                    }
 
-    echo        '</tbody>',
-            '</table>';
-            
+    echo            '</tbody>',
+                '</table>',
+            '</section>';
+                
 
 
     pog_print_footer();
