@@ -28,10 +28,10 @@ function pog_fecth_projects(){
  * @param $projects The user projects
  */
 function pog_print_dashboard($projects){
-    pog_print_header(1,'dashboard');
+    pog_print_header(1,'dashboard','Dashboard');
 
     echo    
-            '<form  class="section form" id="newproject" action="projects_manager" method="POST">',
+            '<form  class="section form" id="newproject" action="projects_manager.php" method="POST">',
             '<h2>New project</h2>',
                 pog_html_input('el_newproject_name','Project name'),
                 pog_html_button('el_newproject','Create','submit',false),

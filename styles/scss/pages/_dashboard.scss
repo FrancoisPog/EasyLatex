@@ -1,50 +1,69 @@
-#dashboard main{
-    flex-direction: column;
+#dashboard {
 
-    form{
-        flex-direction: row;
+    
+    header{
+        @include responsiveW(700px){
+            text-align: left;
+            padding-left: 1rem;
+        }
     }
+    
 
-    .section{
-        width: 45%;
-        border: none;
-        position: relative;
-        padding-top: 5rem;
+    main{
+        flex-direction: column;
 
-        h2{
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding: 1rem;
-            font-size: 2.5rem;
+        form{
+            flex-direction: row;
         }
 
-        table{
+        
+
+        .section{
             width: 100%;
-            height: 100%;
-            font-size: 1.5rem;
-            margin: auto;
-            th{
-                font-size: 2rem;
+            border: none;
+            position: relative;
+            padding-top: 5rem;
+            display: flex;
+            flex-direction: row;
+
+            @include responsiveW(900px){
+                flex-direction: column;
             }
-            td,th{
-                border: 1px solid $secondary;
+
+            h2{
+                position: absolute;
+                top: 0;
+                left: 0;
                 padding: 1rem;
-                
-    
-                &:first-child{
-                    width: 75%;
-                    text-align: left;
+                font-size: 2.5rem;
+            }
+
+            table{
+                width: 100%;
+                height: 100%;
+                font-size: 1.5rem;
+                margin: auto;
+                th{
+                    font-size: 2rem;
                 }
-    
-                &:last-child{
-                    text-align: center;
+                td,th{
+                    border: 1px solid $dark;
+                    padding: 1rem;
+                    
+        
+                    &:first-child{
+                        width: 75%;
+                        text-align: left;
+                    }
+        
+                    &:last-child{
+                        text-align: center;
+                    }
                 }
             }
         }
-    }
 
-    
+    }
 
 
 }

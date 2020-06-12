@@ -8,7 +8,7 @@ require_once('lib-EasyLatex.php');
  * Print the project page
  */
 function pog_print_project($project){
-    pog_print_header(1,'project');
+    pog_print_header(1,'project',$project['pr_name']);
     $content = $project['pr_content'];
     $filename = $project['pr_filename'];
     echo    '<article class="md-syntax">',
@@ -54,7 +54,7 @@ function pog_print_project($project){
                             '</table>',
                         '</section>',
                         '<section>',
-                            '<h3>layout</h3>',
+                            '<h3>Layout</h3>',
                             '<table>',
                                 '<tr>',
                                     '<td>New line</td>',
@@ -161,7 +161,7 @@ pog_check_param($_GET,['data']) or pog_session_exit('../');
 $id = pog_decrypt_url($_GET['data'],1)[0];
 
 if(!$id){
-    pog_print_header(1,'project');
+    pog_print_header(1,'project','404 : Project not found');
     pog_print_error('No project found');
     pog_print_footer();
     exit(0);
@@ -170,7 +170,7 @@ if(!$id){
 $project = pog_fetch_project($id);
 
 if(!$project){
-    pog_print_header(1,'project');
+    pog_print_header(1,'project','404 : Project not found');
     pog_print_error('Access denied');
     pog_print_footer();
     exit(0);

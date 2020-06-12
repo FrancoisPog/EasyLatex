@@ -8,7 +8,7 @@
         border-radius: 5px;
         opacity: 0;
         z-index: -1;
-        @include whiteOnBlack;
+        @include darkOnLight;
         position: absolute;
         width: max-content;
         bottom: -4.5rem;
@@ -19,7 +19,7 @@
         transform: scale(0);
 
         &:before{
-            @include whiteOnBlack;
+            @include darkOnLight;
             position: absolute;
             content: '';
             width: 1rem;

@@ -1,11 +1,22 @@
-@mixin whiteOnBlack(){
-    color : $secondary;
-    background-color: transparentize($color: $primary, $amount: 0.01);
+@mixin darkOnLight(){
+    color : $dark;
+    background-color: transparentize($color: $light, $amount: 0.01);
 }
 
-@mixin blackOnWhite(){
-    color : $primary;
-    background-color: transparentize($color: $secondary, $amount: 0.01);
+@mixin lightOnDark(){
+    color : $light;
+    background-color: transparentize($color: $dark, $amount: 0.01);
 }
 
 
+@mixin responsiveW($maxwitdh){
+    @media screen and (max-width : $maxwitdh){
+        @content;
+    }
+}
+
+@mixin responsiveH($maxheight){
+    @media screen and (max-height : $maxheight){
+        @content;
+    }
+}

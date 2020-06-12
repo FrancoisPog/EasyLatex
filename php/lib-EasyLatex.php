@@ -16,7 +16,7 @@ require_once('lib-database.php');
  * @param int $deepness The page deepness from root
  * @param string $page_name The name of the page
  */
-function pog_print_header($deepness,$page_name){
+function pog_print_header($deepness,$page_name,$subtitle){
     $path='';
     for($i = 0 ; $i < $deepness ; $i++){
         $path.='../';
@@ -25,7 +25,7 @@ function pog_print_header($deepness,$page_name){
             '<html lang="en">',
                 '<head>',
                     '<meta charset="UTF-8">',
-                    '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+                    '<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">',
                     '<title>EasyLatex</title>',
                     "<link rel='stylesheet' href='${path}styles/easylatex.css'>",
                     //'<script src="https://kit.fontawesome.com/a076d05399.js"></script>',
@@ -33,7 +33,7 @@ function pog_print_header($deepness,$page_name){
                 "<body id='${page_name}'>",
                     '<header>',
                         '<h1>EasyLatex</h1>',
-                        '<h2>Make LaTex document without code !</h2>',
+                        "<h2>${subtitle}</h2>",
                         pog_html_nav(),
                     '</header>',
                     '<main>';

@@ -80,7 +80,25 @@ table {
 
 /* --- COMMON --- */
 html {
-  font-size: 10px;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1600px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  html {
+    font-size: 8px;
+  }
 }
 
 strong {
@@ -97,27 +115,19 @@ sup {
 }
 
 body {
-  background-color: #fdf0d5;
+  background-color: #FFFFFF;
   color: #1d3461;
   font-family: 'Chelsea Market', cursive;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    height: auto;
+  }
 }
 
 main {
@@ -135,15 +145,56 @@ main {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
+  margin: auto;
+  margin-top: 1rem;
+  padding: 1rem 0;
+  margin-bottom: 3rem;
+  width: 45%;
+}
+
+@media screen and (max-width: 1250px) {
+  main {
+    width: 55%;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  main {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  main {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  main {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  main {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  main {
+    margin-bottom: 2rem;
+  }
 }
 
 *::-moz-selection {
-  color: #fdf0d5;
+  color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
 }
 
 *::selection {
-  color: #fdf0d5;
+  color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
 }
 
@@ -167,14 +218,14 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   -webkit-text-fill-color: #1d3461;
-  -webkit-box-shadow: 0 0 0px 1000px #fdf0d5 inset;
-          box-shadow: 0 0 0px 1000px #fdf0d5 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset;
+          box-shadow: 0 0 0px 1000px #FFFFFF inset;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }
 
 .noscript {
-  color: #fdf0d5;
+  color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -254,7 +305,7 @@ select:-webkit-autofill:focus {
   opacity: 0;
   z-index: -1;
   color: #1d3461;
-  background-color: rgba(253, 240, 213, 0.99);
+  background-color: rgba(255, 255, 255, 0.99);
   position: absolute;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -273,7 +324,7 @@ select:-webkit-autofill:focus {
 
 .tooltip-tip:before {
   color: #1d3461;
-  background-color: rgba(253, 240, 213, 0.99);
+  background-color: rgba(255, 255, 255, 0.99);
   position: absolute;
   content: '';
   width: 1rem;
@@ -306,13 +357,14 @@ input[type='button'].btn, input[type='submit'].btn, button.btn {
   transition: bax-shadow 250ms, -webkit-transform 200ms;
   transition: bax-shadow 250ms, transform 200ms;
   transition: bax-shadow 250ms, transform 200ms, -webkit-transform 200ms;
-  color: #fdf0d5;
+  color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
+  font-size: 1.1rem;
 }
 
 input[type='button'].btn:hover:not(:disabled), input[type='submit'].btn:hover:not(:disabled), button.btn:hover:not(:disabled) {
-  -webkit-box-shadow: 0 0 20px 5px rgba(31, 72, 126, 0.2);
-          box-shadow: 0 0 20px 5px rgba(31, 72, 126, 0.2);
+  -webkit-box-shadow: 0 0 20px 5px rgba(29, 52, 97, 0.2);
+          box-shadow: 0 0 20px 5px rgba(29, 52, 97, 0.2);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -333,29 +385,35 @@ input[type='button'].btn:disabled, input[type='submit'].btn:disabled, button.btn
 header {
   position: relative;
   width: 100%;
-  padding: 1rem 0;
-  height: 15vh;
+  padding: 1vh 0;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
   text-align: center;
-  margin-bottom: 1rem;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  color: #fdf0d5;
+  z-index: 50;
+  color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
 }
 
 header h1 {
   font-weight: bold;
   font-size: 4rem;
+  margin-bottom: 1rem;
 }
 
 header h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 /* --- FOOTER --- */
 footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -364,12 +422,29 @@ footer {
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  padding: 1.5rem;
-  height: 5vh;
+  height: 2rem;
   width: 100%;
-  text-align: center;
-  color: #fdf0d5;
-  background-color: rgba(29, 52, 97, 0.99);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 50;
+  color: #1d3461;
+  background-color: rgba(255, 255, 255, 0.99);
+}
+
+footer p {
+  border-top: 1px solid;
+  padding-top: .5rem;
 }
 
 /* NAV */
@@ -400,7 +475,13 @@ header nav {
 header nav a, header nav a:hover, header nav img {
   font-size: 2rem;
   margin: 0 1rem;
-  color: #fdf0d5;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 700px) {
+  header nav a, header nav a:hover, header nav img {
+    margin: 0 0.3rem;
+  }
 }
 
 header nav img {
@@ -418,15 +499,15 @@ header nav img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 5rem 4rem 2rem 4rem;
+  padding: 3rem 4rem 2rem 4rem;
   color: #1d3461;
-  background-color: rgba(253, 240, 213, 0.99);
+  background-color: rgba(255, 255, 255, 0.99);
   border-radius: 10px;
   border: #1d3461 1px solid;
   font-size: 2rem;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 45%;
+  width: 100%;
 }
 
 .form .form-input-text, .form .btn, .form .cbx {
@@ -441,7 +522,6 @@ header nav img {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 45%;
 }
 
 .form.signup h1 {
@@ -453,13 +533,13 @@ header nav img {
 }
 
 .form h1 {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-size: 3.6rem;
   text-align: center;
 }
 
 .form .tooltip-tip {
-  color: #fdf0d5;
+  color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
   width: 100%;
   -webkit-transform: translateX(-50%);
@@ -472,7 +552,7 @@ header nav img {
 }
 
 .form .tooltip-tip:before {
-  color: #fdf0d5;
+  color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
 }
 
@@ -526,7 +606,7 @@ header nav img {
   outline: none;
   -webkit-appearance: none;
   color: #1d3461;
-  background-color: rgba(253, 240, 213, 0.99);
+  background-color: rgba(255, 255, 255, 0.99);
 }
 
 .form-input-text input:invalid ~ label {
@@ -593,7 +673,7 @@ header nav img {
   top: 3px;
   left: 2px;
   fill: none;
-  stroke: #fdf0d5;
+  stroke: #FFFFFF;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -660,16 +740,11 @@ header nav img {
   }
 }
 
-#index header {
-  margin: 0;
-}
-
-#index header h1 {
-  margin-bottom: 1rem;
-}
-
-#index footer {
-  padding-bottom: 3rem;
+@media screen and (max-width: 800px) {
+  #index main form {
+    border: none;
+    padding: 0;
+  }
 }
 
 /* --- PROJECT --- */
@@ -683,8 +758,11 @@ header nav img {
   display: none;
 }
 
-#project header {
-  margin-bottom: 0;
+@media screen and (max-width: 700px) {
+  #project header {
+    text-align: left;
+    padding-left: 1rem;
+  }
 }
 
 #project main {
@@ -693,7 +771,7 @@ header nav img {
   height: 80vh;
   min-height: 80vh;
   max-height: 80vh;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 #project main .md-syntax {
@@ -706,7 +784,7 @@ header nav img {
   transition: opacity 350ms, z-index 0s 350ms;
   width: 80%;
   height: 85%;
-  color: #fdf0d5;
+  color: #FFFFFF;
   background-color: rgba(17, 31, 58, 0.9);
   z-index: 10;
   padding: 5rem;
@@ -803,6 +881,15 @@ header nav img {
           filter: none;
 }
 
+@media screen and (max-width: 800px) {
+  #project main form {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 #project main form.blurred {
   -webkit-filter: blur(3px);
           filter: blur(3px);
@@ -822,8 +909,22 @@ header nav img {
   width: 10%;
 }
 
+@media screen and (max-width: 800px) {
+  #project main form .buttons {
+    width: 65%;
+    margin: auto;
+  }
+}
+
 #project main form .buttons .btn {
   width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 800px) {
+  #project main form .buttons .btn {
+    margin: 1rem auto;
+  }
 }
 
 #project main form .editor, #project main form .viewer {
@@ -842,12 +943,19 @@ header nav img {
   overflow: hidden;
 }
 
+@media screen and (max-width: 800px) {
+  #project main form .editor {
+    width: 95%;
+    height: 60rem;
+  }
+}
+
 #project main form .editor.preview::after {
   content: 'Preview';
   position: absolute;
   top: 0.5rem;
   right: 2rem;
-  color: #fdf0d5;
+  color: #FFFFFF;
   padding: 1rem;
   background-color: rgba(29, 52, 97, 0.8);
   border-radius: 5px;
@@ -858,16 +966,16 @@ header nav img {
 #project main form .editor-input {
   font-size: 1.5rem;
   width: 100%;
-  border: 1px solid black;
+  height: 100%;
   overflow: auto;
   overflow-wrap: anywhere;
   padding: 2rem;
+  border: 1px solid #1d3461;
   font-family: 'Chelsea Market', cursive;
   color: #1d3461;
-  background-color: rgba(253, 240, 213, 0.99);
-  background-color: #fdf0d5;
+  background-color: rgba(255, 255, 255, 0.99);
+  background-color: #EEEEEE;
   border-radius: 5px;
-  border: 1px solid #1d3461;
   resize: none;
   line-height: 2rem;
   margin: 0;
@@ -879,12 +987,12 @@ header nav img {
 
 #project main form .editor-input::-moz-selection {
   color: #1d3461;
-  background-color: rgba(253, 240, 213, 0.99);
+  background-color: rgba(255, 255, 255, 0.99);
 }
 
 #project main form .editor-input::selection {
   color: #1d3461;
-  background-color: rgba(253, 240, 213, 0.99);
+  background-color: rgba(255, 255, 255, 0.99);
 }
 
 #project main form .editor-input.preview {
@@ -935,8 +1043,8 @@ header nav img {
   padding: 1rem 0.5rem;
   z-index: 2;
   background-color: rgba(29, 52, 97, 0.9);
-  -webkit-box-shadow: 0px 5px 10px 1px rgba(31, 72, 126, 0.2);
-          box-shadow: 0px 5px 10px 1px rgba(31, 72, 126, 0.2);
+  -webkit-box-shadow: 0px 5px 10px 1px rgba(29, 52, 97, 0.2);
+          box-shadow: 0px 5px 10px 1px rgba(29, 52, 97, 0.2);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -944,10 +1052,11 @@ header nav img {
 #project main form .editor aside button {
   font-family: "Chelsea Market",cursive;
   margin: 0 .5rem;
+  font-size: 1rem;
   border: none;
   border-radius: 2px;
   color: #1d3461;
-  background-color: rgba(253, 240, 213, 0.99);
+  background-color: rgba(255, 255, 255, 0.99);
   padding: 0.4rem 0.5rem;
   cursor: pointer;
 }
@@ -976,9 +1085,16 @@ header nav img {
   background-color: #484848;
 }
 
+@media screen and (max-width: 800px) {
+  #project main form .viewer {
+    display: none;
+  }
+}
+
 #project main form .viewer-wrapper {
   border-radius: 5px;
   width: 100%;
+  border: 1px solid #1d3461;
 }
 
 #project main form .viewer .errors {
@@ -989,7 +1105,7 @@ header nav img {
   height: 100%;
   width: 100%;
   color: #1d3461;
-  background-color: rgba(253, 240, 213, 0.99);
+  background-color: rgba(255, 255, 255, 0.99);
   border-radius: 10px;
   border: 1px solid #1d3461;
   overflow: auto;
@@ -1029,6 +1145,13 @@ header nav img {
   margin-bottom: 2rem;
 }
 
+@media screen and (max-width: 700px) {
+  #dashboard header {
+    text-align: left;
+    padding-left: 1rem;
+  }
+}
+
 #dashboard main {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -1044,10 +1167,26 @@ header nav img {
 }
 
 #dashboard main .section {
-  width: 45%;
+  width: 100%;
   border: none;
   position: relative;
   padding-top: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+@media screen and (max-width: 900px) {
+  #dashboard main .section {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 #dashboard main .section h2 {

@@ -9,7 +9,8 @@ input[type='button'].btn,input[type='submit'].btn,button.btn{
     border-radius: 3rem ;
     border : none;
     transition: bax-shadow 250ms, transform 200ms;
-    @include blackOnWhite;
+    @include lightOnDark;
+    font-size: 1.1rem;
 
     &:hover:not(:disabled){
         box-shadow: 0 0 20px 5px $shadow;
@@ -22,7 +23,7 @@ input[type='button'].btn,input[type='submit'].btn,button.btn{
 
     &:disabled{
         transform: scale(.8);
-        background-color: darken($color: $secondary, $amount: 10);
+        background-color: darken($color: $dark, $amount: 10);
         cursor: not-allowed;
     }
 }

@@ -2,7 +2,23 @@
 /* --- COMMON --- */
 
 html{
-    font-size : 10px;
+    font-size : 14px;
+
+    
+    
+    
+
+    @include responsiveW(1600px){
+        font-size: 10px;
+    }
+    
+    @include responsiveW(800px){
+        font-size: 9px;
+    }
+    
+    @include responsiveW(400px){
+        font-size: 8px;
+    }
 }
 
 strong{
@@ -15,19 +31,18 @@ em{
 sup {font-size:xx-small; vertical-align:super;}
 
 body{
-    background-color: $primary;
-    color : $secondary;
+    background-color: $light;
+    color : $dark;
     font-family: 'Chelsea Market', cursive;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    
+    @include responsiveW(800px){
+        height: auto;
+    }
+    
 }
 
 main{
@@ -36,19 +51,47 @@ main{
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin: auto;
+    margin-top: 1rem;
+    padding : 1rem 0;
+    margin-bottom: 3rem;
+    width: 45%;
+    @include responsiveW(1250px){
+        width: 55%;
+    }
+
+    @include responsiveW(1050px){
+        width: 60%;
+    }
+
+    @include responsiveW(950px){
+        width: 65%;
+    }
+
+    @include responsiveW(850px){
+        width: 70%;
+    }
+
+    @include responsiveW(750px){
+        width: 70%;
+    }
+
+    @include responsiveW(800px){
+        margin-bottom: 2rem;
+    }
 }
 
 *::selection{
-    @include blackOnWhite();
+    @include lightOnDark();
 }
 
 a{
-    color : $secondary;
+    color : $dark;
     
     text-decoration: none;
 
     &:hover{
-        color : $secondary;
+        color : $dark;
         text-decoration: none;
     }
 }
@@ -62,13 +105,13 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  -webkit-text-fill-color: $secondary;
-  box-shadow: 0 0 0px 1000px $primary inset;
+  -webkit-text-fill-color: $dark;
+  box-shadow: 0 0 0px 1000px $light inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
 .noscript{
-    @include blackOnWhite;
+    @include lightOnDark;
     user-select: none;
     position: fixed;
     top : 0;

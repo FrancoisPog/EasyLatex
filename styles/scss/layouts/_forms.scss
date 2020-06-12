@@ -5,13 +5,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5rem 4rem 2rem 4rem;
-  @include whiteOnBlack;
+  padding: 3rem 4rem 2rem 4rem;
+  @include darkOnLight;
   border-radius: 10px;
-  border : $secondary 1px solid;
+  border : $dark 1px solid;
   font-size: 2rem;
   justify-content: space-around;
-  width: 45%;
+  width: 100%;
 
   .form-input-text, .btn ,.cbx{
     margin : 1.8rem;
@@ -22,7 +22,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     
-    width: 45%;
 
     h1{
       width: 100%;
@@ -36,7 +35,7 @@
   }
   
   h1 {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-size: 3.6rem;
     text-align: center;
   }
@@ -46,7 +45,7 @@
   
 
   .tooltip-tip{
-    @include blackOnWhite;
+    @include lightOnDark;
     width: 100%;
     transform: translateX(-50%);
     top: 120%;
@@ -56,7 +55,7 @@
 
 
     &:before{
-      @include blackOnWhite;
+      @include lightOnDark;
      // left: 50%;
     }
   }
@@ -64,9 +63,9 @@
 
 /* Text input */
 .form-input-text {
-    $invalid-color: $secondary;
-    $valid-color: $secondary;
-    $border-bottom-color: $secondary;
+    $invalid-color: $dark;
+    $valid-color: $dark;
+    $border-bottom-color: $dark;
     width: 20rem;
     position: relative;
     border-bottom: 1px solid $border-bottom-color;
@@ -108,7 +107,7 @@
       border: none;
       outline: none;
       -webkit-appearance: none;
-      @include whiteOnBlack;
+      @include darkOnLight;
   
       &:invalid ~ label {
         color: $invalid-color;
@@ -119,7 +118,7 @@
       }
   
       &:placeholder-shown ~ label {
-        color: $secondary;
+        color: $dark;
       }
   
       &:focus ~ label,
@@ -164,7 +163,7 @@
         top: 3px;
         left: 2px;
         fill: none;
-        stroke: $primary;
+        stroke: $light;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
@@ -178,7 +177,7 @@
         content: "";
         width: 100%;
         height: 100%;
-        background: $secondary;
+        background: $dark;
         display: block;
         transform: scale(0);
         opacity: 1;
@@ -190,15 +189,15 @@
     }
   }
   &:hover span:first-child{
-    border-color: $secondary;
+    border-color: $dark;
   }
 }
  
 .inp-cbx:checked + .cbx{
   span{
     &:first-child{
-      background: $secondary;
-      border-color: $secondary;
+      background: $dark;
+      border-color: $dark;
       animation: wave .4s ease;
       svg{
         stroke-dashoffset: 0;

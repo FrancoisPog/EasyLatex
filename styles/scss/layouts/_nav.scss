@@ -11,16 +11,22 @@ header nav{
     align-items: center;
     padding: 2rem;
     width: fit-content;
+
     
 
     a,a:hover,img{
         font-size: 2rem;
         margin : 0 1rem;
-        color : $primary;
+        color : $light;
+
+        @include responsiveW(700px){
+            margin: 0 0.3rem;
+        }
     }
 
     img{
         height: 2.5rem;
+        
     }
 
     

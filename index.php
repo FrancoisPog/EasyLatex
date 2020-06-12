@@ -10,7 +10,7 @@ require_once('php/lib-EasyLatex.php');
  * Print the index page
  */
 function pog_print_index($mode = 'login' ,$error = ''){
-    pog_print_header(0,'index');
+    pog_print_header(0,'index','Make LaTex document without code !');
     
     $_SESSION['security_token'] = md5(uniqid(microtime()));
     $token = $_SESSION['security_token'];
