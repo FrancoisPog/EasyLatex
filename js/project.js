@@ -24,7 +24,7 @@ btn_preview.onclick = (e) => {
 
 
 // -- CONVERT TO LATEX
-
+// '<input type="hidden" name="latex">',
 let btn_convert = document.getElementById('btn-convert');
 let form = document.querySelector('form');
 let errors = document.getElementsByClassName('errors')[0];
@@ -46,7 +46,14 @@ form.onsubmit = (e) => {
         }
         return;
     }
-    form.elements[1].value = res;
+
+    let latex_input = document.createElement('input');
+    latex_input.type = "hidden";
+    latex_input.name = "latex";
+    latex_input.value = res;
+
+    form.appendChild(latex_input);
+
     form.submit();
 };
 
@@ -75,12 +82,48 @@ let dashboard_link = document.getElementById('dashboard_link');
 var username = dashboard_link.textContent;
 
 dashboard_link.onmouseover = () =>{
-    dashboard_link.textContent = "My projects";
+    if(window.innerWidth > 900){
+        dashboard_link.textContent = "My projects";
+    }
+
 };
 
 dashboard_link.onmouseleave = () => {
-    dashboard_link.textContent = username;
+    if(window.innerWidth > 900){
+        dashboard_link.textContent = username;
+    }
 }
+
+
+// --- REMOVE VIEWER FOR MOBILE ---
+
+
+let viewer = document.getElementsByClassName('viewer-wrapper')[0];
+let filename = viewer.getAttribute('src');
+console.log(filename);
+
+let viewer_parent = viewer.parentNode;
+
+window.onresize = () => {
+    let width = window.innerWidth;
+    if(width < 900){
+        console.log("a");
+        if(!viewer_parent.contains(viewer)){
+            return;
+        }
+        viewer_parent.removeChild(viewer);
+        
+    }else{
+        console.log("b");
+        if(viewer_parent.contains(viewer)){
+            return;
+        }
+        viewer_parent.appendChild(viewer);
+        
+    }
+}
+
+
 
 
 // --- FUNCTIONS --- 

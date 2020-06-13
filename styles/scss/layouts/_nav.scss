@@ -19,9 +19,7 @@ header nav{
         margin : 0 1rem;
         color : $light;
 
-        @include responsiveW(700px){
-            margin: 0 0.3rem;
-        }
+        
     }
 
     img{

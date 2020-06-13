@@ -80,7 +80,7 @@ table {
 
 /* --- COMMON --- */
 html {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 @media screen and (max-width: 1600px) {
@@ -89,7 +89,7 @@ html {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   html {
     font-size: 9px;
   }
@@ -124,7 +124,7 @@ body {
   width: 100%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   body {
     height: auto;
   }
@@ -182,7 +182,7 @@ main {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   main {
     margin-bottom: 2rem;
   }
@@ -362,6 +362,11 @@ input[type='button'].btn, input[type='submit'].btn, button.btn {
   font-size: 1.1rem;
 }
 
+input[type='button'].btn a, input[type='submit'].btn a, button.btn a {
+  color: #FFFFFF;
+  background-color: rgba(29, 52, 97, 0.99);
+}
+
 input[type='button'].btn:hover:not(:disabled), input[type='submit'].btn:hover:not(:disabled), button.btn:hover:not(:disabled) {
   -webkit-box-shadow: 0 0 20px 5px rgba(29, 52, 97, 0.2);
           box-shadow: 0 0 20px 5px rgba(29, 52, 97, 0.2);
@@ -476,12 +481,6 @@ header nav a, header nav a:hover, header nav img {
   font-size: 2rem;
   margin: 0 1rem;
   color: #FFFFFF;
-}
-
-@media screen and (max-width: 700px) {
-  header nav a, header nav a:hover, header nav img {
-    margin: 0 0.3rem;
-  }
 }
 
 header nav img {
@@ -740,7 +739,7 @@ header nav img {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   #index main form {
     border: none;
     padding: 0;
@@ -758,7 +757,7 @@ header nav img {
   display: none;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   #project header {
     text-align: left;
     padding-left: 1rem;
@@ -768,10 +767,14 @@ header nav img {
 #project main {
   position: relative;
   width: 100%;
-  height: 80vh;
-  min-height: 80vh;
-  max-height: 80vh;
+  height: 59rem;
   margin-top: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  #project main {
+    height: unset;
+  }
 }
 
 #project main .md-syntax {
@@ -783,7 +786,7 @@ header nav img {
   -webkit-transition: opacity 350ms, z-index 0s 350ms;
   transition: opacity 350ms, z-index 0s 350ms;
   width: 80%;
-  height: 85%;
+  height: auto;
   color: #FFFFFF;
   background-color: rgba(17, 31, 58, 0.9);
   z-index: 10;
@@ -806,6 +809,18 @@ header nav img {
   border-radius: 25px;
 }
 
+@media screen and (max-width: 900px) {
+  #project main .md-syntax {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
 #project main .md-syntax.open {
   -webkit-transition: opacity 350ms, z-index 0s;
   transition: opacity 350ms, z-index 0s;
@@ -815,15 +830,14 @@ header nav img {
 
 #project main .md-syntax #md-syntax-exit {
   position: absolute;
-  top: 4rem;
-  right: 10rem;
+  top: 2rem;
+  right: 2rem;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 0 1rem;
   font-size: 4rem;
   -webkit-transition: all 450ms;
   transition: all 450ms;
@@ -847,9 +861,25 @@ header nav img {
   padding-left: 3rem;
 }
 
+@media screen and (max-width: 900px) {
+  #project main .md-syntax h2 {
+    text-align: center;
+  }
+}
+
+#project main .md-syntax section {
+  margin-bottom: 2rem;
+}
+
 #project main .md-syntax section h3 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  #project main .md-syntax section h3 {
+    text-align: center;
+  }
 }
 
 #project main .md-syntax section table {
@@ -881,7 +911,7 @@ header nav img {
           filter: none;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   #project main form {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -909,7 +939,7 @@ header nav img {
   width: 10%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   #project main form .buttons {
     width: 65%;
     margin: auto;
@@ -921,7 +951,7 @@ header nav img {
   height: auto;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   #project main form .buttons .btn {
     margin: 1rem auto;
   }
@@ -940,10 +970,9 @@ header nav img {
 
 #project main form .editor {
   position: relative;
-  overflow: hidden;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   #project main form .editor {
     width: 95%;
     height: 60rem;
@@ -1071,6 +1100,11 @@ header nav img {
           transform: scale(1.05);
 }
 
+#project main form .editor aside .tooltip-tip, #project main form .editor aside .tooltip-tip::before {
+  color: #FFFFFF;
+  background-color: rgba(29, 52, 97, 0.99);
+}
+
 #project main form .editor aside #btn-bold {
   font-weight: bold;
 }
@@ -1085,7 +1119,7 @@ header nav img {
   background-color: #484848;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   #project main form .viewer {
     display: none;
   }
@@ -1104,10 +1138,9 @@ header nav img {
   right: 0;
   height: 100%;
   width: 100%;
-  color: #1d3461;
-  background-color: rgba(255, 255, 255, 0.99);
-  border-radius: 10px;
-  border: 1px solid #1d3461;
+  color: #FFFFFF;
+  background-color: rgba(29, 52, 97, 0.99);
+  border-radius: 6px;
   overflow: auto;
 }
 
@@ -1133,19 +1166,19 @@ header nav img {
   padding: 0.5rem;
   padding-left: 1rem;
   font-size: 1.5rem;
-  border-left: 1px solid #1d3461;
+  border-left: 1px solid #FFFFFF;
 }
 
 #project main form .viewer .errors-list p .invalid_char {
   font-size: 1.7rem;
-  border-bottom: 1px solid #1d3461;
+  border-bottom: 1px solid #FFFFFF;
 }
 
 #project main form .viewer .errors-list li:not(:last-child) {
   margin-bottom: 2rem;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   #dashboard header {
     text-align: left;
     padding-left: 1rem;

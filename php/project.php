@@ -74,7 +74,6 @@ function pog_print_project($project){
                 '</article>',
                 '<form action="project.php?data=',urlencode($_GET['data']),'" method="POST">',
                     '<input type="hidden" name="markdown">',
-                    '<input type="hidden" name="latex">',
                     '<div class="editor">',
                         '<textarea class="editor-input input" name="content" placeholder="Your markdown here">',(isset($_POST['markdown']))?pog_db_protect_outputs($_POST['markdown']):"${content}",'</textarea>',
                         '<aside class="editor-tools">',
@@ -88,7 +87,7 @@ function pog_print_project($project){
                     '<div class="buttons">',
                         pog_html_button('btn-preview','See preview'),
                         pog_html_button('btn-convert','Convert in LaTex','submit'),
-                        pog_html_button('btn-save','Save project','submit'),
+                        pog_html_button('btn-open',"<a target='_blank' href='https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/projects/${filename}.tex' >Open file</a>",'button'),
                         pog_html_button('btn-syntax','Markdown syntax'),
                         pog_html_button('btn-help','Help'),
                     '</div>',
@@ -104,7 +103,9 @@ function pog_print_project($project){
                 '</form>',    
                 pog_html_script('../js/converter.js'),
                 pog_html_script('../js/editor-shortcuts.js'),
-                pog_html_script('../js/project.js');
+                pog_html_script('../js/project.js'),
+                
+                
                 
                 pog_print_footer();
                     

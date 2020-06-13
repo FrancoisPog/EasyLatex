@@ -2,7 +2,7 @@
 
     
     header{
-        @include responsiveW(700px){
+        @include responsiveW(900px){
             text-align: left;
             padding-left: 1rem;
         }

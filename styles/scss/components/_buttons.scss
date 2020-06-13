@@ -12,6 +12,10 @@ input[type='button'].btn,input[type='submit'].btn,button.btn{
     @include lightOnDark;
     font-size: 1.1rem;
 
+    a{
+        @include lightOnDark;
+    }
+
     &:hover:not(:disabled){
         box-shadow: 0 0 20px 5px $shadow;
         transform: scale(1.1);
