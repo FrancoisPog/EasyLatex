@@ -8,9 +8,11 @@ require_once('lib-EasyLatex.php');
  * Print the project page
  */
 function pog_print_project($project){
-    pog_print_header(1,'project',$project['pr_name']);
     $content = $project['pr_content'];
     $filename = $project['pr_filename'];
+    $data = urlencode($_GET['data']);
+    
+    pog_print_header(1,'project',$project['pr_name']);
     echo    '<article class="md-syntax">',
                         '<h2>Markdown syntax</h2>',
                         '<span id="md-syntax-exit">&times;</span>',
@@ -72,7 +74,7 @@ function pog_print_project($project){
                         '</section>',
                         
                 '</article>',
-                '<form action="project.php?data=',urlencode($_GET['data']),'" method="POST">',
+                "<form action='project.php?data=${data}' method='POST'>",
                     '<input type="hidden" name="markdown">',
                     '<div class="editor">',
                         '<textarea class="editor-input input" name="content" placeholder="Your markdown here">',(isset($_POST['markdown']))?pog_db_protect_outputs($_POST['markdown']):"${content}",'</textarea>',
@@ -88,6 +90,7 @@ function pog_print_project($project){
                         pog_html_button('btn-preview','See preview'),
                         pog_html_button('btn-convert','Convert in LaTex','submit'),
                         pog_html_button('btn-open',"<a target='_blank' href='https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/projects/${filename}.tex' >Open file</a>",'button'),
+                        pog_html_button('btn-settings',"<a target='_blank' href='settings.php?data=${data}' >Settings</a>"),
                         pog_html_button('btn-syntax','Markdown syntax'),
                         pog_html_button('btn-help','Help'),
                     '</div>',

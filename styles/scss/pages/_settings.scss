@@ -1,0 +1,89 @@
+#settings{
+
+    header{
+        @include responsiveW(900px){
+            text-align: left;
+            padding-left: 1rem;
+        }
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .btn{
+            width: 10%;
+            font-size: 1.3rem;
+        }
+        section{
+            padding: 2rem 5rem;
+            padding-top: 4.5rem;
+            margin: 1rem;
+            font-size: 1.5rem;
+            width: 100%;
+            position: relative;
+    
+            h2{
+                position: absolute;
+                top : 1rem;
+                left : 1rem;
+                font-size: 2.5rem;
+            }
+    
+            
+            .form-input-text,.cbx{
+                margin: 1.5rem 2%;
+    
+                &:not(:last-of-type){
+                    width: 100%;
+                }
+    
+                &:last-of-type{
+                    width: 45%;
+                    min-width: max-content;
+                    
+                }
+            }
+    
+            &.settings-firstpage{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+    
+            &.settings-advanced{
+                display: flex;
+                flex-direction: row;
+    
+                table{
+                    width: 80%;
+                    margin: auto;
+                    margin-top: 1rem;
+    
+                    td{
+                        margin: 1rem 0;
+                        &:last-child{
+                            display: flex;
+                            justify-content: space-around;
+                        }
+    
+                        &:first-child{
+                            position: relative;
+                            &::after{
+                                content: ':';
+                                position: absolute;
+                                right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    
+
+}

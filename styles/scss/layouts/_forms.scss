@@ -40,10 +40,6 @@
     text-align: center;
   }
 
-  
-
-  
-
   .tooltip-tip{
     @include lightOnDark;
     width: 100%;
@@ -56,7 +52,6 @@
 
     &:before{
       @include lightOnDark;
-     // left: 50%;
     }
   }
 }
@@ -69,6 +64,8 @@
     width: 20rem;
     position: relative;
     border-bottom: 1px solid $border-bottom-color;
+
+    
 
     &.invalid::before{
       content: '\26A0';
@@ -102,12 +99,14 @@
       padding: 0.8rem 0;
       font-size: inherit;
       font-weight: inherit;
-      color: currentColor !important;
+      color: currentColor ;
       background: transparent !important;
       border: none;
       outline: none;
       -webkit-appearance: none;
       @include darkOnLight;
+
+      
   
       &:invalid ~ label {
         color: $invalid-color;
@@ -124,6 +123,13 @@
       &:focus ~ label,
       &:not(:placeholder-shown) ~ label {
         transform: translateY(-120%) scale(0.75);
+      }
+
+      &:disabled{
+        color : grey;
+        ~ label{
+          color : grey;
+        }
       }
     }
   
@@ -216,3 +222,78 @@
     transform: scale(.7);
   }
 }
+
+
+/* Radio input */
+$radioSize: 1.5rem;
+$radioBorder: #D1D7E3;
+$radioActive: $dark;
+
+.radio {
+    margin: 0 1rem;
+    display: inline-block;
+    width: max-content;
+    cursor: pointer;
+    input {
+        display: none;
+        & + span {
+            
+            line-height: $radioSize;
+            height: $radioSize;
+            padding-left: $radioSize;
+            display: block;
+            position: relative;
+            &:not(:empty) {
+                padding-left: $radioSize + .8;
+            }
+            &:before,
+            &:after {
+                content: '';
+                width: $radioSize;
+                height: $radioSize;
+                display: block;
+                border-radius: 50%;
+                left: 0;
+                top: 0;
+                position: absolute;
+            }
+            &:before {
+                background: $radioBorder;
+                transition: background .2s ease, transform .4s cubic-bezier(.175, .885, .32, 2);
+            }
+            &:after {
+                background: #fff;
+                transform: scale(.78);
+                transition: transform .6s cubic-bezier(.175, .885, .32, 1.4);
+            }
+        }
+        &:checked + span {
+            &:before {
+                transform: scale(1.04);
+                background: $radioActive;
+            }
+            &:after {
+                transform: scale(.4);
+                transition: transform .3s ease;
+            }
+        }
+    }
+    &:hover {
+        input {
+            & + span {
+                &:before {
+                    transform: scale(.92);
+                }
+                &:after {
+                    transform: scale(.74);
+                }
+            }
+            &:checked + span {
+                &:after {
+                    transform: scale(.4);
+                }
+            }
+        }
+    }
+}
+

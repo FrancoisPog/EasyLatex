@@ -21,7 +21,7 @@ function pog_print_index($mode = 'login' ,$error = ''){
                 ($error != '' && $mode == 'login') ? pog_html_error($error):'',
                 pog_html_input('el_login_username','Username','','text',true),
                 pog_html_input('el_login_password','Password','','password',true),
-                pog_html_checkbox('el_login_remember','Remember me'),
+                pog_html_checkbox('el_login_remember','Remember me',true),
                 pog_html_button('el_login','Login','submit'),
                 '<p>You don\'t have any account ?</p>',
                 pog_html_button('sign_up','Sign up'),
@@ -164,6 +164,9 @@ function pog_login_connection(){
     return 0;
 }
 
+
+
+
 // MAIN
 
 if(pog_isLogged()){
@@ -171,16 +174,19 @@ if(pog_isLogged()){
     exit(0);
 }
 
+// Sign Up
 if(isset($_POST['el_signup'])){
     pog_signup_hackGuard();
     if(pog_signup_database() == 1){ 
         pog_print_index('signup','This username is already used');
     }else{
+        $_SESSION['username'] = $_POST['el_signup_username'];
         header('Location: php/dashboard.php');
     }
     exit(0);
 }
 
+// Login
 if(isset($_POST['el_login'])){
     pog_login_hackGuard();
     if(pog_login_connection() == 1){
@@ -192,4 +198,4 @@ if(isset($_POST['el_login'])){
     exit(0);
 }
 
-pog_print_index('login');
+pog_print_index();
