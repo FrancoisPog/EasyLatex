@@ -139,6 +139,13 @@
                     margin : auto
                 }
 
+                #btn-open{
+                    display: none;
+                    @include responsiveW(900px){
+                        display: initial;
+                    }
+                }
+
                 .btn{
                     width: 100%;
                     @include responsiveW(900px){

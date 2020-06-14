@@ -16,18 +16,18 @@ function pog_print_index($mode = 'login' ,$error = ''){
     $token = $_SESSION['security_token'];
 
 
-    echo '<form class="form login" ',($mode == 'login')?'':'style="display : none;"',' id="login-form" action="index.php" method="POST" autocomplete="off">',
+    echo '<form class="form login" ',($mode == 'login')?'':'style="display : none;"',' id="login-form" action="index.php" method="POST" >',
                 '<h1>Login</h1>',
                 ($error != '' && $mode == 'login') ? pog_html_error($error):'',
-                pog_html_input('el_login_username','Username'),
-                pog_html_input('el_login_password','Password','','password'),
-                pog_html_checkbox('el_login_remember','Remember me',true),
+                pog_html_input('el_login_username','Username','','text',true),
+                pog_html_input('el_login_password','Password','','password',true),
+                pog_html_checkbox('el_login_remember','Remember me'),
                 pog_html_button('el_login','Login','submit'),
                 '<p>You don\'t have any account ?</p>',
                 pog_html_button('sign_up','Sign up'),
                 "<input type='hidden' name='el_login_token' value='${token}'>",
             '</form>',
-            '<form class="form signup" ',($mode == 'signup')?'':'style="display : none;"',' id="signup-form" method="POST" action="index.php" autocomplete="off">',
+            '<form class="form signup" ',($mode == 'signup')?'':'style="display : none;"',' id="signup-form" method="POST" action="index.php">',
                 '<h1>Sign Up</h1>',
                 ($error != '' && $mode == 'signup') ? pog_html_error($error):'',
                 pog_html_input('el_signup_username','Username',(isset($_POST['el_signup_username']))?$_POST['el_signup_username']:''),
@@ -40,7 +40,7 @@ function pog_print_index($mode = 'login' ,$error = ''){
                 "<input type='hidden' name='el_signup_token' value='${token}'>",
             '</form>',
             pog_html_script('js/index.js'),
-            pog_html_script('js/signup.js');
+            pog_html_script('js/forms.js');
             
             
 

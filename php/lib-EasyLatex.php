@@ -28,9 +28,9 @@ function pog_print_header($deepness,$page_name,$subtitle){
                     '<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">',
                     '<title>EasyLatex</title>',
                     "<link rel='stylesheet' href='${path}styles/easylatex.css'>",
-                    //'<script src="https://kit.fontawesome.com/a076d05399.js"></script>',
                 '</head>',
                 "<body id='${page_name}'>",
+                    pog_print_noscript(),
                     '<header>',
                         '<h1>EasyLatex</h1>',
                         "<h2>${subtitle}</h2>",
@@ -38,7 +38,6 @@ function pog_print_header($deepness,$page_name,$subtitle){
                     '</header>',
                     '<main>';
                     
-    pog_print_noscript();
 }
 
 /**
@@ -90,9 +89,10 @@ function pog_print_noscript(){
  * @param String $value The input default value
  * @param String $type The input type (text/password)
  */
-function pog_html_input($name, $label,$value = '',$type = 'text'){
+function pog_html_input($name, $label,$value = '',$type = 'text',$autocomplete = false){
     $value = ($value!='')?"value='${value}'":'';
-    return "<div class='form-input-text'><input type='${type}' name='${name}' ${value} id='${name}' placeholder=' ' autocomplete='off' /><label for='${name}'>${label}</label></div>";
+    $autocomplete = ($autocomplete)?'':'autocomplete=\'new-password\'';
+    return "<div class='form-input-text'><input type='${type}' name='${name}' ${value} id='${name}' placeholder=' ' ${autocomplete}  /><label for='${name}'>${label}</label></div>";
 }
 
 

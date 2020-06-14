@@ -25,6 +25,7 @@ header{
 
 /* --- FOOTER --- */
 footer{
+    
     position: absolute;
     bottom: 0;
     left: 0;
@@ -38,6 +39,7 @@ footer{
     justify-content: center;
     align-items: center;
     z-index: 50;
+    display: none;
 
     @include darkOnLight;
 

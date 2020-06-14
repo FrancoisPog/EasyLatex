@@ -32,9 +32,9 @@ function pog_print_dashboard($projects){
 
     echo    
             '<form  class="section form" id="newproject" action="projects_manager.php" method="POST">',
-            '<h2>New project</h2>',
+                '<h2>New project</h2>',
                 pog_html_input('el_newproject_name','Project name'),
-                pog_html_button('el_newproject','Create','submit',false),
+                pog_html_button('el_newproject','Create','submit',true),
             '</form>',
             '<section class="section">',
                 '<h2>Current projects</h2>',
@@ -55,10 +55,11 @@ function pog_print_dashboard($projects){
 
     echo            '</tbody>',
                 '</table>',
-            '</section>';
+            '</section>',
+            pog_html_script('../js/forms.js');
                 
 
-
+                    
     pog_print_footer();
 }
 
