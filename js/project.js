@@ -6,19 +6,19 @@ window.onload = () => {
 };
 
 
-// -- SWITCH BETWEEN MARKDOWN & PREVIEW ---
+// -- SWITCH BETWEEN markup & PREVIEW ---
 
 let preview_mode = false;
-let markdown_svg = "";
+let markup_svg = "";
 let btn_preview = document.getElementById('btn-preview'); 
 btn_preview.onclick = (e) => {
     e.preventDefault();
     if(preview_mode){
-        back_to_markdown();
+        back_to_markup();
         btn_preview.textContent = "See preview";
     }else{
         converter_to_preview();
-        btn_preview.textContent = "Back to markdown";    
+        btn_preview.textContent = "Back to markup";    
     }
 };
 
@@ -32,7 +32,7 @@ let errors_list = document.getElementsByClassName('errors-list')[0];
 
 form.onsubmit = (e) => {
     e.preventDefault();
-    form.elements[0].value = (preview_mode) ? markdown_svg : get_editor_input().value;
+    form.elements[0].value = (preview_mode) ? markup_svg : get_editor_input().value;
 
     res = converter_to_latex();
 
@@ -58,7 +58,7 @@ form.onsubmit = (e) => {
 };
 
 
-// --- DISPLAY MARKDOWN SYNTAX ---
+// --- DISPLAY markup SYNTAX ---
 
 let btn_syntax = document.getElementById('btn-syntax');
 let elt_syntax = document.getElementsByClassName('md-syntax')[0];
@@ -129,9 +129,9 @@ window.onresize = () => {
 // --- FUNCTIONS --- 
 
 /**
- * Back to the markdown on editor
+ * Back to the markup on editor
  */
-function back_to_markdown(){
+function back_to_markup(){
     let preview = get_editor_input();
     let editor = set_editor_input(null);
 
@@ -156,7 +156,7 @@ function get_editor_input(){
         editor = document.createElement("textarea");
         editor.classList.add('editor-input');
         editor.classList.add('input');
-        editor.value = markdown_svg;
+        editor.value = markup_svg;
         editor.name = "content";
     }
     

@@ -1,12 +1,12 @@
 // Regex
-const markdown_regex    = /(\[(.):(.*?):(\2)\]|(\#{1,3}\*?) *(.+?) *(<br>|$))/gmi;
+const markup_regex    = /(\[(.):(.*?):(\2)\]|(\#{1,3}\*?) *(.+?) *(<br>|$))/gmi;
 const preview_regex     = /<(.*?)( class="(.*?)")?>[0-9\. ]*(.*?)<\/(\1)>/gmi;
 
 var title_count = 0;
 var subtitle_count = 0;
 
 /**
- * Parse the markdown recursively to preview html code
+ * Parse the markup recursively to preview html code
  * @param {String} match The string matched
  * @param {String} no_used Useless
  * @param {String} text_type The text type (undefined if title)
@@ -17,11 +17,11 @@ var subtitle_count = 0;
  * @param {String} offset The offset in the original string
  * @param {String} og The original string
  */
-function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,title_type,title_content,offset,og){
+function markup_to_preview_rec(match,no_used,text_type,text_content,no_used,title_type,title_content,offset,og){
     // Title case
     if(typeof(text_content) == "undefined"){
-        if(title_content.match(markdown_regex)){
-            title_content = title_content.replace(markdown_regex,markdown_to_preview_rec);
+        if(title_content.match(markup_regex)){
+            title_content = title_content.replace(markup_regex,markup_to_preview_rec);
         }
 
         let title_types = ['#','#*','##','##*','###','###*'];
@@ -45,8 +45,8 @@ function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,ti
     }
 
     // Text case
-    if(text_content.match(markdown_regex)){
-        text_content = text_content.replace(markdown_regex,markdown_to_preview_rec);
+    if(text_content.match(markup_regex)){
+        text_content = text_content.replace(markup_regex,markup_to_preview_rec);
     }
 
     if(text_type == 'i'){
@@ -62,10 +62,10 @@ function markdown_to_preview_rec(match,no_used,text_type,text_content,no_used,ti
 }
 
 /**
- * Parse a markdown text to html preview
+ * Parse a markup text to html preview
  * @param {String} text The text to parse
  */
-function markdown_to_preview(text){
+function markup_to_preview(text){
     title_count = 0;
     subtitle_count = 0;
     single_tags_regex = {   
@@ -76,7 +76,7 @@ function markdown_to_preview(text){
                             '<span class="par"><br><br>&nbsp;&nbsp;</span>' : /\[:par:\]/gmi
                         }
 
-    content =  text.replace(/\n/gmi,'<br>').replace(markdown_regex,markdown_to_preview_rec).replace(/<br>/gmi,' ');
+    content =  text.replace(/\n/gmi,'<br>').replace(markup_regex,markup_to_preview_rec).replace(/<br>/gmi,' ');
 
     for(let tag in single_tags_regex){
         content = content.replace(single_tags_regex[tag],tag);
@@ -86,15 +86,15 @@ function markdown_to_preview(text){
 }
 
 /**
- * Get the markdown code from editor and parse it for the preview
+ * Get the markup code from editor and parse it for the preview
  */
 function converter_to_preview(){
     let editor = get_editor_input();
     let content = editor.value;
 
-    markdown_svg = content;
+    markup_svg = content;
     
-    content = markdown_to_preview(content);
+    content = markup_to_preview(content);
     
     let preview = document.createElement("div");
     preview.classList.add('editor-input');
@@ -155,10 +155,10 @@ function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,n
 }
 
 /**
- * Markdown correcter
+ * markup correcter
  * @param {String} text The text to correct
  */
-function markdown_correcter(text){
+function markup_correcter(text){
     let errors = new Array();
 
     text = text.replace(/\n/gmi,' ');
@@ -202,13 +202,13 @@ function converter_to_latex(){
     let editor = get_editor_input();
     let content = "";
     if(editor.tagName != "DIV"){
-        content = markdown_to_preview(editor.value);
-        markdown_svg = editor.value;
+        content = markup_to_preview(editor.value);
+        markup_svg = editor.value;
     }else{
         content = editor.innerHTML;
     }
     
-    let errors = markdown_correcter(markdown_svg);
+    let errors = markup_correcter(markup_svg);
      
     if(errors.length){
         return errors;

@@ -15,6 +15,12 @@ function pog_print_index($mode = 'login' ,$error = ''){
     $_SESSION['security_token'] = md5(uniqid(microtime()));
     $token = $_SESSION['security_token'];
 
+    echo '<article>',
+            '<h2>Improve the quality of your document ! </h2>',
+            '<p>With EasyLatex, you can make great LaTex document without know how to code, with a simple markup language</p>',
+            '<img src="images/index_example.png" >',
+        '</article>';
+
 
     echo '<form class="form login" ',($mode == 'login')?'':'style="display : none;"',' id="login-form" action="index.php" method="POST" >',
                 '<h1>Login</h1>',

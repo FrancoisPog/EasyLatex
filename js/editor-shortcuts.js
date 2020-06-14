@@ -67,7 +67,7 @@ document.onkeydown = (e) => {
 
 /**
  * Add a font style tag to the text selection
- * @param {String} tag  The markdown tag to add 
+ * @param {String} tag  The markup tag to add 
  * @param {boolean} isSingleTag True is is a single tag
  */
 function change_selection_style(tag, isSingleTag = false){

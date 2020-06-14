@@ -1,14 +1,10 @@
 // /* --- FORMS --- */
 
-
 .form{
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 3rem 4rem 2rem 4rem;
-  @include darkOnLight;
-  border-radius: 10px;
-  border : $dark 1px solid;
   font-size: 2rem;
   justify-content: space-around;
   width: 100%;
@@ -16,28 +12,6 @@
   .form-input-text, .btn ,.cbx{
     margin : 1.8rem;
     width : 20rem;        
-  }
-
-  &.signup{
-    flex-direction: row;
-    flex-wrap: wrap;
-    
-
-    h1{
-      width: 100%;
-    }
-
-    
-  }
-  
-  p{
-    font-size: 1.5rem;
-  }
-  
-  h1 {
-    margin-bottom: 2rem;
-    font-size: 3.6rem;
-    text-align: center;
   }
 
   .tooltip-tip{
@@ -55,6 +29,7 @@
     }
   }
 }
+
 
 /* Text input */
 .form-input-text {

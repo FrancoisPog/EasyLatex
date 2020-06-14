@@ -5,7 +5,7 @@ input[type='button'].btn,input[type='submit'].btn,button.btn{
     cursor: pointer;
     margin: auto;
     padding:0.8rem;
-    font-family: "Chelsea Market",cursive;
+    font-family: $font;
     border-radius: 3rem ;
     border : none;
     transition: bax-shadow 250ms, transform 200ms;

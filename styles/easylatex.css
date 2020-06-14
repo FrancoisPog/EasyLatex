@@ -117,7 +117,7 @@ sup {
 body {
   background-color: #FFFFFF;
   color: #1d3461;
-  font-family: 'Chelsea Market', cursive;
+  font-family: "Chelsea Market", cursive;
   position: absolute;
   top: 0;
   left: 0;
@@ -350,7 +350,7 @@ input[type='button'].btn, input[type='submit'].btn, button.btn {
   cursor: pointer;
   margin: auto;
   padding: 0.8rem;
-  font-family: "Chelsea Market",cursive;
+  font-family: "Chelsea Market", cursive;
   border-radius: 3rem;
   border: none;
   -webkit-transition: bax-shadow 250ms, -webkit-transform 200ms;
@@ -500,10 +500,6 @@ header nav img {
       -ms-flex-align: center;
           align-items: center;
   padding: 3rem 4rem 2rem 4rem;
-  color: #1d3461;
-  background-color: rgba(255, 255, 255, 0.99);
-  border-radius: 10px;
-  border: #1d3461 1px solid;
   font-size: 2rem;
   -ms-flex-pack: distribute;
       justify-content: space-around;
@@ -513,29 +509,6 @@ header nav img {
 .form .form-input-text, .form .btn, .form .cbx {
   margin: 1.8rem;
   width: 20rem;
-}
-
-.form.signup {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.form.signup h1 {
-  width: 100%;
-}
-
-.form p {
-  font-size: 1.5rem;
-}
-
-.form h1 {
-  margin-bottom: 2rem;
-  font-size: 3.6rem;
-  text-align: center;
 }
 
 .form .tooltip-tip {
@@ -818,11 +791,72 @@ header nav img {
   transition: transform .3s ease, -webkit-transform .3s ease;
 }
 
+#index main {
+  width: 90%;
+}
+
+#index main article {
+  width: 70%;
+}
+
+#index main article h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+#index main article p {
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+#index main article img {
+  width: 90%;
+  margin: 1rem;
+  border: 1px #1d3461 solid;
+  -webkit-box-shadow: 0px 0px 20px 10px rgba(29, 52, 97, 0.2);
+          box-shadow: 0px 0px 20px 10px rgba(29, 52, 97, 0.2);
+}
+
+#index main .form {
+  color: #1d3461;
+  background-color: rgba(255, 255, 255, 0.99);
+  border-radius: 10px;
+  border: #1d3461 1px solid;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
 @media screen and (max-width: 900px) {
-  #index main form {
+  #index main .form {
     border: none;
     padding: 0;
   }
+}
+
+#index main .form.signup {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 50%;
+}
+
+#index main .form.signup h1 {
+  width: 100%;
+}
+
+#index main .form p {
+  font-size: 1.5rem;
+}
+
+#index main .form h1 {
+  margin-bottom: 2rem;
+  font-size: 3.6rem;
+  text-align: center;
 }
 
 /* --- PROJECT --- */
@@ -1089,7 +1123,7 @@ header nav img {
   overflow-wrap: anywhere;
   padding: 2rem;
   border: 1px solid #1d3461;
-  font-family: 'Chelsea Market', cursive;
+  font-family: "Chelsea Market", cursive;
   color: #1d3461;
   background-color: rgba(255, 255, 255, 0.99);
   background-color: #EEEEEE;
@@ -1168,7 +1202,7 @@ header nav img {
 }
 
 #project main form .editor aside button {
-  font-family: "Chelsea Market",cursive;
+  font-family: "Chelsea Market", cursive;
   margin: 0 .5rem;
   font-size: 1rem;
   border: none;

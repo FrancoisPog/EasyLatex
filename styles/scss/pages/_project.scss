@@ -194,10 +194,9 @@
                     overflow-wrap: anywhere;
                     padding: 2rem;
                     border : 1px solid $dark;
-                    font-family: 'Chelsea Market', cursive;
+                    font-family: $font;
                     @include darkOnLight;
                     background-color: $editor;
-                    //box-shadow: 0px 0px 20px 8px $shadow inset;
                     border-radius: 5px;
                     
                     resize: none;
@@ -269,7 +268,7 @@
                     border-top-right-radius: 5px;
 
                     button{
-                        font-family: "Chelsea Market",cursive;
+                        font-family: $font;
                         margin: 0 .5rem;
                         font-size: 1rem;
                         border: none;
