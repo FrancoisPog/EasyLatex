@@ -13,7 +13,7 @@ function pog_new_project(){
     // Check input
     pog_check_param($_POST,['el_newproject','el_newproject_name']) or pog_session_exit('../');
 
-    if(!preg_match('/^[^<>]{4,30}$/',$_POST['el_newproject_name'])){
+    if(!preg_match('/^[^<>]{1,100}$/',$_POST['el_newproject_name'])){
         pog_session_exit('../');
     }
 

@@ -44,7 +44,7 @@ if(new_project_input.length){
     new_project_input = new_project_input[0];
 
     new_project_input.oninput = () => {
-        setValidity(new_project_input,new_project_input.value.match(/^[^<>]{4,30}$/),'The project name must contains between 4 and 30 characters without HTML tags');
+        setValidity(new_project_input,new_project_input.value.match(/^[^<>]{1,30}$/),'The project name must contains between 4 and 30 characters without HTML tags');
         let btn_submit = document.getElementsByName('el_newproject')[0];
         
         if(new_project_input.parentNode.classList.contains('tooltip')){
@@ -54,6 +54,11 @@ if(new_project_input.length){
         }
     }
 }
+
+
+// --- SETTINGS ---
+
+
 
 
 // --- FUNCTIONS ---
@@ -70,6 +75,10 @@ function signupFormValidity(){
     }
     submit.removeAttribute('disabled');
     return ;
+}
+
+function settingsFormValidity(){
+
 }
 
 
