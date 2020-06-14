@@ -818,21 +818,6 @@ header nav img {
   transition: transform .3s ease, -webkit-transform .3s ease;
 }
 
-.radio:hover input + span:before {
-  -webkit-transform: scale(0.92);
-          transform: scale(0.92);
-}
-
-.radio:hover input + span:after {
-  -webkit-transform: scale(0.74);
-          transform: scale(0.74);
-}
-
-.radio:hover input:checked + span:after {
-  -webkit-transform: scale(0.4);
-          transform: scale(0.4);
-}
-
 @media screen and (max-width: 900px) {
   #index main form {
     border: none;

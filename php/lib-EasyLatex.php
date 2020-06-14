@@ -136,8 +136,9 @@ function pog_html_checkbox($id,$label,$isChecked = false){
     return "<input class='inp-cbx' id='${id}' name='${id}' ${isChecked} type='checkbox' style='display: none'/><label class='cbx' for='${id}'><span><svg width='12px' height='10px' viewbox='0 0 12 10'><polyline points='1.5 6 4.5 9 10.5 1'></polyline></svg></span><span>${label}</span></label>";
 }
 
-function pog_html_radio($name,$value,$label){
-    return  "<label class='radio'><input type='radio' name='${name}' value='${value}'><span>${label}</span></label>";
+function pog_html_radio($name,$value,$label,$checked = false){
+    $checked = ($checked)?'checked':'';
+    return  "<label class='radio'><input type='radio' name='${name}' ${checked} value='${value}'><span>${label}</span></label>";
 }
 
 /**

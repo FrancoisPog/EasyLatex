@@ -237,7 +237,6 @@ $radioActive: $dark;
     input {
         display: none;
         & + span {
-            
             line-height: $radioSize;
             height: $radioSize;
             padding-left: $radioSize;
@@ -275,23 +274,6 @@ $radioActive: $dark;
             &:after {
                 transform: scale(.4);
                 transition: transform .3s ease;
-            }
-        }
-    }
-    &:hover {
-        input {
-            & + span {
-                &:before {
-                    transform: scale(.92);
-                }
-                &:after {
-                    transform: scale(.74);
-                }
-            }
-            &:checked + span {
-                &:after {
-                    transform: scale(.4);
-                }
             }
         }
     }

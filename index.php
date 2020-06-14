@@ -91,6 +91,8 @@ function pog_signup_database(){
 
     extract($_POST);
 
+    
+
     $query = "SELECT us_username
                 FROM el_user
                 WHERE us_username = '${el_signup_username}'";
@@ -104,6 +106,8 @@ function pog_signup_database(){
     $pass = password_hash($_POST['el_signup_password'],PASSWORD_DEFAULT);
 
     $date = pog_getDate();
+
+    
 
     $query = "INSERT INTO el_user SET
                 us_username = '${el_signup_username}',
@@ -140,6 +144,7 @@ function pog_login_hackGuard(){
 function pog_login_connection(){
     $db = pog_db_connecter();
 
+    $_POST = array_map('trim',$_POST);
     $_POST = pog_db_protect_inputs($db,$_POST);
     extract($_POST);
 
