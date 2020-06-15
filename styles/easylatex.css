@@ -521,6 +521,9 @@ header nav img {
 .form .form-input-text, .form .btn, .form .cbx {
   margin: 1.8rem;
   width: 20rem;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
 }
 
 .form .tooltip-tip {
@@ -879,6 +882,10 @@ header nav img {
 
 #index main .form.signup h1 {
   width: 100%;
+}
+
+#index main .form.signup .btn {
+  margin: 1.8rem 30%;
 }
 
 #index main .form p {
@@ -1434,7 +1441,6 @@ header nav img {
 }
 
 #settings form .btn {
-  width: 10%;
   font-size: 1.3rem;
 }
 

@@ -43,6 +43,8 @@ function pog_print_index($mode = 'login' ,$error = ''){
                 pog_html_input('el_signup_passwordRepeat','Confirm password','','password'),
                 pog_html_checkbox('el_signup_remember','Remember me',(isset($_POST['el_signup']))?(isset($_POST['el_signup_remember'])):true),
                 pog_html_button('el_signup','Sign up','submit',true),
+                '<p>You already have an account ?</p>',
+                pog_html_button('el_signup_login','Login'),
                 "<input type='hidden' name='el_signup_token' value='${token}'>",
             '</form>',
             pog_html_script('js/index.js'),
