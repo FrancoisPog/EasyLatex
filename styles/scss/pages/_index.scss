@@ -1,69 +1,84 @@
-#index{
-    main{
+#index {
+  main {
+    position: relative;
 
-        width: 90%;
+    @include responsive(200000px,1350px){
+      width: 90%;
+      
+    }
+    
+    article {
+      position: relative;
+      width: 60%;
+      padding: 3rem;
+      height: 52rem; // Change that if the picture height change
+
+      @include responsive(1350px) {
+        display: none;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 2rem
+      }
+
+      p {
+        font-size: 2rem;
+        line-height: 2.5rem;
+      }
+
+      img {
+        width: 95%;
+        margin-top: 1rem;
+        //border: 1px $dark solid;
+        box-shadow: 0px 0px 20px 10px $shadow;
+      }
+    }
 
 
-        article{
-            width: 70%;
+    .form {
+      width: 50%;
 
-            h2{
-                font-size: 2.5rem;
-                font-weight: bold;
-                margin-bottom :  2rem
-            }
+      @include darkOnLight;
+      border-radius: 10px;
+      //border: $dark 1px solid;
+      box-shadow: 0 0 20px 10px $shadow;
 
-            p{
-                font-size: 2rem;
-                line-height: 2.5rem;
-            }
+      @include responsive(1350px) {
+        width: unset;
+      }
 
-            img{
-                width: 90%;
-                margin: 1rem;
-                border : 1px $dark solid;
-                box-shadow: 0px 0px 20px 10px $shadow;
-            }
+      @include responsive(900px) {
+        border: none;
+       // padding: 0;
+        box-shadow: none;
+      }
+
+      &.signup {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        h1 {
+          width: 100%;
         }
 
 
-        .form{
-            
-            @include darkOnLight;
-            border-radius: 10px;
-            border : $dark 1px solid;
-            width: min-content;
+      }
 
-            @include responsiveW(900px){
-                border: none;
-                padding: 0;
-            }
-          
-            &.signup{
-              flex-direction: row;
-              flex-wrap: wrap;
-              width: 50%;
-          
-              h1{
-                width: 100%;
-              }
-          
-              
-            }
-            
-            p{
-              font-size: 1.5rem;
-            }
-            
-            h1 {
-              margin-bottom: 2rem;
-              font-size: 3.6rem;
-              text-align: center;
-            }
-          
-            
-          }
-          
-        
+      p {
+        font-size: 1.5rem;
+      }
+
+      h1 {
+        margin-bottom: 2rem;
+        font-size: 3.6rem;
+        text-align: center;
+      }
+
+
     }
+
+
+  }
 }

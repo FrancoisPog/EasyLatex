@@ -83,19 +83,25 @@ html {
   font-size: 13px;
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1750px) and (min-width: 0) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 1600px) and (min-width: 0) {
   html {
     font-size: 10px;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   html {
     font-size: 9px;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 400px) and (min-width: 0) {
   html {
     font-size: 8px;
   }
@@ -122,12 +128,16 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-}
-
-@media screen and (max-width: 900px) {
-  body {
-    height: auto;
-  }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 main {
@@ -144,45 +154,45 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
   margin: auto;
   margin-top: 1rem;
   padding: 1rem 0;
   margin-bottom: 3rem;
   width: 45%;
+  height: 100%;
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1250px) and (min-width: 0) {
   main {
     width: 55%;
   }
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1050px) and (min-width: 0) {
   main {
     width: 60%;
   }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 950px) and (min-width: 0) {
   main {
     width: 65%;
   }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 850px) and (min-width: 0) {
   main {
     width: 70%;
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 750px) and (min-width: 0) {
   main {
     width: 70%;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   main {
     margin-bottom: 2rem;
   }
@@ -402,6 +412,9 @@ header {
   z-index: 50;
   color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
+  -webkit-box-shadow: 0 0 20px 20px rgba(29, 52, 97, 0.2);
+          box-shadow: 0 0 20px 20px rgba(29, 52, 97, 0.2);
+  top: 0;
 }
 
 header h1 {
@@ -503,7 +516,6 @@ header nav img {
   font-size: 2rem;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 100%;
 }
 
 .form .form-input-text, .form .btn, .form .cbx {
@@ -627,6 +639,7 @@ header nav img {
           user-select: none;
   cursor: pointer;
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .cbx span {
@@ -792,11 +805,26 @@ header nav img {
 }
 
 #index main {
-  width: 90%;
+  position: relative;
+}
+
+@media screen and (max-width: 200000px) and (min-width: 1350px) {
+  #index main {
+    width: 90%;
+  }
 }
 
 #index main article {
-  width: 70%;
+  position: relative;
+  width: 60%;
+  padding: 3rem;
+  height: 52rem;
+}
+
+@media screen and (max-width: 1350px) and (min-width: 0) {
+  #index main article {
+    display: none;
+  }
 }
 
 #index main article h2 {
@@ -811,27 +839,32 @@ header nav img {
 }
 
 #index main article img {
-  width: 90%;
-  margin: 1rem;
-  border: 1px #1d3461 solid;
+  width: 95%;
+  margin-top: 1rem;
   -webkit-box-shadow: 0px 0px 20px 10px rgba(29, 52, 97, 0.2);
           box-shadow: 0px 0px 20px 10px rgba(29, 52, 97, 0.2);
 }
 
 #index main .form {
+  width: 50%;
   color: #1d3461;
   background-color: rgba(255, 255, 255, 0.99);
   border-radius: 10px;
-  border: #1d3461 1px solid;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
+  -webkit-box-shadow: 0 0 20px 10px rgba(29, 52, 97, 0.2);
+          box-shadow: 0 0 20px 10px rgba(29, 52, 97, 0.2);
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1350px) and (min-width: 0) {
+  #index main .form {
+    width: unset;
+  }
+}
+
+@media screen and (max-width: 900px) and (min-width: 0) {
   #index main .form {
     border: none;
-    padding: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
 }
 
@@ -842,7 +875,6 @@ header nav img {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 50%;
 }
 
 #index main .form.signup h1 {
@@ -861,6 +893,7 @@ header nav img {
 
 /* --- PROJECT --- */
 #project {
+  height: unset;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -870,7 +903,7 @@ header nav img {
   display: none;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project header {
     text-align: left;
     padding-left: 1rem;
@@ -884,7 +917,7 @@ header nav img {
   margin-top: 1rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main {
     height: unset;
   }
@@ -922,7 +955,7 @@ header nav img {
   border-radius: 25px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main .md-syntax {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -974,7 +1007,7 @@ header nav img {
   padding-left: 3rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main .md-syntax h2 {
     text-align: center;
   }
@@ -989,7 +1022,7 @@ header nav img {
   margin-bottom: 1rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main .md-syntax section h3 {
     text-align: center;
   }
@@ -1024,7 +1057,7 @@ header nav img {
           filter: none;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main form {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1052,7 +1085,7 @@ header nav img {
   width: 10%;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main form .buttons {
     width: 65%;
     margin: auto;
@@ -1063,7 +1096,7 @@ header nav img {
   display: none;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main form .buttons #btn-open {
     display: initial;
   }
@@ -1074,7 +1107,7 @@ header nav img {
   height: auto;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main form .buttons .btn {
     margin: 1rem auto;
   }
@@ -1095,7 +1128,7 @@ header nav img {
   position: relative;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main form .editor {
     width: 95%;
     height: 60rem;
@@ -1242,7 +1275,7 @@ header nav img {
   background-color: #484848;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #project main form .viewer {
     display: none;
   }
@@ -1301,7 +1334,7 @@ header nav img {
   margin-bottom: 2rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #dashboard header {
     text-align: left;
     padding-left: 1rem;
@@ -1336,7 +1369,7 @@ header nav img {
           flex-direction: row;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #dashboard main .section {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1362,6 +1395,8 @@ header nav img {
 
 #dashboard main .section table th {
   font-size: 2rem;
+  color: #FFFFFF;
+  background-color: rgba(29, 52, 97, 0.99);
 }
 
 #dashboard main .section table td, #dashboard main .section table th {
@@ -1378,7 +1413,7 @@ header nav img {
   text-align: center;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 0) {
   #settings header {
     text-align: left;
     padding-left: 1rem;
@@ -1449,27 +1484,23 @@ header nav img {
           justify-content: center;
 }
 
-#settings form section.settings-advanced {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-}
-
 #settings form section.settings-advanced table {
   width: 80%;
   margin: auto;
   margin-top: 1rem;
 }
 
-#settings form section.settings-advanced table td {
+#settings form section.settings-advanced table tr td {
   margin: 1rem 0;
 }
 
-#settings form section.settings-advanced table td:last-child {
+@media screen and (max-width: 900px) and (min-width: 0) {
+  #settings form section.settings-advanced table tr td {
+    display: block;
+  }
+}
+
+#settings form section.settings-advanced table tr td:last-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1477,13 +1508,23 @@ header nav img {
       justify-content: space-around;
 }
 
-#settings form section.settings-advanced table td:first-child {
+#settings form section.settings-advanced table tr td:first-child {
   position: relative;
 }
 
-#settings form section.settings-advanced table td:first-child::after {
+@media screen and (max-width: 900px) and (min-width: 0) {
+  #settings form section.settings-advanced table tr td:first-child {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    margin: auto;
+    margin-top: 2rem;
+  }
+}
+
+#settings form section.settings-advanced table tr td:first-child::after {
   content: ':';
   position: absolute;
-  right: 0;
+  right: -10px;
 }
 /*# sourceMappingURL=easylatex.css.map */

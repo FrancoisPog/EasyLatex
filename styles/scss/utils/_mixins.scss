@@ -9,14 +9,8 @@
 }
 
 
-@mixin responsiveW($maxwitdh){
-    @media screen and (max-width : $maxwitdh){
-        @content;
-    }
-}
-
-@mixin responsiveH($maxheight){
-    @media screen and (max-height : $maxheight){
+@mixin responsive($maxwitdh,$minwidth : 0){
+    @media screen and (max-width : $maxwitdh) and (min-width : $minwidth){
         @content;
     }
 }

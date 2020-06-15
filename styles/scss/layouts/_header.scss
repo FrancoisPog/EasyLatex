@@ -1,31 +1,33 @@
 /* --- HEADER --- */
-header{
+header {
     position: relative;
     width: 100%;
-    padding : 1vh 0;
+    padding: 1vh 0;
     min-height: fit-content;
     text-align: center;
     user-select: none;
     z-index: 50;
     @include lightOnDark;
+    box-shadow: 0 0 20px 20px $shadow;
+    top: 0;
 
-    h1{
+    h1 {
         font-weight: bold;
         font-size: 4rem;
         margin-bottom: 1rem;
     }
 
-    h2{
+    h2 {
         font-size: 2rem;
     }
 
-    
-   
+
+
 }
 
 /* --- FOOTER --- */
-footer{
-    
+footer {
+
     position: absolute;
     bottom: 0;
     left: 0;
@@ -43,7 +45,7 @@ footer{
 
     @include darkOnLight;
 
-    p{
+    p {
         border-top: 1px solid;
         padding-top: .5rem;
     }

@@ -28,7 +28,6 @@ function pog_print_header($deepness,$page_name,$subtitle){
                     '<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">',
                     '<title>EasyLatex</title>',
                     "<link rel='stylesheet' href='${path}styles/easylatex.css'>",
-                    '<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">   ',
                 '</head>',
                 "<body id='${page_name}'>",
                     pog_print_noscript(),

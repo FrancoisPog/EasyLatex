@@ -1,7 +1,7 @@
 #settings{
 
     header{
-        @include responsiveW(900px){
+        @include responsive(900px){
             text-align: left;
             padding-left: 1rem;
         }
@@ -54,27 +54,36 @@
             }
     
             &.settings-advanced{
-                display: flex;
-                flex-direction: row;
-    
+
+               
                 table{
                     width: 80%;
                     margin: auto;
                     margin-top: 1rem;
-    
-                    td{
-                        margin: 1rem 0;
-                        &:last-child{
-                            display: flex;
-                            justify-content: space-around;
-                        }
-    
-                        &:first-child{
-                            position: relative;
-                            &::after{
-                                content: ':';
-                                position: absolute;
-                                right: 0;
+                    tr{
+                        
+                        td{
+                            margin: 1rem 0;
+                            @include responsive(900px){
+                                display: block;
+                            }
+                            &:last-child{
+                                display: flex;
+                                justify-content: space-around;
+                            }
+        
+                            &:first-child{
+                                position: relative;
+                                @include responsive(900px){
+                                    width: max-content;
+                                    margin: auto;
+                                    margin-top: 2rem;
+                                }
+                                &::after{
+                                    content: ':';
+                                    position: absolute;
+                                    right: -10px;
+                                }
                             }
                         }
                     }
