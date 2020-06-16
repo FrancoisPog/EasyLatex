@@ -10,8 +10,7 @@
 
   .form-input-text, .btn ,.cbx{
     margin : 1.8rem;
-    width : 20rem;        
-    //min-width: max-content;
+    width : 20rem;
   }
 
   .btn{
@@ -25,7 +24,7 @@
     
     .tooltip-tip{
       @include lightOnDark;
-      width: 100%;
+      max-width: 100%;
       transform: translateX(-50%);
       top: 120%;
       left: 0;

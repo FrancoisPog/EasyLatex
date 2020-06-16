@@ -68,31 +68,23 @@ if(settings_form != null){
     let settings_date_auto = document.getElementsByName('el_settings_date_auto')[0];
     let settings_submit = document.getElementsByName('el_settings')[0];
 
-    settings_title.oninput = () => {
-        setValidity(settings_title,settings_title.value.match(/^[^<>\\]{0,100}$/),'The title mustn\'t contains html tags or "\\"');
-        formValidity([settings_date,settings_title,settings_author],settings_submit);
+    for(let element of [settings_title,settings_author,settings_date]){
+        element.oninput = () => {
+            setValidity(element,element.value.match(/^[^<>\\]{0,100}$/),'This field must contain less than 100 characters and mustn\'t contain html tags or "\\"');
+            formValidity([settings_date,settings_title,settings_author],settings_submit,true);
+        }
     }
 
-    settings_author.oninput = () => {
-        setValidity(settings_author,settings_author.value.match(/^[^<>\\]{0,100}$/),'The author mustn\'t contains html tags or "\\"');
-        formValidity([settings_date,settings_title,settings_author],settings_submit);
-    }
-
-    settings_date.oninput = () => {
-        setValidity(settings_date,settings_date.value.match(/^[^<>\\]{0,100}$/),'The date mustn\'t contains html tags or "\\"');
-        formValidity([settings_date,settings_title,settings_author],settings_submit);
-        
-    }
+    
 
     settings_date_auto.oninput = () => {
         if(settings_date_auto.checked){
             setValidity(settings_date,true,'',false);
-            settings_date.value = 'Compilation date';
-            formValidity([settings_date,settings_title,settings_author],settings_submit);
+            formValidity([settings_date,settings_title,settings_author],settings_submit,true);
             
         }else{
             setValidity(settings_date,settings_date.value.match(/^[^<>\\]{0,100}$/),'The date mustn\'t contains html tags or "\\"');
-            formValidity([settings_date,settings_title,settings_author],settings_submit);
+            formValidity([settings_date,settings_title,settings_author],settings_submit,true);
         }
     }
 
@@ -106,9 +98,9 @@ if(settings_form != null){
 /**
  * Update the submit button state
  */
-function formValidity(elements,submit,canBeEmpty){
+function formValidity(elements,submit,canBeEmpty = false){
     for(let elt of elements){
-        if(elt.parentNode.classList.contains('tooltip') || elt.value.length == 0){
+        if(elt.parentNode.classList.contains('tooltip') || (elt.value.length == 0 && !canBeEmpty )){
             submit.setAttribute('disabled','');
             return;
         }
