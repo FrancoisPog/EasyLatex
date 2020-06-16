@@ -1450,9 +1450,15 @@ header nav img {
   margin: auto;
 }
 
+#dashboard main .section table tbody {
+  max-width: 100%;
+  width: 100%;
+}
+
 @media screen and (max-width: 600px) and (min-width: 0) {
   #dashboard main .section table {
     width: 90%;
+    max-width: 90%;
   }
 }
 
@@ -1469,11 +1475,19 @@ header nav img {
 
 #dashboard main .section table td:first-child, #dashboard main .section table th:first-child {
   width: 75%;
+  max-width: 75%;
   text-align: left;
+}
+
+#dashboard main .section table td:first-child a, #dashboard main .section table th:first-child a {
+  word-break: break-all;
+  max-width: 100%;
+  width: 100%;
 }
 
 #dashboard main .section table td:last-child, #dashboard main .section table th:last-child {
   text-align: center;
+  vertical-align: middle;
 }
 
 @media screen and (max-width: 900px) and (min-width: 0) {
