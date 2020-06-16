@@ -46,7 +46,7 @@ function pog_new_project(){
 
     $query = "INSERT INTO el_project SET
                 pr_author = '${author}',
-                pr_content = '\# Title',
+                pr_content = '',
                 pr_creat_date = '${date}',
                 pr_filename = '${filename}',
                 pr_name = '${name}',

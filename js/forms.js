@@ -76,7 +76,6 @@ if(settings_form != null){
     }
 
     
-
     settings_date_auto.oninput = () => {
         if(settings_date_auto.checked){
             setValidity(settings_date,true,'',false);

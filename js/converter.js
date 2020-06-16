@@ -76,7 +76,7 @@ function markup_to_preview(text){
                             '<span class="par"><br><br>&nbsp;&nbsp;</span>' : /\[:par:\]/gmi
                         }
 
-    content =  text.replace(/\n/gmi,'<br>').replace(markup_regex,markup_to_preview_rec).replace(/<br>/gmi,' ');
+    content =  text.replace(/\</gmi,'&lt;').replace(/\>/gmi,'&gt;').replace(/\n/gmi,'<br>').replace(markup_regex,markup_to_preview_rec).replace(/<br>/gmi,' ');
 
     for(let tag in single_tags_regex){
         content = content.replace(single_tags_regex[tag],tag);
@@ -137,7 +137,7 @@ function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,n
         case 'h4' : 
             return '\\subsection*{'+tag_content+'}';
         case 'h5' : 
-            return '\\subsubsection{'+tag_content+'}';
+            return '\\subsubsection*{'+tag_content+'}';
         case 'h6' : 
             return '\\subsubsection*{'+tag_content+'}';
         case 'span' :  {
@@ -149,7 +149,9 @@ function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,n
                 case 'par' :
                     return '\\paragraph{}'; 
             }
-
+        }
+        default : {
+            return match;
         }
     }
 }
@@ -218,5 +220,5 @@ function converter_to_latex(){
 
     let latex = content.replace(/<br>/gmi,'');
 
-    return latex.replace(preview_regex,preview_to_latex);
+    return latex.replace(preview_regex,preview_to_latex).replace(/\\\&lt;/gmi,'<').replace(/\\\&gt;/gmi,'>');
 }

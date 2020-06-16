@@ -8,6 +8,7 @@ require_once('lib-EasyLatex.php');
  * Print the project page
  */
 function pog_print_project($project){
+    $project = pog_db_protect_outputs($project);
     $content = $project['pr_content'];
     $filename = $project['pr_filename'];
     $data = urlencode($_GET['data']);
@@ -77,7 +78,7 @@ function pog_print_project($project){
                 "<form action='project.php?data=${data}' method='POST'>",
                     '<input type="hidden" name="markup">',
                     '<div class="editor">',
-                        '<textarea class="editor-input input" name="content" placeholder="Your markup here">',(isset($_POST['markup']))?pog_db_protect_outputs($_POST['markup']):"${content}",'</textarea>',
+                        '<textarea class="editor-input input" name="content" placeholder="Your markup here">',$project['pr_content'],'</textarea>',
                         '<aside class="editor-tools">',
                             pog_html_tooltip('Italicize the selected text | ctrl+i','<button id="btn-italic" >italic</button>'),
                             pog_html_tooltip('Bold the selected text | ctrl+b','<button id="btn-bold" >bold</button>'),
@@ -121,7 +122,15 @@ function pog_parseToLatex($project){
     $filename = $project['pr_filename'];
     $file = fopen("../projects/${filename}.tex",'w+');
 
-    $latex_begin = '\documentclass{report}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[english]{babel}\setlength{\parindent}{0cm}\renewcommand{\thesection}{\arabic{section}}\title{EasyLatex}\author{François Poguet}\date{Juin 2020}\begin{document}\maketitle\tableofcontents\newpage ';
+    $type = $project['pr_type'];
+    $lang = ($project['pr_lang'] == 'fr')?'french':'english';
+    $content_table = ($project['pr_table_content'] == 1)?(($type == 'report')?'\tableofcontents\newpage':'\tableofcontents'):'';
+
+    $title = $project['pr_cover_title'];
+    $author = $project['pr_cover_author'];
+    $date = ($project['pr_cover_date'] == '0')?'':"\\date{{$project['pr_cover_date']}}";
+
+    $latex_begin = "\documentclass{{$type}}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[$lang]{babel}\setlength{\parindent}{0cm}\\renewcommand{\\thesection}{\arabic{section}}\\title{{$title}}\author{{$author}}$date\begin{document}\maketitle$content_table ";
     $latex_end = ' \end{document}';
 
     $content = $_POST['latex'];
@@ -131,6 +140,9 @@ function pog_parseToLatex($project){
 
     fclose($file);
 }
+
+
+
 
 /**
  * Fetch a project in database
@@ -143,14 +155,36 @@ function pog_fetch_project($id){
     $id = pog_db_protect_inputs($db,$id);
     $user = $_SESSION['username'];
 
-    $query = "SELECT *
+    if(isset($_POST['latex'])){
+        $content = pog_db_protect_inputs($db,$_POST['markup']);
+        $date = pog_getDate();
+
+        $query = "  UPDATE el_project SET
+                    pr_content = '${content}',
+                    pr_modif_date = $date
+                    WHERE pr_id = '${id}';
+                    SELECT *
+                    FROM el_project
+                    WHERE pr_id = '${id}'
+                    AND pr_author = '${user}'";
+
+        $project = pog_db_execute($db,$query,false,false,true);
+        
+        return $project[1][0];
+    }
+
+
+    $query = "  SELECT *
                 FROM el_project
                 WHERE pr_id = '${id}'
                 AND pr_author = '${user}'";
 
-    $project = pog_db_execute($db,$query);
+    $project = pog_db_execute($db,$query,false);
+    
 
     return $project[0];
+
+    
     
 }
 
@@ -180,7 +214,7 @@ if(!$project){
     exit(0);
 }
 
-if(isset($_POST['latex'])){
+if(isset($_POST['latex']) || $project['pr_content'] == ''){
     pog_parseToLatex($project);
 }
 
