@@ -1040,6 +1040,16 @@ header nav img {
   }
 }
 
+#project main .md-syntax h2::-moz-selection {
+  color: #1d3461;
+  background-color: rgba(255, 255, 255, 0.99);
+}
+
+#project main .md-syntax h2::selection {
+  color: #1d3461;
+  background-color: rgba(255, 255, 255, 0.99);
+}
+
 #project main .md-syntax section {
   margin-bottom: 2rem;
 }
@@ -1055,12 +1065,32 @@ header nav img {
   }
 }
 
+#project main .md-syntax section h3::-moz-selection {
+  color: #1d3461;
+  background-color: rgba(255, 255, 255, 0.99);
+}
+
+#project main .md-syntax section h3::selection {
+  color: #1d3461;
+  background-color: rgba(255, 255, 255, 0.99);
+}
+
 #project main .md-syntax section table {
   font-size: 1.5rem;
 }
 
 #project main .md-syntax section table td {
   padding: 1rem;
+}
+
+#project main .md-syntax section table td::-moz-selection, #project main .md-syntax section table td sup::-moz-selection {
+  color: #1d3461;
+  background-color: rgba(255, 255, 255, 0.99);
+}
+
+#project main .md-syntax section table td::selection, #project main .md-syntax section table td sup::selection {
+  color: #1d3461;
+  background-color: rgba(255, 255, 255, 0.99);
 }
 
 #project main form {
@@ -1198,13 +1228,13 @@ header nav img {
 }
 
 #project main form .editor-input::-moz-selection {
-  color: #1d3461;
-  background-color: rgba(255, 255, 255, 0.99);
+  color: #FFFFFF;
+  background-color: rgba(29, 52, 97, 0.99);
 }
 
 #project main form .editor-input::selection {
-  color: #1d3461;
-  background-color: rgba(255, 255, 255, 0.99);
+  color: #FFFFFF;
+  background-color: rgba(29, 52, 97, 0.99);
 }
 
 #project main form .editor-input.preview {

@@ -133,7 +133,7 @@ function pog_parseToLatex($project){
     $latex_begin = "\documentclass{{$type}}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[$lang]{babel}\setlength{\parindent}{0cm}\\renewcommand{\\thesection}{\arabic{section}}\\title{{$title}}\author{{$author}}$date\begin{document}\maketitle$content_table ";
     $latex_end = ' \end{document}';
 
-    $content = $_POST['latex'];
+    $content = (isset($_POST['latex']))?$_POST['latex']:'';
     fwrite($file,$latex_begin);
     fwrite($file,$content);
     fwrite($file,$latex_end);
