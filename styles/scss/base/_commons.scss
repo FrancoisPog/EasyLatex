@@ -57,16 +57,17 @@ main{
     padding : 1rem 0;
     margin-bottom: 3rem;
     width: 45%;
+    min-width: 200px;
     height: 100%;
-    @include responsive(1250px){
+    @include responsive(1300px){
         width: 55%;
     }
 
-    @include responsive(1050px){
+    @include responsive(1100px){
         width: 60%;
     }
 
-    @include responsive(950px){
+    @include responsive(1000px){
         width: 65%;
     }
 
@@ -75,7 +76,15 @@ main{
     }
 
     @include responsive(750px){
-        width: 70%;
+        width: 75%;
+    }
+
+    @include responsive(700px){
+        width: 90%;
+    }
+
+    @include responsive(600px){
+        width: 100%;
     }
 
     @include responsive(900px){

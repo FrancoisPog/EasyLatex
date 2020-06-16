@@ -3,7 +3,7 @@
     position: relative;
 
     @include responsive(200000px,1350px){
-      width: 90%;
+      width: 100%;
       
     }
     
@@ -30,7 +30,7 @@
 
       img {
         width: 95%;
-        margin-top: 1rem;
+        margin-top: 3rem;
         //border: 1px $dark solid;
         box-shadow: 0px 0px 20px 10px $shadow;
       }
@@ -38,7 +38,9 @@
 
 
     .form {
-      width: 50%;
+      width: 45%;
+      //min-width: 62rem;
+      margin-right: 3rem;
 
       @include darkOnLight;
       border-radius: 10px;
@@ -51,10 +53,11 @@
 
       @include responsive(900px) {
         border: none;
-       // padding: 0;
         box-shadow: none;
+        min-width: unset;
       }
 
+      
       &.signup {
         flex-direction: row;
         flex-wrap: wrap;

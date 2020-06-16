@@ -1,38 +1,39 @@
 // --- SIGN UP ---
-let form = document.getElementById('signup-form');
-if(form != null){
-    var username = form.elements.el_signup_username;
-    var firstname = form.elements.el_signup_firstname;
-    var lastname = form.elements.el_signup_lastname;
-    var password = form.elements.el_signup_password;
-    var passwordRepeat = form.elements.el_signup_passwordRepeat;
-    var submit = form.elements.el_signup;
+let signup_form = document.getElementById('signup-form');
+if(signup_form != null){
+    let signup_username = signup_form.elements.el_signup_username;
+    let signup_firstname = signup_form.elements.el_signup_firstname;
+    let signup_lastname = signup_form.elements.el_signup_lastname;
+    let signup_password = signup_form.elements.el_signup_password;
+    let signup_passwordRepeat = signup_form.elements.el_signup_passwordRepeat;
+    let signup_submit = signup_form.elements.el_signup;
+    let signup_elements = [signup_firstname,signup_lastname,signup_username,signup_password,signup_passwordRepeat];
 
-    firstname.oninput = () => {
-        setValidity(firstname,firstname.value.match(/^[^<>]{1,50}$/),'The first name must contains less than 50 characters, without HTML tags');
-        signupFormValidity();
+    signup_firstname.oninput = () => {
+        setValidity(signup_firstname,signup_firstname.value.match(/^[^<>]{1,50}$/),'The first name must contains less than 50 characters, without HTML tags');
+        formValidity(signup_elements,signup_submit);
     }
 
-    lastname.oninput = () => {
-        setValidity(lastname,lastname.value.match(/^[^<>]{1,50}$/),'The last name must contains less than 50 characters, without HTML tags');
-        signupFormValidity();
+    signup_lastname.oninput = () => {
+        setValidity(signup_lastname,signup_lastname.value.match(/^[^<>]{1,50}$/),'The last name must contains less than 50 characters, without HTML tags');
+        formValidity(signup_elements,signup_submit);
     }
 
-    username.oninput = () => {
-        setValidity(username,username.value.match(/^[0-9a-zA-Z]{6,20}$/),'The username must contains between 6 and 20 letters and digits');
-        signupFormValidity();
+    signup_username.oninput = () => {
+        setValidity(signup_username,signup_username.value.match(/^[0-9a-zA-Z]{6,20}$/),'The username must contains between 6 and 20 letters and digits');
+        formValidity(signup_elements,signup_submit);
     }
 
-    password.oninput = () => {
+    signup_password.oninput = () => {
         
-        setValidity(passwordRepeat,passwordRepeat.value == password.value,'The two passwords don\'t match',false);
-        setValidity(password,password.value.length,'The password can\'t be empty');
-        signupFormValidity();
+        setValidity(signup_passwordRepeat,signup_passwordRepeat.value == signup_password.value,'The two passwords don\'t match',false);
+        setValidity(signup_password,signup_password.value.length,'The password can\'t be empty');
+        formValidity(signup_elements,signup_submit);
     }
 
-    passwordRepeat.oninput = () => {
-        setValidity(passwordRepeat,passwordRepeat.value == password.value,'The two passwords don\'t match');
-        signupFormValidity();
+    signup_passwordRepeat.oninput = () => {
+        setValidity(signup_passwordRepeat,signup_passwordRepeat.value == signup_password.value,'The two passwords don\'t match');
+        formValidity(signup_elements,signup_submit);
     }
 }
 
@@ -58,7 +59,46 @@ if(new_project_input.length){
 
 // --- SETTINGS ---
 
+let settings_form = document.getElementById('settings-form');
+if(settings_form != null){
 
+    let settings_title = document.getElementsByName('el_settings_title')[0];
+    let settings_author = document.getElementsByName('el_settings_author')[0];
+    let settings_date = document.getElementsByName('el_settings_date')[0];
+    let settings_date_auto = document.getElementsByName('el_settings_date_auto')[0];
+    let settings_submit = document.getElementsByName('el_settings')[0];
+
+    settings_title.oninput = () => {
+        setValidity(settings_title,settings_title.value.match(/^[^<>\\]{0,100}$/),'The title mustn\'t contains html tags or "\\"');
+        formValidity([settings_date,settings_title,settings_author],settings_submit);
+    }
+
+    settings_author.oninput = () => {
+        setValidity(settings_author,settings_author.value.match(/^[^<>\\]{0,100}$/),'The author mustn\'t contains html tags or "\\"');
+        formValidity([settings_date,settings_title,settings_author],settings_submit);
+    }
+
+    settings_date.oninput = () => {
+        setValidity(settings_date,settings_date.value.match(/^[^<>\\]{0,100}$/),'The date mustn\'t contains html tags or "\\"');
+        formValidity([settings_date,settings_title,settings_author],settings_submit);
+        
+    }
+
+    settings_date_auto.oninput = () => {
+        if(settings_date_auto.checked){
+            setValidity(settings_date,true,'',false);
+            settings_date.value = 'Compilation date';
+            formValidity([settings_date,settings_title,settings_author],settings_submit);
+            
+        }else{
+            setValidity(settings_date,settings_date.value.match(/^[^<>\\]{0,100}$/),'The date mustn\'t contains html tags or "\\"');
+            formValidity([settings_date,settings_title,settings_author],settings_submit);
+        }
+    }
+
+
+    
+}
 
 
 // --- FUNCTIONS ---
@@ -66,8 +106,8 @@ if(new_project_input.length){
 /**
  * Update the submit button state
  */
-function signupFormValidity(){
-    for(let elt of [firstname,lastname,username,password,passwordRepeat]){
+function formValidity(elements,submit,canBeEmpty){
+    for(let elt of elements){
         if(elt.parentNode.classList.contains('tooltip') || elt.value.length == 0){
             submit.setAttribute('disabled','');
             return;
@@ -77,9 +117,7 @@ function signupFormValidity(){
     return ;
 }
 
-function settingsFormValidity(){
 
-}
 
 
 /**

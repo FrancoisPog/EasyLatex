@@ -11,21 +11,31 @@
   .form-input-text, .btn ,.cbx{
     margin : 1.8rem;
     width : 20rem;        
-    min-width: max-content;
+    //min-width: max-content;
   }
 
-  .tooltip-tip{
-    @include lightOnDark;
+  .btn{
+    min-width: 20rem;
+  }
+
+ 
+  .tooltip{
+    
     width: 100%;
-    transform: translateX(-50%);
-    top: 120%;
-    left: 0;
-    bottom: unset;
-    transform-origin: center;
-
-
-    &:before{
+    
+    .tooltip-tip{
       @include lightOnDark;
+      width: 100%;
+      transform: translateX(-50%);
+      top: 120%;
+      left: 0;
+      bottom: unset;
+      transform-origin: center;
+
+
+      &:before{
+        @include lightOnDark;
+      }
     }
   }
 }

@@ -12,7 +12,7 @@ function pog_print_settings($project){
 
     $data = urlencode($_GET['data']);
 
-    echo    "<form class='settings' action='settings.php?data=${data}' method='POST'>",
+    echo    "<form class='settings form' id='settings-form' action='settings.php?data=${data}' method='POST'>",
                 '<section class="settings-firstpage">',
                     '<h2>First page</h2>',
                     pog_html_input('el_settings_title','Title',$project['pr_cover_title']),
@@ -48,6 +48,7 @@ function pog_print_settings($project){
                 '</section>',
                 pog_html_button('el_settings','Done','submit'),
             '</form>',
+            pog_html_script('../js/forms.js'),
             pog_html_script('../js/settings.js');
 
 
