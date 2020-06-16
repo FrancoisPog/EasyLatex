@@ -408,6 +408,269 @@ input[type='button'].btn:disabled, input[type='submit'].btn:disabled, button.btn
   cursor: not-allowed;
 }
 
+/* Text input */
+.form-input-text {
+  width: 20rem;
+  position: relative;
+  border-bottom: 1px solid #1d3461;
+}
+
+.form-input-text.invalid::before {
+  content: '\26A0';
+  position: absolute;
+  font-size: 3rem;
+  left: -4rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.form-input-text::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: #1d3461;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: 450ms;
+  transition: 450ms;
+}
+
+.form-input-text:focus-within::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+.form-input-text input {
+  width: 100%;
+  font-family: 'Chelsea Market', cursive;
+  padding: 0.8rem 0;
+  font-size: inherit;
+  font-weight: inherit;
+  color: currentColor;
+  background: transparent !important;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  color: #1d3461;
+  background-color: rgba(255, 255, 255, 0.99);
+}
+
+.form-input-text input:invalid ~ label {
+  color: #1d3461;
+}
+
+.form-input-text input:valid ~ label {
+  color: #1d3461;
+}
+
+.form-input-text input:placeholder-shown ~ label {
+  color: #1d3461;
+}
+
+.form-input-text input:focus ~ label,
+.form-input-text input:not(:placeholder-shown) ~ label {
+  -webkit-transform: translateY(-120%) scale(0.75);
+          transform: translateY(-120%) scale(0.75);
+}
+
+.form-input-text input:disabled {
+  color: grey;
+}
+
+.form-input-text input:disabled ~ label {
+  color: grey;
+}
+
+.form-input-text label {
+  position: absolute;
+  top: 0.8rem;
+  left: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+/* Radio input */
+.radio {
+  margin: 0 1rem;
+  display: inline-block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  cursor: pointer;
+}
+
+.radio input {
+  display: none;
+}
+
+.radio input + span {
+  line-height: 1.5rem;
+  height: 1.5rem;
+  padding-left: 1.5rem;
+  display: block;
+  position: relative;
+}
+
+.radio input + span:not(:empty) {
+  padding-left: 2.3rem;
+}
+
+.radio input + span:before, .radio input + span:after {
+  content: '';
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
+.radio input + span:before {
+  background: #D1D7E3;
+  -webkit-transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2), -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+}
+
+.radio input + span:after {
+  background: #fff;
+  -webkit-transform: scale(0.78);
+          transform: scale(0.78);
+  -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4), -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+}
+
+.radio input:checked + span:before {
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
+  background: #1d3461;
+}
+
+.radio input:checked + span:after {
+  -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+  -webkit-transition: -webkit-transform .3s ease;
+  transition: -webkit-transform .3s ease;
+  transition: transform .3s ease;
+  transition: transform .3s ease, -webkit-transform .3s ease;
+}
+
+/* Checkbox input */
+.cbx {
+  margin: auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  vertical-align: middle;
+  border: 1px solid #9098A9;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #FFFFFF;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  -webkit-transition-delay: .1s;
+          transition-delay: .1s;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #1d3461;
+  display: block;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+}
+
+.cbx span:last-child {
+  padding-left: 8px;
+}
+
+.cbx:hover span:first-child {
+  border-color: #1d3461;
+}
+
+.inp-cbx:checked + .cbx span:first-child {
+  background: #1d3461;
+  border-color: #1d3461;
+  -webkit-animation: wave .4s ease;
+          animation: wave .4s ease;
+}
+
+.inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+
+.inp-cbx:checked + .cbx span:first-child:before {
+  -webkit-transform: scale(3.5);
+          transform: scale(3.5);
+  opacity: 0;
+  -webkit-transition: all .6s ease;
+  transition: all .6s ease;
+}
+
+@-webkit-keyframes wave {
+  50% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+}
+
+@keyframes wave {
+  50% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+}
+
 /* --- HEADER --- */
 header {
   position: relative;
@@ -560,269 +823,6 @@ header nav img {
 .form .tooltip .tooltip-tip:before {
   color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
-}
-
-/* Text input */
-.form-input-text {
-  width: 20rem;
-  position: relative;
-  border-bottom: 1px solid #1d3461;
-}
-
-.form-input-text.invalid::before {
-  content: '\26A0';
-  position: absolute;
-  font-size: 3rem;
-  left: -4rem;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-}
-
-.form-input-text::after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  height: 2px;
-  background: #1d3461;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
-  -webkit-transform-origin: left;
-          transform-origin: left;
-  -webkit-transition: 450ms;
-  transition: 450ms;
-}
-
-.form-input-text:focus-within::after {
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
-}
-
-.form-input-text input {
-  width: 100%;
-  font-family: 'Chelsea Market', cursive;
-  padding: 0.8rem 0;
-  font-size: inherit;
-  font-weight: inherit;
-  color: currentColor;
-  background: transparent !important;
-  border: none;
-  outline: none;
-  -webkit-appearance: none;
-  color: #1d3461;
-  background-color: rgba(255, 255, 255, 0.99);
-}
-
-.form-input-text input:invalid ~ label {
-  color: #1d3461;
-}
-
-.form-input-text input:valid ~ label {
-  color: #1d3461;
-}
-
-.form-input-text input:placeholder-shown ~ label {
-  color: #1d3461;
-}
-
-.form-input-text input:focus ~ label,
-.form-input-text input:not(:placeholder-shown) ~ label {
-  -webkit-transform: translateY(-120%) scale(0.75);
-          transform: translateY(-120%) scale(0.75);
-}
-
-.form-input-text input:disabled {
-  color: grey;
-}
-
-.form-input-text input:disabled ~ label {
-  color: grey;
-}
-
-.form-input-text label {
-  position: absolute;
-  top: 0.8rem;
-  left: 0;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  -webkit-transform-origin: left;
-          transform-origin: left;
-}
-
-/* Checkbox input */
-.cbx {
-  margin: auto;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.cbx span {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-}
-
-.cbx span:first-child {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  border-radius: 3px;
-  -webkit-transform: scale(0.8);
-          transform: scale(0.8);
-  vertical-align: middle;
-  border: 1px solid #9098A9;
-  -webkit-transition: all .2s ease;
-  transition: all .2s ease;
-}
-
-.cbx span:first-child svg {
-  position: absolute;
-  top: 3px;
-  left: 2px;
-  fill: none;
-  stroke: #FFFFFF;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 16px;
-  stroke-dashoffset: 16px;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
-  -webkit-transition-delay: .1s;
-          transition-delay: .1s;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-}
-
-.cbx span:first-child:before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: #1d3461;
-  display: block;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  opacity: 1;
-  border-radius: 50%;
-}
-
-.cbx span:last-child {
-  padding-left: 8px;
-}
-
-.cbx:hover span:first-child {
-  border-color: #1d3461;
-}
-
-.inp-cbx:checked + .cbx span:first-child {
-  background: #1d3461;
-  border-color: #1d3461;
-  -webkit-animation: wave .4s ease;
-          animation: wave .4s ease;
-}
-
-.inp-cbx:checked + .cbx span:first-child svg {
-  stroke-dashoffset: 0;
-}
-
-.inp-cbx:checked + .cbx span:first-child:before {
-  -webkit-transform: scale(3.5);
-          transform: scale(3.5);
-  opacity: 0;
-  -webkit-transition: all .6s ease;
-  transition: all .6s ease;
-}
-
-@-webkit-keyframes wave {
-  50% {
-    -webkit-transform: scale(0.7);
-            transform: scale(0.7);
-  }
-}
-
-@keyframes wave {
-  50% {
-    -webkit-transform: scale(0.7);
-            transform: scale(0.7);
-  }
-}
-
-/* Radio input */
-.radio {
-  margin: 0 1rem;
-  display: inline-block;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  cursor: pointer;
-}
-
-.radio input {
-  display: none;
-}
-
-.radio input + span {
-  line-height: 1.5rem;
-  height: 1.5rem;
-  padding-left: 1.5rem;
-  display: block;
-  position: relative;
-}
-
-.radio input + span:not(:empty) {
-  padding-left: 2.3rem;
-}
-
-.radio input + span:before, .radio input + span:after {
-  content: '';
-  width: 1.5rem;
-  height: 1.5rem;
-  display: block;
-  border-radius: 50%;
-  left: 0;
-  top: 0;
-  position: absolute;
-}
-
-.radio input + span:before {
-  background: #D1D7E3;
-  -webkit-transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
-  transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
-  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
-  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2), -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
-}
-
-.radio input + span:after {
-  background: #fff;
-  -webkit-transform: scale(0.78);
-          transform: scale(0.78);
-  -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
-  transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4), -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
-}
-
-.radio input:checked + span:before {
-  -webkit-transform: scale(1.04);
-          transform: scale(1.04);
-  background: #1d3461;
-}
-
-.radio input:checked + span:after {
-  -webkit-transform: scale(0.4);
-          transform: scale(0.4);
-  -webkit-transition: -webkit-transform .3s ease;
-  transition: -webkit-transform .3s ease;
-  transition: transform .3s ease;
-  transition: transform .3s ease, -webkit-transform .3s ease;
 }
 
 #index main {
