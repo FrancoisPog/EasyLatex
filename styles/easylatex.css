@@ -878,6 +878,12 @@ header nav img {
 
 @media screen and (max-width: 1350px) and (min-width: 0) {
   #index main .form {
+    margin-right: unset;
+  }
+}
+
+@media screen and (max-width: 1350px) and (min-width: 0) {
+  #index main .form {
     width: unset;
   }
 }

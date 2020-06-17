@@ -42,6 +42,10 @@
       //min-width: 62rem;
       margin-right: 3rem;
 
+      @include responsive(1350px){
+        margin-right: unset;
+      }
+
       @include darkOnLight;
       border-radius: 10px;
       //border: $dark 1px solid;

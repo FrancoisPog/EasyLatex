@@ -158,6 +158,16 @@ function pog_html_error($content){
 function pog_isLogged($page_to_redirect = null){
     if(isset($_SESSION['username'])){
         return true;
+    }else{
+        if(isset($_COOKIE['username'])  && isset($_COOKIE['key'])){
+
+            if(!pog_verify_cookie_key($_COOKIE['username'],$_COOKIE['key'])){
+                pog_session_exit('../');
+            }
+
+            $_SESSION['username'] = $_COOKIE['username'];
+            return true;
+        }
     }
 
     if(!$page_to_redirect){
@@ -206,8 +216,7 @@ function pog_session_exit($page){
                 $cookie_session_data['httponly']
             );
 
-    setcookie('pseudo','',time()-3600*24,'/');
-    setcookie('status','',time()-3600*24,'/');
+    setcookie('username','',time()-3600*24,'/');
     setcookie('key','',time()-3600*24,'/');
         
     header("Location: $page");
@@ -292,12 +301,17 @@ function pog_decrypt_url($url,$field){
 
 
 
+/**
+ * Get the time between to date
+ * @param string $date The first date
+ * @param string $date2 The optional second date, if null, the actual time is used
+ */
+function pog_getTimeFrom($date, $date2 = null){ 
+    $date2 = ($date2)?$date2:pog_getDate();
 
-function pog_getTimeFrom($date){ 
-    
     date_default_timezone_set('Europe/Paris');
     $datetime1 = date_create($date);
-    $datetime2 = date_create(pog_getDate());
+    $datetime2 = date_create($date2);
     $interval = date_diff($datetime1, $datetime2);
     
     foreach(['y'=> 'years','m'=>'months','d'=>'days','h'=>'hours','i'=>'minutes'] as $key => $value){
@@ -305,7 +319,7 @@ function pog_getTimeFrom($date){
             continue;
         }else{
             $unity = ($interval->$key > 1)?$value:substr($value,0,-1);
-            return $interval->$key." ${unity} ago";
+            return $interval->$key." ${unity}";
         }
     }
     return 'Just now';

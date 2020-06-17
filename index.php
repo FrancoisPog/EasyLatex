@@ -172,12 +172,24 @@ function pog_login_connection(){
         return 1;
     }
 
-    $_SESSION['username'] = $res[0]['us_username'];
+    pog_connection($res[0]['us_username'],isset($_POST['el_login_remember']));
+
+    
 
     return 0;
 }
 
 
+
+
+function pog_connection($username,$remember){
+    $_SESSION['username'] = $username;
+
+    if($remember){
+        setcookie('username',$username,time()+3600*24*365,'/');
+        setcookie('key',pog_encrypt_cookie_key($username),time()+3600*24*365,'/');
+    }
+}   
 
 
 // MAIN
@@ -193,7 +205,7 @@ if(isset($_POST['el_signup'])){
     if(pog_signup_database() == 1){ 
         pog_print_index('signup','This username is already used');
     }else{
-        $_SESSION['username'] = $_POST['el_signup_username'];
+        pog_connection($_POST['el_signup_username'],isset($_POST['el_signup_remember']));
         header('Location: php/dashboard.php');
     }
     exit(0);
