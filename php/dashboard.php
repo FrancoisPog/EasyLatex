@@ -12,9 +12,10 @@ function pog_fecth_projects(){
 
     $author = $_SESSION['username'];
 
-    $query = "SELECT pr_id, pr_name
+    $query = "SELECT pr_id, pr_name, pr_modif_date
                 FROM el_project
-                WHERE pr_author = '${author}'";
+                WHERE pr_author = '${author}'
+                ORDER BY pr_modif_date DESC";
 
     $projects = pog_db_execute($db,$query);
 
@@ -65,6 +66,7 @@ function pog_new_project(){
                 pr_author = '${author}',
                 pr_content = '',
                 pr_creat_date = '${date}',
+                pr_modif_date = '${date}',
                 pr_filename = '${filename}',
                 pr_name = '${name}',
                 pr_cover_title = '${name}',
@@ -83,6 +85,7 @@ function pog_new_project(){
  */
 function pog_print_dashboard($projects){
     pog_print_header(1,'dashboard','Dashboard');
+
 
     echo    
             '<form  class="section form" id="newproject" action="dashboard.php" method="POST">',
@@ -104,7 +107,8 @@ function pog_print_dashboard($projects){
                     foreach($projects as $project){
                         $id = pog_encrypt_url([$project['pr_id']]);
                         $name = $project['pr_name'];
-                        echo "<tr><td><a href='project.php?data=${id}'>$name</a></td><td>Yesterday</td>";
+                        $last_changes = pog_getTimeFrom($project['pr_modif_date']);
+                        echo "<tr><td><a href='project.php?data=${id}'>$name</a></td><td>$last_changes</td>";
                     }
 
     echo            '</tbody>',

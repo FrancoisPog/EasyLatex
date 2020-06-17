@@ -1603,4 +1603,54 @@ header nav img {
   position: absolute;
   right: -10px;
 }
+
+@media screen and (max-width: 900px) and (min-width: 0) {
+  #error header {
+    text-align: left;
+    padding-left: 1rem;
+  }
+}
+
+#error .error_section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 4rem;
+  padding: 3rem;
+  font-size: 2rem;
+  -webkit-box-shadow: 0 0 20px 10px rgba(29, 52, 97, 0.2);
+          box-shadow: 0 0 20px 10px rgba(29, 52, 97, 0.2);
+  border-radius: 10px;
+}
+
+#error .error_section h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+#error .error_section p {
+  margin: 1rem 0;
+}
+
+#error .error_section ul {
+  list-style-type: disc;
+}
+
+#error .error_section ul li {
+  margin: 1rem 0;
+  margin-left: 3rem;
+  font-size: 1.5rem;
+}
+
+#error .error_section .btn {
+  margin: auto;
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
 /*# sourceMappingURL=easylatex.css.map */

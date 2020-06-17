@@ -53,13 +53,15 @@ function pog_print_footer(){
 }
 
 
-function pog_print_error($content){
-    echo '<section class="error_section">',
-            '<h2>Something wrong...</h2>',
-            "<p>${content}</p>",
-        '</section>';
-}
 
+function pog_print_error_page($title,$content){
+    pog_print_header(1,'error','Something is wrong ...');
+    echo '<section class="error_section">',
+            "<h2>$title</h2>",
+            $content,
+        '</section>';
+    pog_print_footer();
+}
 
 /**
  * Generate the html code for the navigation menu
@@ -286,4 +288,25 @@ function pog_decrypt_url($url,$field){
     $data = explode('§',$data);
     return (count($data) == $field)?$data:false ;
 
+}
+
+
+
+
+function pog_getTimeFrom($date){ 
+    
+    date_default_timezone_set('Europe/Paris');
+    $datetime1 = date_create($date);
+    $datetime2 = date_create(pog_getDate());
+    $interval = date_diff($datetime1, $datetime2);
+    
+    foreach(['y'=> 'years','m'=>'months','d'=>'days','h'=>'hours','i'=>'minutes'] as $key => $value){
+        if($interval->$key == 0){
+            continue;
+        }else{
+            $unity = ($interval->$key > 1)?$value:substr($value,0,-1);
+            return $interval->$key." ${unity} ago";
+        }
+    }
+    return 'Just now';
 }

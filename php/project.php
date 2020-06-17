@@ -198,19 +198,17 @@ pog_check_param($_GET,['data']) or pog_session_exit('../');
 
 $id = pog_decrypt_url($_GET['data'],1)[0];
 
+$not_found_error_content = '<p>We can\'t find the project you looking for.</p><p>Some possible reasons : </p><ul><li>The project id is invalid</li><li>The project doesn\'t exist anymore</li><li>You don\'t have access to this project</li></ul>'.(pog_html_button('error_back','<a href="dashboard.php">Back to dashboard</a>'));
+
 if(!$id){
-    pog_print_header(1,'project','404 : Project not found');
-    pog_print_error('No project found');
-    pog_print_footer();
+    pog_print_error_page('404 : Project not found &#128269;',$not_found_error_content);
     exit(0);
 }
 
 $project = pog_fetch_project($id);
 
 if(!$project){
-    pog_print_header(1,'project','404 : Project not found');
-    pog_print_error('Access denied');
-    pog_print_footer();
+    pog_print_error_page('404 : Project not found &#128269;',$not_found_error_content);
     exit(0);
 }
 
