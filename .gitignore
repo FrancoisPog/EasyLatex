@@ -6,3 +6,6 @@
 
 # private php file
 private_data.php
+
+# Apache settings
+.htaccess

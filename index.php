@@ -195,7 +195,7 @@ function pog_connection($username,$remember){
 // MAIN
 
 if(pog_isLogged()){
-    header('Location: php/dashboard.php');
+    header('Location: dashboard');
     exit(0);
 }
 
@@ -206,7 +206,7 @@ if(isset($_POST['el_signup'])){
         pog_print_index('signup','This username is already used');
     }else{
         pog_connection($_POST['el_signup_username'],isset($_POST['el_signup_remember']));
-        header('Location: php/dashboard.php');
+        header('Location: dashboard');
     }
     exit(0);
 }
@@ -217,7 +217,7 @@ if(isset($_POST['el_login'])){
     if(pog_login_connection() == 1){
         pog_print_index('login','Invalid username or password');
     }else{
-        header('Location: php/dashboard.php');
+        header('Location: dashboard');
     }
     
     exit(0);

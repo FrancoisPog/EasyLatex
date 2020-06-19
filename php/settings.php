@@ -8,10 +8,10 @@ require_once('lib-EasyLatex.php');
  * Print the settings form
  */
 function pog_print_settings($project){
-    pog_print_header(1,'settings','Title');
+    pog_print_header(0,'settings','Title');
 
     $data = urlencode($_GET['data']);
-
+   
     echo    "<form class='settings form' id='settings-form' action='settings.php?data=${data}' method='POST'>",
                 '<section class="settings-firstpage">',
                     '<h2>First page</h2>',
@@ -48,8 +48,8 @@ function pog_print_settings($project){
                 '</section>',
                 pog_html_button('el_settings','Done','submit'),
             '</form>',
-            pog_html_script('../js/forms.js'),
-            pog_html_script('../js/settings.js');
+            pog_html_script('js/forms.js'),
+            pog_html_script('js/settings.js');
 
 
 

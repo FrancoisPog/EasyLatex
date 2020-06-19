@@ -61,6 +61,7 @@ function pog_new_project(){
     $date = pog_getDate();
 
     $filename = md5(uniqid(rand(),true));
+    $cover_title = str_replace('\\','',$name);
 
     $query = "INSERT INTO el_project SET
                 pr_author = '${author}',
@@ -69,7 +70,7 @@ function pog_new_project(){
                 pr_modif_date = '${date}',
                 pr_filename = '${filename}',
                 pr_name = '${name}',
-                pr_cover_title = '${name}',
+                pr_cover_title = '${cover_title}',
                 pr_cover_author = '${author_str}',
                 pr_cover_date = 0";
     
@@ -84,11 +85,11 @@ function pog_new_project(){
  * @param $projects The user projects
  */
 function pog_print_dashboard($projects){
-    pog_print_header(1,'dashboard','Dashboard');
+    pog_print_header(0,'dashboard','Dashboard');
 
 
     echo    
-            '<form  class="section form" id="newproject" action="dashboard.php" method="POST">',
+            '<form  class="section form" id="newproject" action="dashboard" method="POST">',
                 '<h2>New project</h2>',
                 pog_html_input('el_newproject_name','Project name'),
                 pog_html_button('el_newproject','Create','submit',true),
@@ -108,13 +109,13 @@ function pog_print_dashboard($projects){
                         $id = pog_encrypt_url([$project['pr_id']]);
                         $name = $project['pr_name'];
                         $last_changes = pog_getTimeFrom($project['pr_modif_date']);
-                        echo "<tr><td><a href='project.php?data=${id}'>$name</a></td><td>$last_changes</td>";
+                        echo "<tr><td><a href='project-${id}'>$name</a></td><td>$last_changes</td>";
                     }
 
     echo            '</tbody>',
                 '</table>',
             '</section>',
-            pog_html_script('../js/forms.js');
+            pog_html_script('js/forms.js');
                 
 
                     

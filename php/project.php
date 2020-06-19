@@ -11,9 +11,9 @@ function pog_print_project($project){
     $project = pog_db_protect_outputs($project);
     $content = $project['pr_content'];
     $filename = $project['pr_filename'];
-    $data = urlencode($_GET['data']);
+    $data = urlencode(urlencode($_GET['data']));
     
-    pog_print_header(1,'project',$project['pr_name']);
+    pog_print_header(0,'project',$project['pr_name']);
     echo    '<article class="md-syntax">',
                         '<h2>Markup syntax</h2>',
                         '<span id="md-syntax-exit">&times;</span>',
@@ -75,7 +75,7 @@ function pog_print_project($project){
                         '</section>',
                         
                 '</article>',
-                "<form action='project.php?data=${data}' method='POST'>",
+                "<form action='project-${data}' method='POST'>",
                     '<input type="hidden" name="markup">',
                     '<div class="editor">',
                         '<textarea class="editor-input input" name="content" placeholder="Your markup here">',$project['pr_content'],'</textarea>',
@@ -91,7 +91,7 @@ function pog_print_project($project){
                         pog_html_button('btn-preview','See preview'),
                         pog_html_button('btn-convert','Convert in LaTex','submit'),
                         pog_html_button('btn-open',"<a target='_blank' href='https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/projects/${filename}.tex' >Open file</a>",'button'),
-                        pog_html_button('btn-settings',"<a target='_blank' href='settings.php?data=${data}' >Settings</a>"),
+                        pog_html_button('btn-settings',"<a target='_blank' href='settings-${data}' >Settings</a>"),
                         pog_html_button('btn-syntax','Markup syntax'),
                         pog_html_button('btn-help','Help'),
                     '</div>',
@@ -105,9 +105,9 @@ function pog_print_project($project){
                         '</div>',
                     '</div>',
                 '</form>',    
-                pog_html_script('../js/converter.js'),
-                pog_html_script('../js/editor-shortcuts.js'),
-                pog_html_script('../js/project.js'),
+                pog_html_script('js/converter.js'),
+                pog_html_script('js/editor-shortcuts.js'),
+                pog_html_script('js/project.js'),
                 
                 
                 
@@ -198,7 +198,7 @@ pog_check_param($_GET,['data']) or pog_session_exit('../');
 
 $id = pog_decrypt_url($_GET['data'],1)[0];
 
-$not_found_error_content = '<p>We can\'t find the project you looking for.</p><p>Some possible reasons : </p><ul><li>The project id is invalid</li><li>The project doesn\'t exist anymore</li><li>You don\'t have access to this project</li></ul>'.(pog_html_button('error_back','<a href="dashboard.php">Back to dashboard</a>'));
+$not_found_error_content = '<p>We can\'t find the project you looking for.</p><p>Some possible reasons : </p><ul><li>The project id is invalid</li><li>The project doesn\'t exist anymore</li><li>You don\'t have access to this project</li></ul>'.(pog_html_button('error_back','<a href="dashboard">Back to dashboard</a>'));
 
 if(!$id){
     pog_print_error_page('404 : Project not found &#128269;',$not_found_error_content);

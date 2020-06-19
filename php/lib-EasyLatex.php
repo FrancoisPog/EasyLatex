@@ -25,7 +25,7 @@ function pog_print_header($deepness,$page_name,$subtitle){
             '<html lang="en">',
                 '<head>',
                     '<meta charset="UTF-8">',
-                    '<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">',
+                    '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
                     '<title>EasyLatex</title>',
                     "<link rel='stylesheet' href='${path}styles/easylatex.css'>",
                 '</head>',
@@ -55,7 +55,7 @@ function pog_print_footer(){
 
 
 function pog_print_error_page($title,$content){
-    pog_print_header(1,'error','Something is wrong ...');
+    pog_print_header(0,'error','Something is wrong ...');
     echo '<section class="error_section">',
             "<h2>$title</h2>",
             $content,
@@ -73,7 +73,7 @@ function pog_html_nav(){
 
     $username = $_SESSION['username'];
 
-    return "<nav><a id='dashboard_link' href='dashboard.php'>${username}</a><a href='exit.php'><img alt='exit-icon' title='Exit' src='../styles/icons/exit.svg'></a></nav>";
+    return "<nav><a id='dashboard_link' href='dashboard'>${username}</a><a href='php/exit.php'><img alt='exit-icon' title='Exit' src='../styles/icons/exit.svg'></a></nav>";
 }
 
 /**
@@ -162,7 +162,7 @@ function pog_isLogged($page_to_redirect = null){
         if(isset($_COOKIE['username'])  && isset($_COOKIE['key'])){
 
             if(!pog_verify_cookie_key($_COOKIE['username'],$_COOKIE['key'])){
-                pog_session_exit('../');
+                pog_session_exit('.');
             }
 
             $_SESSION['username'] = $_COOKIE['username'];
@@ -264,7 +264,7 @@ function pog_encrypt_url($data){
     }
     $url = $initVector.$tag.$data;
     $url = base64_encode($url);
-    return urlencode($url);
+    return urlencode(urlencode($url));
 
 }
 
@@ -281,6 +281,9 @@ function pog_decrypt_url($url,$field){
     if($url == ""){
         return false;
     }
+
+    //$url = urldecode($url);
+
     $method = 'aes-128-gcm';
     $url = base64_decode($url);
     $initVectorLen = openssl_cipher_iv_length($method);
