@@ -20,9 +20,7 @@ function pog_db_connecter() {
         return $db;    
     }
     if(!defined(DB_DEBUG)){
-        ob_clean();
-        http_response_code(500);
-        pog_print_error_page('500 : Internal Server Error','<p>An error has occurred on our side, we are sorry ...</p><p> Please retry later.</p>');
+        pog_db_print_error_page();
     }
 
     // Connection error
@@ -73,10 +71,7 @@ function pog_db_error_exit($msg) {
 function pog_db_error($db, $sql) {
     
     if(!defined(DB_DEBUG)){
-        ob_clean();
-        http_response_code(500);
-        pog_print_error_page('500 : Internal Server Error','<p>An error has occurred on our side, we are sorry ...</p><p> Please retry later.</p>');
-        exit(0);
+        pog_db_print_error_page();
     }
     $errNum = mysqli_errno($db);
     $errTxt = mysqli_error($db);
@@ -204,4 +199,12 @@ function pog_db_protect_inputs($db,$content) {
         return $protected_content;
     }
     return $content;
+}
+
+
+function pog_db_print_error_page(){
+        ob_clean();
+        http_response_code(500);
+        pog_print_error_page('500 : Internal Server Error','<p>An error has occurred on our side, we are sorry ...</p><p> Please retry later.</p>'.(pog_html_button('error_back','<a href='.((pog_isLogged())?'"dashboard/">Back to dashboard':'".">Login'.'</a>'))));
+        exit(0);
 }
