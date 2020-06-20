@@ -61,7 +61,7 @@ function pog_new_project(){
     $date = pog_getDate();
 
     $filename = md5(uniqid(rand(),true));
-    $cover_title = str_replace('\\','',$name);
+    $cover_title = $name;
 
     $query = "INSERT INTO el_project SET
                 pr_author = '${author}',

@@ -786,6 +786,7 @@ header nav a, header nav a:hover, header nav img {
 
 header nav img {
   height: 2.5rem;
+  width: 2.5rem;
 }
 
 .form {
