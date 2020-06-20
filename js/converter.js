@@ -163,7 +163,7 @@ function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,n
 function markup_correcter(text){
     let errors = new Array();
 
-    text = text.replace(/\n/gmi,' ');
+    text = text.replace(/\n/gmi,' ').replace(/\</gmi,'&lt;').replace(/\>/gmi,'&gt;');
 
     invalid_chars_errors = [...text.matchAll(/.{0,50}(\\).{0,50}/gmi)];
 

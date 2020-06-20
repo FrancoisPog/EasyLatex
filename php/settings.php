@@ -89,7 +89,6 @@ function pog_settings_hackGuard(){
     $_POST = array_map('trim',$_POST);
 
     if(!isset($_POST['el_settings_date_auto']) && !isset($_POST['el_settings_date'])){
-        //var_dump($_POST);
         pog_session_exit('../');
     }
 
@@ -97,7 +96,7 @@ function pog_settings_hackGuard(){
         if($key == 'el_settings_date' && isset($_POST['el_settings_date_auto'])){
             continue;
         }
-        preg_match('/^[^><\\\]{0,100}$/',$_POST[$key]) or pog_session_exit('../');
+        preg_match('/^[^><]{0,100}$/',$_POST[$key]) or pog_session_exit('../');
     }
 
     $tests = [
@@ -107,7 +106,7 @@ function pog_settings_hackGuard(){
     ];
 
     foreach($tests as $key => $regex){
-        preg_match($regex,$_POST[$key]) or pog_session_exit('.b./');
+        preg_match($regex,$_POST[$key]) or pog_session_exit('../');
     }
 
 }

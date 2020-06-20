@@ -12,7 +12,10 @@ header nav{
     padding: 2rem;
     width: fit-content;
 
-    
+    @include responsive(900px){
+        padding-top: 3rem;
+        align-items: flex-start;
+    }
 
     a,a:hover,img{
         font-size: 2rem;

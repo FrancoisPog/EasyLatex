@@ -85,6 +85,7 @@
                 padding-left: 3rem;
                 @include responsive(900px){
                     text-align: center;
+                    padding-left: unset;
                 }
                 &::selection{
                     @include darkOnLight;

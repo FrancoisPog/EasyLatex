@@ -70,7 +70,7 @@ if(settings_form != null){
 
     for(let element of [settings_title,settings_author,settings_date]){
         element.oninput = () => {
-            setValidity(element,element.value.match(/^[^<>\\]{0,100}$/),'This field must contain less than 100 characters and mustn\'t contain html tags or "\\"');
+            setValidity(element,element.value.match(/^[^<>]{0,100}$/),'This field must contain less than 100 characters and mustn\'t contain html tags or "\\"');
             formValidity([settings_date,settings_title,settings_author],settings_submit,true);
         }
     }
@@ -82,7 +82,7 @@ if(settings_form != null){
             formValidity([settings_date,settings_title,settings_author],settings_submit,true);
             
         }else{
-            setValidity(settings_date,settings_date.value.match(/^[^<>\\]{0,100}$/),'The date mustn\'t contains html tags or "\\"');
+            setValidity(settings_date,settings_date.value.match(/^[^<>]{0,100}$/),'The date mustn\'t contains html tags or "\\"');
             formValidity([settings_date,settings_title,settings_author],settings_submit,true);
         }
     }

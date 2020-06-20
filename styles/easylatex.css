@@ -701,6 +701,8 @@ header h1 {
 
 header h2 {
   font-size: 2rem;
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 /* --- FOOTER --- */
@@ -765,6 +767,15 @@ header nav {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+@media screen and (max-width: 900px) and (min-width: 0) {
+  header nav {
+    padding-top: 3rem;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
 }
 
 header nav a, header nav a:hover, header nav img {
@@ -1043,6 +1054,7 @@ header nav img {
 @media screen and (max-width: 900px) and (min-width: 0) {
   #project main .md-syntax h2 {
     text-align: center;
+    padding-left: unset;
   }
 }
 

@@ -34,7 +34,7 @@ function pog_print_header($deepness,$page_name,$subtitle){
                 "<body id='${page_name}'>",
                     pog_print_noscript(),
                     '<header>',
-                        '<h1>Easy  Latex</h1>',
+                        '<h1>EasyLatex</h1>',
                         "<h2>${subtitle}</h2>",
                         pog_html_nav(),
                     '</header>',

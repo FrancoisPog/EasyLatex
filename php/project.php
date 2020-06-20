@@ -126,9 +126,9 @@ function pog_parseToLatex($project){
     $lang = ($project['pr_lang'] == 'fr')?'french':'english';
     $content_table = ($project['pr_table_content'] == 1)?(($type == 'report')?'\tableofcontents\newpage':'\tableofcontents'):'';
 
-    $title = $project['pr_cover_title'];
-    $author = $project['pr_cover_author'];
-    $date = ($project['pr_cover_date'] == '0')?'':"\\date{{$project['pr_cover_date']}}";
+    $title = str_replace('\\','\\\\',$project['pr_cover_title']);
+    $author = str_replace('\\','\\\\',$project['pr_cover_author']);
+    $date = ($project['pr_cover_date'] == '0')?'':"\\date{".str_replace('\\','\\\\',$project['pr_cover_date'])."}";
 
     $latex_begin = "\documentclass{{$type}}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[$lang]{babel}\setlength{\parindent}{0cm}\\renewcommand{\\thesection}{\arabic{section}}\\title{{$title}}\author{{$author}}$date\begin{document}\maketitle$content_table ";
     $latex_end = ' \end{document}';
