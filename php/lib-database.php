@@ -19,6 +19,12 @@ function pog_db_connecter() {
         or pog_db_error_exit('<h4>Charset loading error</h4>');
         return $db;    
     }
+    if(!defined(DB_DEBUG)){
+        ob_clean();
+        http_response_code(500);
+        pog_print_error_page('500 : Internal Server Error','<p>An error has occurred on our side, we are sorry ...</p><p> Please retry later.</p>');
+    }
+
     // Connection error
     $msg = '<h4>Database connection error</h4>'
             .'<div style="margin: 20px auto; width: 350px;">'
@@ -65,6 +71,13 @@ function pog_db_error_exit($msg) {
  * @param string $sql SQL request causing the error
  */
 function pog_db_error($db, $sql) {
+    
+    if(!defined(DB_DEBUG)){
+        ob_clean();
+        http_response_code(500);
+        pog_print_error_page('500 : Internal Server Error','<p>An error has occurred on our side, we are sorry ...</p><p> Please retry later.</p>');
+        exit(0);
+    }
     $errNum = mysqli_errno($db);
     $errTxt = mysqli_error($db);
 

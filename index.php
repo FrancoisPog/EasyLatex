@@ -22,7 +22,7 @@ function pog_print_index($mode = 'login' ,$error = ''){
         '</article>';
 
 
-    echo '<form class="form login" ',($mode == 'login')?'':'style="display : none;"',' id="login-form" action="index.php" method="POST" >',
+    echo '<form class="form login" ',($mode == 'login')?'':'style="display : none;"',' id="login-form" action="." method="POST" >',
                 '<h1>Login</h1>',
                 ($error != '' && $mode == 'login') ? pog_html_error($error):'',
                 pog_html_input('el_login_username','Username','','text',true),
@@ -33,7 +33,7 @@ function pog_print_index($mode = 'login' ,$error = ''){
                 pog_html_button('sign_up','Sign up'),
                 "<input type='hidden' name='el_login_token' value='${token}'>",
             '</form>',
-            '<form class="form signup" ',($mode == 'signup')?'':'style="display : none;"',' id="signup-form" method="POST" action="index.php">',
+            '<form class="form signup" ',($mode == 'signup')?'':'style="display : none;"',' id="signup-form" method="POST" action=".">',
                 '<h1>Sign Up</h1>',
                 ($error != '' && $mode == 'signup') ? pog_html_error($error):'',
                 pog_html_input('el_signup_username','Username',(isset($_POST['el_signup_username']))?$_POST['el_signup_username']:''),
@@ -195,7 +195,7 @@ function pog_connection($username,$remember){
 // MAIN
 
 if(pog_isLogged()){
-    header('Location: dashboard');
+    header('Location: dashboard/');
     exit(0);
 }
 
@@ -206,7 +206,7 @@ if(isset($_POST['el_signup'])){
         pog_print_index('signup','This username is already used');
     }else{
         pog_connection($_POST['el_signup_username'],isset($_POST['el_signup_remember']));
-        header('Location: dashboard');
+        header('Location: dashboard/');
     }
     exit(0);
 }
@@ -217,7 +217,7 @@ if(isset($_POST['el_login'])){
     if(pog_login_connection() == 1){
         pog_print_index('login','Invalid username or password');
     }else{
-        header('Location: dashboard');
+        header('Location: dashboard/');
     }
     
     exit(0);

@@ -8,11 +8,11 @@ require_once('lib-EasyLatex.php');
  * Print the settings form
  */
 function pog_print_settings($project){
-    pog_print_header(0,'settings','Title');
+    pog_print_header(0,'settings',$project['pr_name']);
 
-    $data = urlencode($_GET['data']);
+    $data = urlencode(urlencode($_GET['data']));
    
-    echo    "<form class='settings form' id='settings-form' action='settings.php?data=${data}' method='POST'>",
+    echo    "<form class='settings form' id='settings-form' action='settings/${data}/' method='POST'>",
                 '<section class="settings-firstpage">',
                     '<h2>First page</h2>',
                     pog_html_input('el_settings_title','Title',$project['pr_cover_title']),
@@ -142,10 +142,13 @@ function pog_updateProject($id){
 
 // MAIN
 
-pog_isLogged('../');
+pog_isLogged('../../');
 
 $id = pog_decrypt_url($_GET['data'],1)[0];
-// TODO make error page 
+
+if(!$id){
+    pog_print_project_404();
+}
 
 if(isset($_POST['el_settings'])){
     pog_settings_hackGuard($id);
@@ -154,6 +157,10 @@ if(isset($_POST['el_settings'])){
 
 
 $project = pog_fetch_project($id);
+
+if(!$project){
+    pog_print_project_404();
+}
 
 pog_print_settings($project);
 

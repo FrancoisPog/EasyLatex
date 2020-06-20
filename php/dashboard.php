@@ -89,7 +89,7 @@ function pog_print_dashboard($projects){
 
 
     echo    
-            '<form  class="section form" id="newproject" action="dashboard" method="POST">',
+            '<form  class="section form" id="newproject" action="dashboard/" method="POST">',
                 '<h2>New project</h2>',
                 pog_html_input('el_newproject_name','Project name'),
                 pog_html_button('el_newproject','Create','submit',true),
@@ -109,7 +109,7 @@ function pog_print_dashboard($projects){
                         $id = pog_encrypt_url([$project['pr_id']]);
                         $name = $project['pr_name'];
                         $last_changes = pog_getTimeFrom($project['pr_modif_date']);
-                        echo "<tr><td><a href='project-${id}'>$name</a></td><td>$last_changes</td>";
+                        echo "<tr><td><a href='project/${id}/'>$name</a></td><td>$last_changes</td>";
                     }
 
     echo            '</tbody>',

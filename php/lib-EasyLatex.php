@@ -7,8 +7,11 @@
  ###############################################################*/
 
 
+define('DB_DEBUG','on');
+
 require_once('private_data.php');
 require_once('lib-database.php');
+
 
 
 /**
@@ -25,14 +28,15 @@ function pog_print_header($deepness,$page_name,$subtitle){
             '<html lang="en">',
                 '<head>',
                     '<meta charset="UTF-8">',
+                    '<base href="',($_SERVER['HTTP_HOST'] == 'localhost')?"/my/Perso/EasyLatex/":"/EasyLatex/",'">',
                     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
-                    '<title>EasyLatex</title>',
-                    "<link rel='stylesheet' href='${path}styles/easylatex.css'>",
+                    "<title>EasyLatex - ${subtitle}</title>",
+                    "<link rel='stylesheet' href='styles/easylatex.css'>",
                 '</head>',
                 "<body id='${page_name}'>",
                     pog_print_noscript(),
                     '<header>',
-                        '<h1>EasyLatex</h1>',
+                        '<h1>Easy  Latex</h1>',
                         "<h2>${subtitle}</h2>",
                         pog_html_nav(),
                     '</header>',
@@ -61,6 +65,7 @@ function pog_print_error_page($title,$content){
             $content,
         '</section>';
     pog_print_footer();
+    exit(0);
 }
 
 /**
@@ -73,7 +78,7 @@ function pog_html_nav(){
 
     $username = $_SESSION['username'];
 
-    return "<nav><a id='dashboard_link' href='dashboard'>${username}</a><a href='php/exit.php'><img alt='exit-icon' title='Exit' src='../styles/icons/exit.svg'></a></nav>";
+    return "<nav><a id='dashboard_link' href='dashboard/'>${username}</a><a href='php/exit.php'><img alt='exit-icon' title='Exit' src='styles/icons/exit.svg'></a></nav>";
 }
 
 /**
@@ -81,6 +86,12 @@ function pog_html_nav(){
  */
 function pog_print_noscript(){
     echo '<noscript><div class="noscript" ><h1>JavaScript is disabled</h1><p>This website need JavaScript to work, please activate it to continue.</p></div></noscript>';
+}
+
+function pog_print_project_404(){
+    $project_404 = '<p>We can\'t find the project you\'re looking for.</p><p>Some possible reasons : </p><ul><li>The project id is invalid</li><li>The project doesn\'t exist anymore</li><li>You don\'t have access to this project</li></ul>'.(pog_html_button('error_back','<a href="dashboard/">Back to dashboard</a>'));
+    pog_print_error_page('404 : Project not found &#128269;',$project_404);
+    exit(0);
 }
 
 
@@ -274,15 +285,17 @@ function pog_encrypt_url($data){
  * @param int $field    The number of field expected
  * @return Array|false  Decrypted and authenticated data if success, false if failure
  */
-function pog_decrypt_url($url,$field){
+function pog_decrypt_url($url,$field,$decode = false){
     if(!defined('ENCRYPTION_KEY')){
         throw new Exception('[pog_decrypt_url] : The constant \'ENCRYPTION_KEY\' must be defined');
     }
-    if($url == ""){
+    if(strlen($url) < 2){
         return false;
     }
 
-    //$url = urldecode($url);
+    if($decode){
+        $url = urldecode($url);
+    }
 
     $method = 'aes-128-gcm';
     $url = base64_decode($url);
@@ -293,6 +306,7 @@ function pog_decrypt_url($url,$field){
     $data = substr($url,$tagLen+$initVectorLen);
     
     $data = openssl_decrypt($data,$method,base64_decode(ENCRYPTION_KEY),OPENSSL_RAW_DATA,$initVector,$tag);
+    
     
     if(!$data){
         return false;
