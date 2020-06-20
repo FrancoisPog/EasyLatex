@@ -20,10 +20,7 @@ require_once('lib-database.php');
  * @param string $page_name The name of the page
  */
 function pog_print_header($deepness,$page_name,$subtitle){
-    $path='';
-    for($i = 0 ; $i < $deepness ; $i++){
-        $path.='../';
-    }
+    
     echo '<!DOCTYPE html>',
             '<html lang="en">',
                 '<head>',
@@ -32,6 +29,7 @@ function pog_print_header($deepness,$page_name,$subtitle){
                     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
                     "<title>EasyLatex - ${subtitle}</title>",
                     "<link rel='stylesheet' href='styles/easylatex.css'>",
+                    '<link rel="shortcut icon" type="image/png" href="favicon.ico"/>',
                 '</head>',
                 "<body id='${page_name}'>",
                     pog_print_noscript(),
