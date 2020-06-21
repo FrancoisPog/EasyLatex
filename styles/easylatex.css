@@ -1490,12 +1490,14 @@ header nav img {
 #dashboard main .section table td, #dashboard main .section table th {
   border: 1px solid #1d3461;
   padding: 1rem;
+  position: relative;
 }
 
 #dashboard main .section table td:first-child, #dashboard main .section table th:first-child {
   width: 75%;
   max-width: 75%;
   text-align: left;
+  padding-right: 3.5rem;
 }
 
 #dashboard main .section table td:first-child a, #dashboard main .section table th:first-child a {
@@ -1504,9 +1506,36 @@ header nav img {
   width: 100%;
 }
 
+#dashboard main .section table td:first-child img, #dashboard main .section table th:first-child img {
+  display: none;
+  height: 2rem;
+  width: 2.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+@media screen and (max-width: 900px) and (min-width: 0) {
+  #dashboard main .section table td:first-child img, #dashboard main .section table th:first-child img {
+    display: initial;
+  }
+}
+
+#dashboard main .section table td:first-child:hover img, #dashboard main .section table th:first-child:hover img {
+  display: initial;
+}
+
 #dashboard main .section table td:last-child, #dashboard main .section table th:last-child {
   text-align: center;
   vertical-align: middle;
+}
+
+@media screen and (max-width: 600px) and (min-width: 0) {
+  #dashboard main .section table td:last-child, #dashboard main .section table th:last-child {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 900px) and (min-width: 0) {

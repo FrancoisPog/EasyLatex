@@ -109,7 +109,7 @@ function pog_print_dashboard($projects){
                         $id = pog_encrypt_url([$project['pr_id']]);
                         $name = $project['pr_name'];
                         $last_changes = pog_getTimeFrom($project['pr_modif_date']);
-                        echo "<tr><td><a href='project/${id}/'>$name</a></td><td>$last_changes</td>";
+                        echo "<tr><td><a href='project/${id}/'>$name</a><a href='settings/${id}/' target='_blank'><img src='styles/icons/settings.svg'></a></td><td>$last_changes</td>";
                     }
 
     echo            '</tbody>',

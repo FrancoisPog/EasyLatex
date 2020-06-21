@@ -58,12 +58,15 @@
                 td,th{
                     border: 1px solid $dark;
                     padding: 1rem;
+                    position: relative;
+                    
                     
         
                     &:first-child{
                         width: 75%;
                         max-width: 75%;
                         text-align: left;
+                        padding-right: 3.5rem;
 
                         a{
                             word-break: break-all;
@@ -71,11 +74,31 @@
                             width: 100%;
                         }
 
+                        img{
+                            display: none;
+                            @include responsive(900px){
+                                display: initial;
+                            }
+                            height: 2rem;
+                            width: 2.5rem;
+                            position: absolute;
+                            right: 1rem;
+                            top: 50%;
+                            transform: translateY(-50%);
+                        }
+
+                        &:hover img{
+                            display: initial;
+                        }
                     }
         
                     &:last-child{
                         text-align: center;
                         vertical-align: middle;
+
+                        @include responsive(600px){
+                            display: none;
+                        }
                     }
                 }
             }
