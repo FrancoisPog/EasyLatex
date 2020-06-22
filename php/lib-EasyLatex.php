@@ -76,7 +76,7 @@ function pog_html_nav(){
 
     $username = $_SESSION['username'];
 
-    return "<nav><a id='dashboard_link' href='dashboard/'>${username}</a><a href='php/exit.php'><img alt='exit-icon' title='Exit' src='styles/icons/exit.svg'></a></nav>";
+    return "<nav><a id='dashboard_link' href='dashboard/'>&#9776; ${username}</a><a href='php/exit.php'><img alt='exit-icon' title='Exit' src='styles/icons/exit.svg'></a></nav>";
 }
 
 /**

@@ -76,25 +76,6 @@ btn_exit_syntax.onclick = (e)=>{
     form.classList.remove('blurred');
 };
 
-// --- CHANGE NAV CONTENT ---
-
-let dashboard_link = document.getElementById('dashboard_link');
-var username = dashboard_link.textContent;
-
-dashboard_link.onmouseover = () =>{
-    if(window.innerWidth > 900){
-        dashboard_link.textContent = "My projects";
-    }
-
-};
-
-dashboard_link.onmouseleave = () => {
-    if(window.innerWidth > 900){
-        dashboard_link.textContent = username;
-    }
-}
-
-
 // --- REMOVE VIEWER FOR MOBILE ---
 
 
