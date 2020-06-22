@@ -2,7 +2,7 @@
 
 ob_start();
 session_start();
-require_once('lib-EasyLatex.php');
+require_once('_easylatex.php');
 
 /**
  * Print the project page

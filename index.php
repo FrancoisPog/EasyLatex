@@ -2,7 +2,7 @@
 
 ob_start();
 session_start();
-require_once('php/lib-EasyLatex.php');
+require_once('php/_easylatex.php');
 
 
 

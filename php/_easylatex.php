@@ -10,7 +10,7 @@
 define('DB_DEBUG','on');
 
 require_once('private_data.php');
-require_once('lib-database.php');
+require_once('_database.php');
 
 
 
@@ -76,7 +76,7 @@ function pog_html_nav(){
 
     $username = $_SESSION['username'];
 
-    return "<nav><a id='dashboard_link' href='dashboard/'>&#9776; ${username}</a><a href='php/exit.php'><img alt='exit-icon' title='Exit' src='styles/icons/exit.svg'></a></nav>";
+    return "<nav><a id='dashboard_link' title='Go to dashboard' href='dashboard/'>&#9776; ${username}</a><a href='php/exit.php'><img alt='exit-icon' title='Sign out' src='styles/icons/exit.svg'></a></nav>";
 }
 
 /**
