@@ -3,16 +3,12 @@
 #project{
     height: unset;
     justify-content: flex-start;
+    
     footer{
         display: none;
     }
 
-    header{
-        @include responsive(900px){
-            text-align: left;
-            padding-left: 1rem;
-        }
-    }
+    @include header_mobile_left;
 
     main{
         position: relative;

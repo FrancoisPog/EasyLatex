@@ -371,7 +371,7 @@ input[type='button'].btn, input[type='submit'].btn, button.btn {
   outline: none;
   cursor: pointer;
   margin: auto;
-  padding: 0.8rem;
+  padding: 0.8rem 1.5rem;
   font-family: "Chelsea Market", cursive;
   border-radius: 3rem;
   border: none;
@@ -387,6 +387,8 @@ input[type='button'].btn, input[type='submit'].btn, button.btn {
 input[type='button'].btn a, input[type='submit'].btn a, button.btn a {
   color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
+  display: inline-block;
+  width: 100%;
 }
 
 input[type='button'].btn:hover:not(:disabled), input[type='submit'].btn:hover:not(:disabled), button.btn:hover:not(:disabled) {
@@ -764,9 +766,12 @@ header nav {
       -ms-flex-align: center;
           align-items: center;
   padding: 2rem;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+}
+
+@media screen and (max-width: 600px) and (min-width: 0) {
+  header nav {
+    right: 0;
+  }
 }
 
 @media screen and (max-width: 900px) and (min-width: 0) {
@@ -782,6 +787,12 @@ header nav a, header nav a:hover, header nav img {
   font-size: 2rem;
   margin: 0 1rem;
   color: #FFFFFF;
+}
+
+@media screen and (max-width: 600px) and (min-width: 0) {
+  header nav a, header nav a:hover, header nav img {
+    margin: 0 .5rem;
+  }
 }
 
 header nav img {
@@ -1545,7 +1556,22 @@ header nav img {
   }
 }
 
-#settings form {
+#settings main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#settings main .btn {
+  font-size: 1.3rem;
+  width: 20rem;
+}
+
+#settings main form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1556,13 +1582,10 @@ header nav img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 1rem 4rem;
 }
 
-#settings form .btn {
-  font-size: 1.3rem;
-}
-
-#settings form section {
+#settings main form section {
   padding: 2rem 5rem;
   padding-top: 4.5rem;
   margin: 1rem;
@@ -1571,29 +1594,29 @@ header nav img {
   position: relative;
 }
 
-#settings form section h2 {
+#settings main form section h2 {
   position: absolute;
   top: 1rem;
   left: 1rem;
   font-size: 2.5rem;
 }
 
-#settings form section .form-input-text, #settings form section .cbx {
+#settings main form section .form-input-text, #settings main form section .cbx {
   margin: 1.5rem 2%;
 }
 
-#settings form section .form-input-text:not(:last-of-type), #settings form section .cbx:not(:last-of-type) {
+#settings main form section .form-input-text:not(:last-of-type), #settings main form section .cbx:not(:last-of-type) {
   width: 100%;
 }
 
-#settings form section .form-input-text:last-of-type, #settings form section .cbx:last-of-type {
+#settings main form section .form-input-text:last-of-type, #settings main form section .cbx:last-of-type {
   width: 45%;
   min-width: -webkit-max-content;
   min-width: -moz-max-content;
   min-width: max-content;
 }
 
-#settings form section.settings-firstpage {
+#settings main form section.settings-firstpage {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1608,23 +1631,23 @@ header nav img {
           justify-content: center;
 }
 
-#settings form section.settings-advanced table {
+#settings main form section.settings-advanced table {
   width: 80%;
   margin: auto;
   margin-top: 1rem;
 }
 
-#settings form section.settings-advanced table tr td {
+#settings main form section.settings-advanced table tr td {
   margin: 1rem 0;
 }
 
 @media screen and (max-width: 900px) and (min-width: 0) {
-  #settings form section.settings-advanced table tr td {
+  #settings main form section.settings-advanced table tr td {
     display: block;
   }
 }
 
-#settings form section.settings-advanced table tr td:last-child {
+#settings main form section.settings-advanced table tr td:last-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1632,12 +1655,12 @@ header nav img {
       justify-content: space-around;
 }
 
-#settings form section.settings-advanced table tr td:first-child {
+#settings main form section.settings-advanced table tr td:first-child {
   position: relative;
 }
 
 @media screen and (max-width: 900px) and (min-width: 0) {
-  #settings form section.settings-advanced table tr td:first-child {
+  #settings main form section.settings-advanced table tr td:first-child {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -1646,7 +1669,7 @@ header nav img {
   }
 }
 
-#settings form section.settings-advanced table tr td:first-child::after {
+#settings main form section.settings-advanced table tr td:first-child::after {
   content: ':';
   position: absolute;
   right: -10px;

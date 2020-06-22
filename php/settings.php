@@ -12,7 +12,8 @@ function pog_print_settings($project){
 
     $data = urlencode(urlencode($_GET['data']));
    
-    echo    "<form class='settings form' id='settings-form' action='settings/${data}/' method='POST'>",
+    echo    pog_html_button('back_to_project',"<a href='project/${data}/'>Back to project</a>"),
+            "<form class='settings form' id='settings-form' action='settings/${data}/' method='POST'>",
                 '<section class="settings-firstpage">',
                     '<h2>First page</h2>',
                     pog_html_input('el_settings_title','Title',$project['pr_cover_title']),

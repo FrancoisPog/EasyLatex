@@ -14,3 +14,12 @@
         @content;
     }
 }
+
+@mixin header_mobile_left(){
+    header{
+        @include responsive(900px){
+            text-align: left;
+            padding-left: 1rem;
+        }
+    }
+}

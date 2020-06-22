@@ -4,13 +4,16 @@ header nav{
     position: absolute;
     top: 0;
     right: 2rem;
+    @include responsive(600px){
+        right: 0;
+    }
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    width: fit-content;
+    //width: max-content;
 
     @include responsive(900px){
         padding-top: 3rem;
@@ -20,9 +23,10 @@ header nav{
     a,a:hover,img{
         font-size: 2rem;
         margin : 0 1rem;
+        @include responsive(600px){
+            margin :0 .5rem;
+        }
         color : $light;
-
-        
     }
 
     img{

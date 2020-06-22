@@ -4,7 +4,7 @@ input[type='button'].btn,input[type='submit'].btn,button.btn{
     outline: none;
     cursor: pointer;
     margin: auto;
-    padding:0.8rem;
+    padding:0.8rem 1.5rem;
     font-family: $font;
     border-radius: 3rem ;
     border : none;
@@ -14,6 +14,8 @@ input[type='button'].btn,input[type='submit'].btn,button.btn{
 
     a{
         @include lightOnDark;
+        display: inline-block;
+        width: 100%;
     }
 
     &:hover:not(:disabled){

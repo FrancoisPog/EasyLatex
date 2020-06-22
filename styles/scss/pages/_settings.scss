@@ -1,87 +1,93 @@
 #settings{
 
-    header{
-        @include responsive(900px){
-            text-align: left;
-            padding-left: 1rem;
-        }
-    }
+    
+    @include header_mobile_left;
 
-    form{
+    main{   
+
         display: flex;
         flex-direction: column;
-        align-items: center;
 
         .btn{
             font-size: 1.3rem;
+            width: 20rem;
         }
-        section{
-            padding: 2rem 5rem;
-            padding-top: 4.5rem;
-            margin: 1rem;
-            font-size: 1.5rem;
-            width: 100%;
-            position: relative;
-    
-            h2{
-                position: absolute;
-                top : 1rem;
-                left : 1rem;
-                font-size: 2.5rem;
-            }
-    
-            
-            .form-input-text,.cbx{
-                margin: 1.5rem 2%;
-    
-                &:not(:last-of-type){
-                    width: 100%;
-                }
-    
-                &:last-of-type{
-                    width: 45%;
-                    min-width: max-content;
-                    
-                }
-            }
-    
-            &.settings-firstpage{
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-    
-            &.settings-advanced{
 
-               
-                table{
-                    width: 80%;
-                    margin: auto;
-                    margin-top: 1rem;
-                    tr{
-                        
-                        td{
-                            margin: 1rem 0;
-                            @include responsive(900px){
-                                display: block;
-                            }
-                            &:last-child{
-                                display: flex;
-                                justify-content: space-around;
-                            }
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding : 1rem 4rem;
+
+            
+            section{
+                padding: 2rem 5rem;
+                padding-top: 4.5rem;
+                margin: 1rem;
+                font-size: 1.5rem;
+                width: 100%;
+                position: relative;
         
-                            &:first-child{
-                                position: relative;
+                h2{
+                    position: absolute;
+                    top : 1rem;
+                    left : 1rem;
+                    font-size: 2.5rem;
+                }
+        
+                
+                .form-input-text,.cbx{
+                    margin: 1.5rem 2%;
+        
+                    &:not(:last-of-type){
+                        width: 100%;
+                    }
+        
+                    &:last-of-type{
+                        width: 45%;
+                        min-width: max-content;
+                        
+                    }
+                }
+        
+                &.settings-firstpage{
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+        
+                &.settings-advanced{
+
+                
+                    table{
+                        width: 80%;
+                        margin: auto;
+                        margin-top: 1rem;
+                        tr{
+                            
+                            td{
+                                margin: 1rem 0;
                                 @include responsive(900px){
-                                    width: max-content;
-                                    margin: auto;
-                                    margin-top: 2rem;
+                                    display: block;
                                 }
-                                &::after{
-                                    content: ':';
-                                    position: absolute;
-                                    right: -10px;
+                                &:last-child{
+                                    display: flex;
+                                    justify-content: space-around;
+                                }
+            
+                                &:first-child{
+                                    position: relative;
+                                    @include responsive(900px){
+                                        width: max-content;
+                                        margin: auto;
+                                        margin-top: 2rem;
+                                    }
+                                    &::after{
+                                        content: ':';
+                                        position: absolute;
+                                        right: -10px;
+                                    }
                                 }
                             }
                         }
@@ -90,7 +96,6 @@
             }
         }
     }
-
 
     
 

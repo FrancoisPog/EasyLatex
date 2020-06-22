@@ -1,11 +1,6 @@
 #error {
-    header{
-        @include responsive(900px){
-            text-align: left;
-            padding-left: 1rem;
-            
-        }
-    }
+    @include header_mobile_left;
+    
     .error_section{
         display: flex;
         flex-direction: column;
