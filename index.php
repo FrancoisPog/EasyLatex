@@ -206,6 +206,11 @@ if(isset($_POST['el_signup'])){
         pog_print_index('signup','This username is already used');
     }else{
         pog_connection($_POST['el_signup_username'],isset($_POST['el_signup_remember']));
+        $project = pog_new_project(['el_newproject_name'=>'Example','el_newproject'=>'ee'],'# Title');
+
+        pog_parseToLatex($project,'.');
+
+       
         header('Location: dashboard/');
     }
     exit(0);

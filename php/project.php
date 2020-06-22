@@ -115,31 +115,7 @@ function pog_print_project($project){
                     
 }
 
-/**
- * Write the latex code on a file
- */
-function pog_parseToLatex($project){
-    $filename = $project['pr_filename'];
-    $file = fopen("../projects/${filename}.tex",'w+');
 
-    $type = $project['pr_type'];
-    $lang = ($project['pr_lang'] == 'fr')?'french':'english';
-    $content_table = ($project['pr_table_content'] == 1)?(($type == 'report')?'\tableofcontents\newpage':'\tableofcontents'):'';
-
-    $title = str_replace('\\','\\\\',$project['pr_cover_title']);
-    $author = str_replace('\\','\\\\',$project['pr_cover_author']);
-    $date = ($project['pr_cover_date'] == '0')?'':"\\date{".str_replace('\\','\\\\',$project['pr_cover_date'])."}";
-
-    $latex_begin = "\documentclass{{$type}}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[$lang]{babel}\setlength{\parindent}{0cm}\\renewcommand{\\thesection}{\arabic{section}}\\title{{$title}}\author{{$author}}$date\begin{document}\maketitle$content_table ";
-    $latex_end = ' \end{document}';
-
-    $content = (isset($_POST['latex']))?$_POST['latex']:'';
-    fwrite($file,$latex_begin);
-    fwrite($file,$content);
-    fwrite($file,$latex_end);
-
-    fclose($file);
-}
 
 
 
@@ -191,9 +167,9 @@ function pog_fetch_project($id){
 
 // MAIN
 
-pog_isLogged('../../');
+pog_isLogged('.');
 
-pog_check_param($_GET,['data']) or pog_session_exit('../../');
+pog_check_param($_GET,['data']) or pog_session_exit('.');
 
 
 $id = pog_decrypt_url($_GET['data'],1)[0];

@@ -85,7 +85,7 @@ function pog_settings_hackGuard(){
     $mandatory = ['el_settings_title','el_settings_author','el_settings_language','el_settings_type','el_settings_contents','el_settings'];
     $optional = ['el_settings_date_auto','el_settings_date'];
 
-    pog_check_param($_POST,$mandatory,$optional) or pog_session_exit('../');
+    pog_check_param($_POST,$mandatory,$optional) or pog_session_exit('.');
 
     $_POST = array_map('trim',$_POST);
 
@@ -97,7 +97,7 @@ function pog_settings_hackGuard(){
         if($key == 'el_settings_date' && isset($_POST['el_settings_date_auto'])){
             continue;
         }
-        preg_match('/^[^><]{0,100}$/',$_POST[$key]) or pog_session_exit('../');
+        preg_match('/^[^><]{0,100}$/',$_POST[$key]) or pog_session_exit('.');
     }
 
     $tests = [
@@ -107,7 +107,7 @@ function pog_settings_hackGuard(){
     ];
 
     foreach($tests as $key => $regex){
-        preg_match($regex,$_POST[$key]) or pog_session_exit('../');
+        preg_match($regex,$_POST[$key]) or pog_session_exit('.');
     }
 
 }
@@ -142,7 +142,7 @@ function pog_updateProject($id){
 
 // MAIN
 
-pog_isLogged('../../');
+pog_isLogged('.');
 
 $id = pog_decrypt_url($_GET['data'],1)[0];
 

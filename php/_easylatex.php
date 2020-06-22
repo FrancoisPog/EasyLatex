@@ -13,6 +13,8 @@ require_once('private_data.php');
 require_once('_database.php');
 
 
+define('ROOT_PATH', ($_SERVER['HTTP_HOST'] == 'localhost') ? "/my/Perso/EasyLatex/" : "/EasyLatex/" );
+
 
 /**
  * Print the page header
@@ -25,7 +27,7 @@ function pog_print_header($deepness,$page_name,$subtitle){
             '<html lang="en">',
                 '<head>',
                     '<meta charset="UTF-8">',
-                    '<base href="',($_SERVER['HTTP_HOST'] == 'localhost')?"/my/Perso/EasyLatex/":"/EasyLatex/",'">',
+                    '<base href="',ROOT_PATH,'">',
                     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
                     "<title>EasyLatex - ${subtitle}</title>",
                     "<link rel='stylesheet' href='styles/easylatex.css'>",
@@ -179,11 +181,11 @@ function pog_isLogged($page_to_redirect = null){
         }
     }
 
-    if(!$page_to_redirect){
+    if($page_to_redirect === null){
         return false;
     }
-
-    header("Location: ${page_to_redirect}");
+    //var_dump('Location: '.ROOT_PATH."${page_to_redirect}");
+    header('Location: '.ROOT_PATH."${page_to_redirect}");
     exit(0);
 }
 
@@ -208,7 +210,7 @@ function pog_check_param($array, $mandatory_keys, $optional_keys = array()){
 
 /**
  * Correctly end a session and redirect to the given page.
- * @param String $page  The page for the redirection
+ * @param String $page  The page for the redirection (relative to ROOT_PATH)
  */
 function pog_session_exit($page){
     session_destroy();
@@ -228,7 +230,7 @@ function pog_session_exit($page){
     setcookie('username','',time()-3600*24,'/');
     setcookie('key','',time()-3600*24,'/');
         
-    header("Location: $page");
+    header('Location: '.ROOT_PATH."$page");
     exit(0);
 
 }
@@ -338,4 +340,103 @@ function pog_getTimeFrom($date, $date2 = null){
         }
     }
     return 'Just now';
+}
+
+/**
+ * Create a new project
+ */
+function pog_new_project($array = null, $content = '', $return = false){
+
+    if($array == null){
+        $array = $_POST;
+    }
+
+    // Check input
+    pog_check_param($array,['el_newproject','el_newproject_name']) or pog_session_exit('.');
+
+    if(!preg_match('/^[^<>]{1,100}$/',$array['el_newproject_name'])){
+        pog_session_exit('.');
+    }
+
+    // Get user data
+    $db = pog_db_connecter();
+    $author = pog_db_protect_inputs($db,$_SESSION['username']);
+
+    $query = "SELECT us_first_name, us_last_name
+                FROM el_user
+                WHERE us_username = '${author}'";
+
+    $authorData = pog_db_execute($db,$query,false);
+
+    if(!$authorData){
+        pog_session_exit('.');
+    }
+
+
+    $author_str = pog_db_protect_inputs($db,$authorData[0]['us_first_name'].' '.$authorData[0]['us_last_name']);
+
+
+    // Insert project in database
+    $array = pog_db_protect_inputs($db,$array);
+    extract($array);
+
+    
+    $name = $array['el_newproject_name'];
+    $date = pog_getDate();
+
+    $filename = md5(uniqid(rand(),true));
+    $cover_title = $name;
+    $content = pog_db_protect_inputs($db,$content);
+
+    $query = "INSERT INTO el_project SET
+                pr_author = '${author}',
+                pr_content = '${content}',
+                pr_creat_date = '${date}',
+                pr_modif_date = '${date}',
+                pr_filename = '${filename}',
+                pr_name = '${name}',
+                pr_cover_title = '${cover_title}',
+                pr_cover_author = '${author_str}',
+                pr_cover_date = 0;
+                SELECT *
+                FROM el_project
+                WHERE pr_filename = '${filename}'
+                AND pr_creat_date = '${date}'
+                AND pr_author = '${author}'";
+    
+    $project = pog_db_execute($db,$query,false,false,true);
+
+    mysqli_close($db);
+
+    
+
+    return $project[1][0];
+}
+
+
+/**
+ * Write the latex code on a file
+ */
+function pog_parseToLatex($project,$prefix = '..'){
+    $filename = $project['pr_filename'];
+    $filpath = "${prefix}/projects/${filename}.tex";
+    $file = fopen($filpath,'w+');
+
+    $type = $project['pr_type'];
+    $lang = ($project['pr_lang'] == 'fr')?'french':'english';
+    $content_table = ($project['pr_table_content'] == 1)?(($type == 'report')?'\tableofcontents\newpage':'\tableofcontents'):'';
+
+    $title = str_replace('\\','\\\\',$project['pr_cover_title']);
+    $author = str_replace('\\','\\\\',$project['pr_cover_author']);
+    $date = ($project['pr_cover_date'] == '0')?'':"\\date{".str_replace('\\','\\\\',$project['pr_cover_date'])."}";
+
+    $latex_begin = "\documentclass{{$type}}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[$lang]{babel}\setlength{\parindent}{0cm}\\renewcommand{\\thesection}{\arabic{section}}\\title{{$title}}\author{{$author}}$date\begin{document}\maketitle$content_table ";
+    $latex_end = ' \end{document}';
+
+    $content = (isset($_POST['latex']))?$_POST['latex']:'';
+    fwrite($file,$latex_begin);
+    fwrite($file,$content);
+    fwrite($file,$latex_end);
+
+    fclose($file);
 }
