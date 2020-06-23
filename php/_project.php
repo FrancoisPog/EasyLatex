@@ -86,9 +86,10 @@ function pog_project_parse($project,$prefix = '..',$latex = null){
     $lang = ($project['pr_lang'] == 'fr')?'french':'english';
     $content_table = ($project['pr_table_content'] == 1)?(($type == 'report')?'\tableofcontents\newpage':'\tableofcontents'):'';
 
+    // Replace '\' by '\\'
     $title = preg_replace('/(\\\\)+/','\\\\\\\\',$project['pr_cover_title']);
     $author = preg_replace('/(\\\\)+/','\\\\\\\\',$project['pr_cover_author']);
-    $date = ($project['pr_cover_date'] == '0')?'':"\\date{".str_replace('\\','\\\\',$project['pr_cover_date'])."}";
+    $date = ($project['pr_cover_date'] == '0')?'':"\\date{".preg_replace('/(\\\\)+/','\\\\\\\\',$project['pr_cover_date'])."}";
 
     $latex_begin = "\documentclass{{$type}}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[$lang]{babel}\setlength{\parindent}{0cm}\\renewcommand{\\thesection}{\arabic{section}}\\title{{$title}}\author{{$author}}$date\begin{document}\maketitle$content_table ";
     $latex_end = ' \end{document}';
@@ -206,10 +207,49 @@ function pog_project_update_settings($id,$array = null){
     mysqli_close($db);
 }
 
-function pog_project_rename(){
+/**
+ * Rename a project
+ * @param int $id The project id
+ * @param string $name The new project name
+ * @return array The project updated
+ */
+function pog_project_rename($id,$name){
+    $db = pog_db_connecter();
+    $user = $_SESSION['username'];
+    $name = pog_db_protect_inputs($db,$name);
 
+    $query = "UPDATE el_project SET
+                pr_name = '${name}'
+                WHERE pr_id = ${id}
+                AND pr_author = '${user}';
+                SELECT *
+                FROM el_project
+                WHERE pr_id = '${id}'
+                AND pr_author = '${user}'";
+
+    $project = pog_db_execute($db,$query,true,false,true);
+    
+    mysqli_close($db);
+
+    return $project[1][0];
 }
 
-function pog_project_delete(){
+/**
+ * Delete a project
+ * @param int $id The project id
+ */
+function pog_project_delete($id){
+    $db = pog_db_connecter();
 
+    $user = $_SESSION['username'];
+
+    $id = pog_db_protect_inputs($db,$id);
+
+    $query = "DELETE FROM el_project
+                WHERE pr_id = ${id}
+                AND pr_author = ${user}";
+
+    pog_db_execute($db,$query,false,true);
+
+    mysqli_close($db);
 }

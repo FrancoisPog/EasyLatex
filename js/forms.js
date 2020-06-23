@@ -108,9 +108,6 @@ function formValidity(elements,submit,canBeEmpty = false){
     return ;
 }
 
-
-
-
 /**
  * Set the validity of an input
  * @param {Element} input   A form input  
