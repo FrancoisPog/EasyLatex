@@ -86,8 +86,8 @@ function pog_project_parse($project,$prefix = '..',$latex = null){
     $lang = ($project['pr_lang'] == 'fr')?'french':'english';
     $content_table = ($project['pr_table_content'] == 1)?(($type == 'report')?'\tableofcontents\newpage':'\tableofcontents'):'';
 
-    $title = str_replace('\\','\\\\',$project['pr_cover_title']);
-    $author = str_replace('\\','\\\\',$project['pr_cover_author']);
+    $title = preg_replace('/(\\\\)+/','\\\\\\\\',$project['pr_cover_title']);
+    $author = preg_replace('/(\\\\)+/','\\\\\\\\',$project['pr_cover_author']);
     $date = ($project['pr_cover_date'] == '0')?'':"\\date{".str_replace('\\','\\\\',$project['pr_cover_date'])."}";
 
     $latex_begin = "\documentclass{{$type}}\usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage[$lang]{babel}\setlength{\parindent}{0cm}\\renewcommand{\\thesection}{\arabic{section}}\\title{{$title}}\author{{$author}}$date\begin{document}\maketitle$content_table ";
