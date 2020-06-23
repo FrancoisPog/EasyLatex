@@ -57,25 +57,7 @@ function pog_print_settings($project){
     pog_print_footer();
 }
 
-/**
- * Fetch project data in database
- * @param int $id The project id
- * @return Array The user data
- */
-function pog_fetch_project($id){
-    $db = pog_db_connecter();
-    $author = $_SESSION['username'];
-    $query = "SELECT *
-                FROM el_project
-                WHERE pr_id = ${id}
-                AND pr_author = '${author}'";
 
-    $project = pog_db_execute($db,$query);
-
-    mysqli_close($db);
-
-    return $project[0];
-}
 
 /**
  * Avoid hacking case
@@ -112,31 +94,7 @@ function pog_settings_hackGuard(){
 
 }
 
-/**
- * Update the project data in database
- * @param int $id The project id
- */
-function pog_updateProject($id){
-    $db = pog_db_connecter();
 
-    $_POST = pog_db_protect_inputs($db,$_POST);
-    extract($_POST);
-
-    $date = (isset($el_settings_date_auto)) ? '0' : $el_settings_date;
-
-    $query = "UPDATE el_project SET
-                pr_cover_title = '${el_settings_title}',
-                pr_cover_author = '${el_settings_author}',
-                pr_cover_date = '${date}',
-                pr_lang = '${el_settings_language}',
-                pr_table_content = ${el_settings_contents},
-                pr_type = '${el_settings_type}'
-                WHERE pr_id = ${id} ";
-
-    pog_db_execute($db,$query,false,true);
-
-    mysqli_close($db);
-}
 
 
 
@@ -152,11 +110,11 @@ if(!$id){
 
 if(isset($_POST['el_settings'])){
     pog_settings_hackGuard($id);
-    pog_updateProject($id);
+    pog_project_update_settings($id);
 }
 
 
-$project = pog_fetch_project($id);
+$project = pog_project_fetch($id);
 
 if(!$project){
     pog_print_project_404();

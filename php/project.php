@@ -119,52 +119,6 @@ function pog_print_project($project){
 
 
 
-
-/**
- * Fetch a project in database
- * @param int $id The project id
- * @return Array
- */
-function pog_fetch_project($id){
-    $db = pog_db_connecter();
-
-    $id = pog_db_protect_inputs($db,$id);
-    $user = $_SESSION['username'];
-
-    if(isset($_POST['latex'])){
-        $content = pog_db_protect_inputs($db,$_POST['markup']);
-        $date = pog_getDate();
-
-        $query = "  UPDATE el_project SET
-                    pr_content = '${content}',
-                    pr_modif_date = $date
-                    WHERE pr_id = '${id}';
-                    SELECT *
-                    FROM el_project
-                    WHERE pr_id = '${id}'
-                    AND pr_author = '${user}'";
-
-        $project = pog_db_execute($db,$query,false,false,true);
-        
-        return $project[1][0];
-    }
-
-
-    $query = "  SELECT *
-                FROM el_project
-                WHERE pr_id = '${id}'
-                AND pr_author = '${user}'";
-
-    $project = pog_db_execute($db,$query,false);
-    
-
-    return $project[0];
-
-    
-    
-}
-
-
 // MAIN
 
 pog_isLogged('.');
@@ -180,15 +134,17 @@ if(!$id){
     pog_print_project_404();
 }
 
-$project = pog_fetch_project($id);
+if(isset($_POST['latex'])){
+    $project = pog_project_update_content($id);
+    pog_project_parse($project);
+}else{
+    $project = pog_project_fetch($id,false);
+}
 
 if(!$project){
     pog_print_project_404();
 }
 
-if(isset($_POST['latex']) || $project['pr_content'] == ''){
-    pog_parseToLatex($project);
-}
 
 pog_print_project($project);
 

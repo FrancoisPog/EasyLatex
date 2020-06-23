@@ -201,16 +201,21 @@ if(pog_isLogged()){
 
 // Sign Up
 if(isset($_POST['el_signup'])){
+
     pog_signup_hackGuard();
+
     if(pog_signup_database() == 1){ 
+
         pog_print_index('signup','This username is already used');
+
     }else{
+
         pog_connection($_POST['el_signup_username'],isset($_POST['el_signup_remember']));
-        $project = pog_new_project(['el_newproject_name'=>'Example','el_newproject'=>'ee'],'# Title');
 
-        pog_parseToLatex($project,'.');
+        $project = pog_project_create(['el_newproject_name'=>'Example','el_newproject'=>'on'],'# Title','The space race');
 
-       
+        pog_project_parse($project,'.','\section{Title}');
+
         header('Location: dashboard/');
     }
     exit(0);

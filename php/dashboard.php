@@ -4,25 +4,7 @@ ob_start();
 session_start();
 require_once('_easylatex.php');
 
-/**
- * Fetch the user project
- */
-function pog_fecth_projects(){
-    $db = pog_db_connecter();
 
-    $author = $_SESSION['username'];
-
-    $query = "SELECT pr_id, pr_name, pr_modif_date
-                FROM el_project
-                WHERE pr_author = '${author}'
-                ORDER BY pr_modif_date DESC";
-
-    $projects = pog_db_execute($db,$query);
-
-    mysqli_close($db);
-
-    return ($projects)?$projects:[];
-}
 
 
 /**
@@ -72,10 +54,11 @@ function pog_print_dashboard($projects){
 pog_isLogged('.');
 
 if(isset($_POST['el_newproject'])){
-    pog_new_project();
+    $project = pog_project_create();
+    pog_project_parse($project);
 }
 
-$projects = pog_fecth_projects();
+$projects = pog_project_fetch_all();
 
 pog_print_dashboard($projects);
 
