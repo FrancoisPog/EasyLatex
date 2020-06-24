@@ -111,7 +111,7 @@ function pog_project_parse($project,$prefix = '..',$latex = null){
  */
 function pog_project_fetch($id,$protect = true){
     $db = pog_db_connecter();
-    $author = $_SESSION['username'];
+    $author = pog_db_protect_inputs($db,$_SESSION['username']);
     $query = "SELECT *
                 FROM el_project
                 WHERE pr_id = ${id}
@@ -131,7 +131,7 @@ function pog_project_fetch($id,$protect = true){
 function pog_project_fetch_all(){
     $db = pog_db_connecter();
 
-    $author = $_SESSION['username'];
+    $author = pog_db_protect_inputs($db,$_SESSION['username']);
 
     $query = "SELECT pr_id, pr_name, pr_modif_date
                 FROM el_project
@@ -157,7 +157,7 @@ function pog_project_update_content($id,$array = null){
     $db = pog_db_connecter();
 
     $id = pog_db_protect_inputs($db,$id);
-    $user = $_SESSION['username'];
+    $user = pog_db_protect_inputs($db,$_SESSION['username']);
 
     $content = pog_db_protect_inputs($db,$array['markup']);
     $date = pog_getDate();
@@ -217,13 +217,14 @@ function pog_project_update_settings($id,$array = null){
 function pog_project_delete($id){
     $db = pog_db_connecter();
 
-    $user = $_SESSION['username'];
+    $user = pog_db_protect_inputs($db,$_SESSION['username']);
 
     $id = pog_db_protect_inputs($db,$id);
+    
 
     $query = "DELETE FROM el_project
                 WHERE pr_id = ${id}
-                AND pr_author = ${user}";
+                AND pr_author = '${user}'";
 
     pog_db_execute($db,$query,false,true);
 

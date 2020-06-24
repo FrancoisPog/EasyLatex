@@ -70,9 +70,10 @@ function pog_db_error_exit($msg) {
  */
 function pog_db_error($db, $sql) {
     
-    if(!defined(DB_DEBUG)){
+    if(defined(DB_DEBUG)){
         pog_db_print_error_page();
     }
+
     $errNum = mysqli_errno($db);
     $errTxt = mysqli_error($db);
 

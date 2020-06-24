@@ -52,9 +52,11 @@ function pog_print_settings($project){
                     '</table>',
                 '</section>',
                     pog_html_button('el_settings','Done','submit'),
+            '</form>',
+            "<form class='delete form' id='delete-form' action='settings/${data}/' method='POST'>",
                 '<section class="settings-delete">',
                     '<h2>Delete the project</h2>',
-                    pog_print_popUp('Delete','Are you sure ? ','dd','submit','Delete','el_settings_delete'),
+                    pog_print_popUp('Delete','Are you sure ? ','The project will be permanently deleted, please confirm the deletion','submit','Delete','el_settings_delete'),
                 '</section>',
             '</form>',
             pog_html_script('js/forms.js'),
@@ -104,7 +106,13 @@ function pog_settings_hackGuard(){
 
 }
 
+function pog_delete_process($id){
+    $mandatory = ['el_settings_delete','popup-conf'];
 
+    pog_check_param($_POST,$mandatory) or pog_session_exit('.');
+
+    pog_project_delete($id);
+}
 
 
 
@@ -123,6 +131,11 @@ if(isset($_POST['el_settings'])){
     pog_project_update_settings($id);
 }
 
+if(isset($_POST['el_settings_delete'])){
+    pog_delete_process($id);
+    header('Location: ../../dashboard/');
+    exit(0);
+}
 
 $project = pog_project_fetch($id);
 
