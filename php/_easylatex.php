@@ -343,3 +343,25 @@ function pog_getTimeFrom($date, $date2 = null){
     return 'Just now';
 }
 
+/**
+ * Print a confirmation popup
+ * @param String $firstbtnValue     The first button's value
+ * @param String $title             The popup title
+ * @param String $content           The popup content
+ * @param String $btnType  The button's type (submit,reset,button)
+ * @param String $btnValue The button's value
+ * @param String $btnName  The button's name
+ */
+function pog_print_popUp($firstBtnValue,$title,$content,$btnType,$btnValue,$btnName){
+    echo    "<span class='btn-wrapper'><label for='popup-first-btn' class='popup-btn btn'>$firstBtnValue</label></span>",
+            '<input id="popup-first-btn" type="radio" name="popup-conf" class="popup-first-btn btn" value="none">',
+            '<div class="popup-night">',
+                '<div class="popup-box" >',
+                    "<h4>$title</h4>",
+                    "<p>$content</p>",
+                    '<input id="popup-exit" type="radio" name="popup-conf">',
+                    '<label for="popup-exit">&times;</label>',
+                    "<span class='btn-wrapper'><input class='popup-final-btn btn' name='$btnName' value='$btnValue' type='$btnType'></span>",
+                '</div>',
+            '</div> ';
+}

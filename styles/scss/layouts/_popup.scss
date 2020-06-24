@@ -1,0 +1,81 @@
+/* Pop up */
+
+.popup-first-btn:checked + div.popup-night{
+    opacity: 1;
+    width: 200%;
+    height: 100%;
+    transition: opacity 0.5s ;
+
+    div.popup-box {
+        opacity: 1;
+        left: 35%;
+        transform: scale(1);
+        z-index: 5000;
+        display: block;
+        width: 30%;
+        transition: width 0s,opacity 0.3s 0.2s, transform 0.3s 0.2s;
+    }
+}
+
+div.popup-night {
+    transition: opacity 0.7s, width 0s 0.7s, height 0s 0.7s;
+    top: 0px;
+    left: 0px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    z-index: 100;
+
+    div.popup-box{
+        transition: opacity 0.3s 0.2s, transform 0.3s 0.2s, width 0s 1s, left 0s 0.7s;
+        background-color: $light;
+        padding : 25px;
+        top: 40%;
+        left: -35%;
+        position: fixed;
+        opacity: 0;
+        z-index: 0;
+        transform: scale(0.8);
+        width: 0px;
+        border-radius: 10px;
+
+        label{
+            font-size: 1.4em;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            transition: transform 0.7s;    
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            &:hover{
+                transform: rotate(360deg);
+                color: $dark;    
+            }
+        }
+        
+        h4{
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 5px;
+            text-align: center;
+        }
+
+        p{
+            margin: 5px;
+            text-align: center;
+        }
+
+        
+    }
+}
+
+
+#popup-exit,input.popup-first-btn{
+    display: none;
+}
+

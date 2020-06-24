@@ -367,7 +367,7 @@ select:-webkit-autofill:focus {
 }
 
 /* --- BUTTONS --- */
-input[type='button'].btn, input[type='submit'].btn, button.btn {
+.btn {
   outline: none;
   cursor: pointer;
   margin: auto;
@@ -384,26 +384,26 @@ input[type='button'].btn, input[type='submit'].btn, button.btn {
   font-size: 1.1rem;
 }
 
-input[type='button'].btn a, input[type='submit'].btn a, button.btn a {
+.btn a {
   color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
   display: inline-block;
   width: 100%;
 }
 
-input[type='button'].btn:hover:not(:disabled), input[type='submit'].btn:hover:not(:disabled), button.btn:hover:not(:disabled) {
+.btn:hover:not(:disabled) {
   -webkit-box-shadow: 0 0 20px 5px rgba(29, 52, 97, 0.2);
           box-shadow: 0 0 20px 5px rgba(29, 52, 97, 0.2);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 
-input[type='button'].btn:active:not(:disabled), input[type='submit'].btn:active:not(:disabled), button.btn:active:not(:disabled) {
+.btn:active:not(:disabled) {
   -webkit-transform: scale(1.1) translateY(5px);
           transform: scale(1.1) translateY(5px);
 }
 
-input[type='button'].btn:disabled, input[type='submit'].btn:disabled, button.btn:disabled {
+.btn:disabled {
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
   background-color: #111f3a;
@@ -846,6 +846,103 @@ header nav img {
 .form .tooltip .tooltip-tip:before {
   color: #FFFFFF;
   background-color: rgba(29, 52, 97, 0.99);
+}
+
+/* Pop up */
+.popup-first-btn:checked + div.popup-night {
+  opacity: 1;
+  width: 200%;
+  height: 100%;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.popup-first-btn:checked + div.popup-night div.popup-box {
+  opacity: 1;
+  left: 35%;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  z-index: 5000;
+  display: block;
+  width: 30%;
+  -webkit-transition: width 0s,opacity 0.3s 0.2s, -webkit-transform 0.3s 0.2s;
+  transition: width 0s,opacity 0.3s 0.2s, -webkit-transform 0.3s 0.2s;
+  transition: width 0s,opacity 0.3s 0.2s, transform 0.3s 0.2s;
+  transition: width 0s,opacity 0.3s 0.2s, transform 0.3s 0.2s,-webkit-transform 0.3s 0.2s;
+}
+
+div.popup-night {
+  -webkit-transition: opacity 0.7s, width 0s 0.7s, height 0s 0.7s;
+  transition: opacity 0.7s, width 0s 0.7s, height 0s 0.7s;
+  top: 0px;
+  left: 0px;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  z-index: 100;
+}
+
+div.popup-night div.popup-box {
+  -webkit-transition: opacity 0.3s 0.2s, width 0s 1s, left 0s 0.7s, -webkit-transform 0.3s 0.2s;
+  transition: opacity 0.3s 0.2s, width 0s 1s, left 0s 0.7s, -webkit-transform 0.3s 0.2s;
+  transition: opacity 0.3s 0.2s, transform 0.3s 0.2s, width 0s 1s, left 0s 0.7s;
+  transition: opacity 0.3s 0.2s, transform 0.3s 0.2s, width 0s 1s, left 0s 0.7s, -webkit-transform 0.3s 0.2s;
+  background-color: #FFFFFF;
+  padding: 25px;
+  top: 40%;
+  left: -35%;
+  position: fixed;
+  opacity: 0;
+  z-index: 0;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  width: 0px;
+  border-radius: 10px;
+}
+
+div.popup-night div.popup-box label {
+  font-size: 1.4em;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  -webkit-transition: -webkit-transform 0.7s;
+  transition: -webkit-transform 0.7s;
+  transition: transform 0.7s;
+  transition: transform 0.7s, -webkit-transform 0.7s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+div.popup-night div.popup-box label:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+  color: #1d3461;
+}
+
+div.popup-night div.popup-box h4 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 5px;
+  text-align: center;
+}
+
+div.popup-night div.popup-box p {
+  margin: 5px;
+  text-align: center;
+}
+
+#popup-exit, input.popup-first-btn {
+  display: none;
 }
 
 #index main {
@@ -1585,7 +1682,7 @@ header nav img {
   padding: 1rem 4rem;
 }
 
-#settings main form section {
+#settings main section {
   padding: 2rem 5rem;
   padding-top: 4.5rem;
   margin: 1rem;
@@ -1594,33 +1691,33 @@ header nav img {
   position: relative;
 }
 
-#settings main form section h2 {
+#settings main section h2 {
   position: absolute;
   top: 1rem;
   left: 1rem;
   font-size: 2.5rem;
 }
 
-#settings main form section .form-input-text, #settings main form section .cbx {
+#settings main section .form-input-text, #settings main section .cbx {
   margin: 1.5rem 2%;
 }
 
-#settings main form section .form-input-text:not(:last-of-type), #settings main form section .cbx:not(:last-of-type) {
+#settings main section .form-input-text:not(:last-of-type), #settings main section .cbx:not(:last-of-type) {
   width: 100%;
 }
 
-#settings main form section .form-input-text:last-of-type, #settings main form section .cbx:last-of-type {
+#settings main section .form-input-text:last-of-type, #settings main section .cbx:last-of-type {
   width: 45%;
   min-width: -webkit-max-content;
   min-width: -moz-max-content;
   min-width: max-content;
 }
 
-#settings main form section .form-input-text:only-of-type:not(.cbx), #settings main form section .cbx:only-of-type:not(.cbx) {
+#settings main section .form-input-text:only-of-type:not(.cbx), #settings main section .cbx:only-of-type:not(.cbx) {
   width: 100%;
 }
 
-#settings main form section.settings-firstpage {
+#settings main section.settings-firstpage {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1635,23 +1732,23 @@ header nav img {
           justify-content: center;
 }
 
-#settings main form section.settings-advanced table {
+#settings main section.settings-advanced table {
   width: 80%;
   margin: auto;
   margin-top: 1rem;
 }
 
-#settings main form section.settings-advanced table tr td {
+#settings main section.settings-advanced table tr td {
   margin: 1rem 0;
 }
 
 @media screen and (max-width: 900px) and (min-width: 0) {
-  #settings main form section.settings-advanced table tr td {
+  #settings main section.settings-advanced table tr td {
     display: block;
   }
 }
 
-#settings main form section.settings-advanced table tr td:last-child {
+#settings main section.settings-advanced table tr td:last-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1659,12 +1756,12 @@ header nav img {
       justify-content: space-around;
 }
 
-#settings main form section.settings-advanced table tr td:first-child {
+#settings main section.settings-advanced table tr td:first-child {
   position: relative;
 }
 
 @media screen and (max-width: 900px) and (min-width: 0) {
-  #settings main form section.settings-advanced table tr td:first-child {
+  #settings main section.settings-advanced table tr td:first-child {
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -1673,10 +1770,23 @@ header nav img {
   }
 }
 
-#settings main form section.settings-advanced table tr td:first-child::after {
+#settings main section.settings-advanced table tr td:first-child::after {
   content: ':';
   position: absolute;
   right: -10px;
+}
+
+#settings main section.settings-delete {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 @media screen and (max-width: 900px) and (min-width: 0) {

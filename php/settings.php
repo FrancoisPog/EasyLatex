@@ -51,7 +51,11 @@ function pog_print_settings($project){
                         '</tr>',
                     '</table>',
                 '</section>',
-                pog_html_button('el_settings','Done','submit'),
+                    pog_html_button('el_settings','Done','submit'),
+                '<section class="settings-delete">',
+                    '<h2>Delete the project</h2>',
+                    pog_print_popUp('Delete','Are you sure ? ','dd','submit','Delete','el_settings_delete'),
+                '</section>',
             '</form>',
             pog_html_script('js/forms.js'),
             pog_html_script('js/settings.js');
