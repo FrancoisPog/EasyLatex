@@ -48,6 +48,10 @@
                         min-width: max-content;
                         
                     }
+
+                    &:only-of-type:not(.cbx){
+                        width: 100%;
+                    }
                 }
         
                 &.settings-firstpage{
@@ -58,8 +62,7 @@
                 }
         
                 &.settings-advanced{
-
-                
+               
                     table{
                         width: 80%;
                         margin: auto;

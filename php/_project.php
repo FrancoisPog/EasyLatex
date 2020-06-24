@@ -194,6 +194,7 @@ function pog_project_update_settings($id,$array = null){
     $date = (isset($el_settings_date_auto)) ? '0' : $el_settings_date;
 
     $query = "UPDATE el_project SET
+                pr_name = '${el_settings_name}',
                 pr_cover_title = '${el_settings_title}',
                 pr_cover_author = '${el_settings_author}',
                 pr_cover_date = '${date}',
@@ -207,32 +208,7 @@ function pog_project_update_settings($id,$array = null){
     mysqli_close($db);
 }
 
-/**
- * Rename a project
- * @param int $id The project id
- * @param string $name The new project name
- * @return array The project updated
- */
-function pog_project_rename($id,$name){
-    $db = pog_db_connecter();
-    $user = $_SESSION['username'];
-    $name = pog_db_protect_inputs($db,$name);
 
-    $query = "UPDATE el_project SET
-                pr_name = '${name}'
-                WHERE pr_id = ${id}
-                AND pr_author = '${user}';
-                SELECT *
-                FROM el_project
-                WHERE pr_id = '${id}'
-                AND pr_author = '${user}'";
-
-    $project = pog_db_execute($db,$query,true,false,true);
-    
-    mysqli_close($db);
-
-    return $project[1][0];
-}
 
 /**
  * Delete a project

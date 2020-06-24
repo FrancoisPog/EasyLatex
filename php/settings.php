@@ -14,6 +14,10 @@ function pog_print_settings($project){
    
     echo    pog_html_button('back_to_project',"<a href='project/${data}/'>Back to project</a>"),
             "<form class='settings form' id='settings-form' action='settings/${data}/' method='POST'>",
+                '<section>',
+                    '<h2>Project name</h2>',
+                    pog_html_input('el_settings_name','Name',$project['pr_name']),
+                '</section>',
                 '<section class="settings-firstpage">',
                     '<h2>First page</h2>',
                     pog_html_input('el_settings_title','Title',$project['pr_cover_title']),
@@ -64,7 +68,7 @@ function pog_print_settings($project){
  */
 function pog_settings_hackGuard(){
 
-    $mandatory = ['el_settings_title','el_settings_author','el_settings_language','el_settings_type','el_settings_contents','el_settings'];
+    $mandatory = ['el_settings_title','el_settings_author','el_settings_language','el_settings_type','el_settings_contents','el_settings','el_settings_name'];
     $optional = ['el_settings_date_auto','el_settings_date'];
 
     pog_check_param($_POST,$mandatory,$optional) or pog_session_exit('.');
@@ -74,6 +78,8 @@ function pog_settings_hackGuard(){
     if(!isset($_POST['el_settings_date_auto']) && !isset($_POST['el_settings_date'])){
         pog_session_exit('../');
     }
+
+    preg_match('/^[^<>]{1,30}$/',$_POST['el_settings_name']) or pog_session_exit('.');
 
     foreach(['el_settings_title','el_settings_author','el_settings_date'] as $key){
         if($key == 'el_settings_date' && isset($_POST['el_settings_date_auto'])){

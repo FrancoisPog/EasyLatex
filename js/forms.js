@@ -62,6 +62,7 @@ if(new_project_input.length){
 let settings_form = document.getElementById('settings-form');
 if(settings_form != null){
 
+    let settings_name = document.getElementsByName('el_settings_name')[0];
     let settings_title = document.getElementsByName('el_settings_title')[0];
     let settings_author = document.getElementsByName('el_settings_author')[0];
     let settings_date = document.getElementsByName('el_settings_date')[0];
@@ -71,8 +72,13 @@ if(settings_form != null){
     for(let element of [settings_title,settings_author,settings_date]){
         element.oninput = () => {
             setValidity(element,element.value.match(/^[^<>]{0,100}$/),'This field must contain less than 100 characters and mustn\'t contain html tags');
-            formValidity([settings_date,settings_title,settings_author],settings_submit,true);
+            formValidity([settings_name,settings_date,settings_title,settings_author],settings_submit,true);
         }
+    }
+
+    settings_name.oninput = () => {
+        setValidity(settings_name,settings_name.value.match(/^[^<>]{1,30}$/),'The name must contains between 1 and 30 characters, without HTML tags');
+        formValidity([settings_name,settings_date,settings_title,settings_author],settings_submit,true);
     }
 
     

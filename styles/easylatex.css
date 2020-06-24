@@ -1616,6 +1616,10 @@ header nav img {
   min-width: max-content;
 }
 
+#settings main form section .form-input-text:only-of-type:not(.cbx), #settings main form section .cbx:only-of-type:not(.cbx) {
+  width: 100%;
+}
+
 #settings main form section.settings-firstpage {
   display: -webkit-box;
   display: -ms-flexbox;
