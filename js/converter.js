@@ -143,7 +143,7 @@ function preview_to_latex(match,tag_name,no_used,tag_class,tag_content,no_used,n
         case 'span' :  {
             switch (tag_class) {
                 case 'nl':
-                    return "\\\\";            
+                    return "\\leavevmode \\\\";            
                 case 'np':
                     return "\\newpage ";
                 case 'par' :
