@@ -72,7 +72,7 @@
                         
                         td{
                             margin: 1rem 0;
-                            @include responsive(900px){
+                            @include responsiveW(900px){
                                 display: block;
                             }
                             &:last-child{
@@ -82,7 +82,7 @@
         
                             &:first-child{
                                 position: relative;
-                                @include responsive(900px){
+                                @include responsiveW(900px){
                                     width: max-content;
                                     margin: auto;
                                     margin-top: 2rem;

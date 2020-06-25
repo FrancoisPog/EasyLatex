@@ -4,7 +4,7 @@ header nav{
     position: absolute;
     top: 0;
     right: 2rem;
-    @include responsive(600px){
+    @include responsiveW(600px){
         right: 0;
     }
     height: 100%;
@@ -15,7 +15,7 @@ header nav{
     padding: 2rem;
     //width: max-content;
 
-    @include responsive(900px){
+    @include responsiveW(900px){
         padding-top: 3rem;
         align-items: flex-start;
     }
@@ -23,7 +23,7 @@ header nav{
     a,a:hover,img{
         font-size: 2rem;
         margin : 0 1rem;
-        @include responsive(600px){
+        @include responsiveW(600px){
             margin :0 .5rem;
         }
         color : $light;

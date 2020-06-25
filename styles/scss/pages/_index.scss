@@ -2,7 +2,7 @@
   main {
     position: relative;
 
-    @include responsive(200000px,1350px){
+    @include responsiveW(200000px,1350px){
       width: 100%;
       
     }
@@ -13,7 +13,7 @@
       padding: 3rem;
       height: 52rem; // Change that if the picture height change
 
-      @include responsive(1350px) {
+      @include responsiveW(1350px) {
         display: none;
       }
 
@@ -42,7 +42,7 @@
       //min-width: 62rem;
       margin-right: 3rem;
 
-      @include responsive(1350px){
+      @include responsiveW(1350px){
         margin-right: unset;
       }
 
@@ -51,11 +51,11 @@
       //border: $dark 1px solid;
       box-shadow: 0 0 20px 10px $shadow;
 
-      @include responsive(1350px) {
+      @include responsiveW(1350px) {
         width: unset;
       }
 
-      @include responsive(900px) {
+      @include responsiveW(900px) {
         border: none;
         box-shadow: none;
         min-width: unset;

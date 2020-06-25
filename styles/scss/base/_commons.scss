@@ -4,20 +4,24 @@
 html{
     font-size : 13px;
 
-    @include responsive(1750px){
+    @include responsiveW(1750px){
         font-size: 11px;
     }
 
-    @include responsive(1600px){
+    @include responsiveW(1600px){
         font-size: 10px;
     }
     
-    @include responsive(900px){
+    @include responsiveW(900px){
         font-size: 9px;
     }
     
-    @include responsive(400px){
+    @include responsiveW(400px){
         font-size: 8px;
+    }
+
+    @include responsiveW(319px){
+        font-size: 6px;
     }
 }
 
@@ -59,35 +63,40 @@ main{
     width: 45%;
     min-width: 200px;
     height: 100%;
-    @include responsive(1300px){
+
+    @include responsiveH(999999999px,900px){
+        min-height: 85vh;
+    }
+
+    @include responsiveW(1300px){
         width: 55%;
     }
 
-    @include responsive(1100px){
+    @include responsiveW(1100px){
         width: 60%;
     }
 
-    @include responsive(1000px){
+    @include responsiveW(1000px){
         width: 65%;
     }
 
-    @include responsive(850px){
+    @include responsiveW(850px){
         width: 70%;
     }
 
-    @include responsive(750px){
+    @include responsiveW(750px){
         width: 75%;
     }
 
-    @include responsive(700px){
+    @include responsiveW(700px){
         width: 90%;
     }
 
-    @include responsive(600px){
+    @include responsiveW(600px){
         width: 100%;
     }
 
-    @include responsive(900px){
+    @include responsiveW(900px){
         margin-bottom: 2rem;
     }
 }

@@ -19,7 +19,7 @@
             display: flex;
             flex-direction: row;
 
-            @include responsive(900px){
+            @include responsiveW(900px){
                 flex-direction: column;
             }
 
@@ -38,7 +38,7 @@
                     width: 100%;
                 }
                 width: 100%;
-                @include responsive(600px){
+                @include responsiveW(600px){
                     width: 90%;
                     max-width: 90%;
                 }
@@ -70,7 +70,7 @@
 
                         img{
                             display: none;
-                            @include responsive(900px){
+                            @include responsiveW(900px){
                                 display: initial;
                             }
                             height: 2rem;
@@ -90,7 +90,7 @@
                         text-align: center;
                         vertical-align: middle;
 
-                        @include responsive(600px){
+                        @include responsiveW(600px){
                             display: none;
                         }
                     }

@@ -9,15 +9,21 @@
 }
 
 
-@mixin responsive($maxwitdh,$minwidth : 0){
+@mixin responsiveW($maxwitdh,$minwidth : 0){
     @media screen and (max-width : $maxwitdh) and (min-width : $minwidth){
+        @content;
+    }
+}
+
+@mixin responsiveH($maxheight,$minheight : 0){
+    @media screen and (max-height : $maxheight) and (min-height : $minheight){
         @content;
     }
 }
 
 @mixin header_mobile_left(){
     header{
-        @include responsive(900px){
+        @include responsiveW(900px){
             text-align: left;
             padding-left: 1rem;
         }
