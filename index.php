@@ -181,7 +181,11 @@ function pog_login_connection(){
 
 
 
-
+/**
+ * Connect a user
+ * @param string $username The user's username
+ * @param string $remeber If true, a cookie will be set to remember the user
+ */
 function pog_connection($username,$remember){
     $_SESSION['username'] = $username;
 
@@ -189,7 +193,9 @@ function pog_connection($username,$remember){
         setcookie('username',$username,time()+3600*24*365,'/');
         setcookie('key',pog_encrypt_cookie_key($username),time()+3600*24*365,'/');
     }
-}   
+}
+
+
 
 
 // MAIN
@@ -212,9 +218,11 @@ if(isset($_POST['el_signup'])){
 
         pog_connection($_POST['el_signup_username'],isset($_POST['el_signup_remember']));
 
-        $project = pog_project_create(['el_newproject_name'=>'Example','el_newproject'=>'on'],'# Title','The space race');
+        $project_content = "# Conquest beginning\n\n[:par:]\nThe early era of [i:[b:space exploration:b]:i] was driven by a \"[i:Space Race:i]\" between the Soviet Union and the United States.\n\n# Several programs\n\n## The Appolo program\n\n[:par:]\nThe Apollo program, also known as Project Apollo, was the third United States human spaceflight program carried out by the National Aeronautics and Space Administration (NASA), which succeeded in landing the first men on the Moon from 1969 to 1972. [:nl:]\nIt was the third US human spaceflight program to fly, preceded by the two-person Project Gemini conceived in 1961 to extend spaceflight capability in support of Apollo.\n\n## The Space Shuttle program\n\n[:par:]\nThe Space Shuttle program was the fourth human spaceflight program carried out by the [i:National Aeronautics and Space Administration:i] (NASA), which accomplished routine transportation for Earth-to-orbit crew and cargo from 1981 to 2011.\n\n## International Space Station\n\n[:par:]\nThe [b:International Space Station:b] (ISS) is a modular space station (habitable artificial satellite) in low Earth orbit. The ISS program is a multi-national collaborative project between five participating space agencies: NASA (United States), Roscosmos (Russia), JAXA (Japan), ESA (Europe), and CSA (Canada). The ownership and use of the space station is established by intergovernmental treaties and agreements.It evolved from the Space Station Freedom proposal.\n\n# Further away\n\n[:par:]\nThe [i:Martian:i] system, focused primarily on understanding its geology and habitability potential. Engineering interplanetary journeys is complicated and the exploration of Mars has experienced a high failure rate, especially the early attempts. Some missions have met with unexpected success, such as the twin Mars Exploration Rovers, which operated for years beyond their specification.";
+        
+        $project = pog_project_create(['el_newproject_name'=>'Example','el_newproject'=>'on'],$project_content,'The space race');
 
-        pog_project_parse($project,'.','\section{Title}');
+        pog_project_parse($project,'.','\section{Conquest beginning}\paragraph{} The early era of \textit{\textbf{space exploration}} was driven by a "\textit{Space Race}" between the Soviet Union and the United States.  \section{Several programs} \subsection{The Appolo program}\paragraph{}  The Apollo program, also known as Project Apollo, was the third United States human spaceflight program carried out by the National Aeronautics and Space Administration (NASA), which succeeded in landing the first men on the Moon from 1969 to 1972. \leavevmode \\ It was the third US human spaceflight program to fly, preceded by the two-person Project Gemini conceived in 1961 to extend spaceflight capability in support of Apollo.   \subsection{The Space Shuttle program}\paragraph{} The Space Shuttle program was the fourth human spaceflight program carried out by the \textit{National Aeronautics and Space Administration} (NASA), which accomplished routine transportation for Earth-to-orbit crew and cargo from 1981 to 2011.   \subsection{International Space Station}\paragraph{} The \textbf{International Space Station} (ISS) is a modular space station (habitable artificial satellite) in low Earth orbit. The ISS program is a multi-national collaborative project between five participating space agencies: NASA (United States), Roscosmos (Russia), JAXA (Japan), ESA (Europe), and CSA (Canada). The ownership and use of the space station is established by intergovernmental treaties and agreements.It evolved from the Space Station Freedom proposal.   \section{Further away}\paragraph{} The \textit{Martian} system, focused primarily on understanding its geology and habitability potential. Engineering interplanetary journeys is complicated and the exploration of Mars has experienced a high failure rate, especially the early attempts. Some missions have met with unexpected success, such as the twin Mars Exploration Rovers, which operated for years beyond their specification. ');
 
         header('Location: dashboard/');
     }

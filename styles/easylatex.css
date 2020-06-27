@@ -1865,4 +1865,31 @@ div.popup-night div.popup-box .btn {
   padding-right: 2rem;
   padding-left: 2rem;
 }
+
+@media screen and (max-width: 900px) and (min-width: 0) {
+  #help header {
+    text-align: left;
+    padding-left: 1rem;
+  }
+}
+
+#help main {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#help main h2 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin: 1.5rem 1rem;
+}
+
+#help main p {
+  font-size: 1.3rem;
+  margin: 0 1rem;
+}
 /*# sourceMappingURL=easylatex.css.map */

@@ -93,7 +93,7 @@ function pog_print_project($project){
                         pog_html_button('btn-open',"<a target='_blank' href='https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/projects/${filename}.tex' >Open file</a>",'button'),
                         pog_html_button('btn-settings',"<a target='_blank' href='settings/${data}/' >Settings</a>"),
                         pog_html_button('btn-syntax','Markup syntax'),
-                        pog_html_button('btn-help','Help'),
+                        pog_html_button('btn-help',"<a target='_blank' href='help/'>Help</a>"),
                     '</div>',
                     '<div class="viewer">',
                         "<iframe class='viewer-wrapper' src='https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/projects/${filename}.tex'>",
