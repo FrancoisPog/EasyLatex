@@ -16,6 +16,14 @@ header {
         font-weight: bold;
         font-size: 4rem;
         margin-bottom: 1rem;
+
+        a {
+            @include lightOnDark;
+
+            &:hover{
+                @include lightOnDark;
+            }
+        }
     }
 
     h2 {

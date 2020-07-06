@@ -37,7 +37,7 @@ function pog_print_header($deepness,$page_name,$subtitle){
                 "<body id='${page_name}'>",
                     pog_print_noscript(),
                     '<header>',
-                        '<h1>EasyLatex</h1>',
+                        '<h1><a href="',ROOT_PATH,'">EasyLatex</a></h1>',
                         "<h2>${subtitle}</h2>",
                         pog_html_nav(),
                     '</header>',
@@ -58,7 +58,11 @@ function pog_print_footer(){
 }
 
 
-
+/**
+ * Print an error page
+ * @param string $title The page title
+ * @param string $content The error content
+ */
 function pog_print_error_page($title,$content){
     pog_print_header(0,'error','Something is wrong ...');
     echo '<section class="error_section">',
@@ -89,6 +93,9 @@ function pog_print_noscript(){
     echo '<noscript><div class="noscript" ><h1>JavaScript is disabled</h1><p>This website need JavaScript to work, please activate it to continue.</p></div></noscript>';
 }
 
+/**
+ * Print the page when a project is not found
+ */
 function pog_print_project_404(){
     $project_404 = '<p>We can\'t find the project you\'re looking for.</p><p>Some possible reasons : </p><ul><li>The project id is invalid</li><li>The project doesn\'t exist anymore</li><li>You don\'t have access to this project</li></ul>'.(pog_html_button('error_back','<a href="dashboard/">Back to dashboard</a>'));
     pog_print_error_page('404 : Project not found &#128269;',$project_404);
@@ -150,6 +157,14 @@ function pog_html_checkbox($id,$label,$isChecked = false){
     return "<input class='inp-cbx' id='${id}' name='${id}' ${isChecked} type='checkbox' style='display: none'/><label class='cbx' for='${id}'><span><svg width='12px' height='10px' viewbox='0 0 12 10'><polyline points='1.5 6 4.5 9 10.5 1'></polyline></svg></span><span>${label}</span></label>";
 }
 
+/**
+ *
+ * Generate html for checkbox
+ * @param string $name The radio input name
+ * @param string $value The input value
+ * @param string $label The input label
+ * @param string $checked True for a checked checkbox
+ */
 function pog_html_radio($name,$value,$label,$checked = false){
     $checked = ($checked)?'checked':'';
     return  "<label class='radio'><input type='radio' name='${name}' ${checked} value='${value}'><span>${label}</span></label>";

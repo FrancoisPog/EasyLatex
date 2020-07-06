@@ -91,7 +91,7 @@ function pog_print_project($project){
                         pog_html_button('btn-preview','See preview'),
                         pog_html_button('btn-convert','Convert in LaTex','submit'),
                         pog_html_button('btn-open',"<a target='_blank' href='https://latexonline.cc/compile?url=https://francois.poguet.com/EasyLatex/projects/${filename}.tex' >Open file</a>",'button'),
-                        pog_html_button('btn-settings',"<a target='_blank' href='settings/${data}/' >Settings</a>"),
+                        pog_html_button('btn-settings',"<a href='settings/${data}/' >Settings</a>"),
                         pog_html_button('btn-syntax','Markup syntax'),
                         pog_html_button('btn-help',"<a target='_blank' href='help/'>Help</a>"),
                     '</div>',
