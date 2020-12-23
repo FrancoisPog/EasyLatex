@@ -125,7 +125,7 @@ pog_isLogged('.');
 
 pog_check_param($_GET,['data']) or pog_session_exit('.');
 
-var_dump($_GET);
+
 $id = pog_decrypt_url($_GET['data'],1,true)[0];
 
 
