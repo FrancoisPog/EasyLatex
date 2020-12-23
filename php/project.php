@@ -75,7 +75,7 @@ function pog_print_project($project){
                         '</section>',
                         
                 '</article>',
-                "<form action='project/${urlencode(data)}/' method='POST'>",
+                "<form action='project/${urldecode(data)}/' method='POST'>",
                     '<input type="hidden" name="markup">',
                     '<div class="editor">',
                         '<textarea class="editor-input input" name="content" placeholder="Your markup here">',$project['pr_content'],'</textarea>',
