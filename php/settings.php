@@ -10,7 +10,7 @@ require_once('_easylatex.php');
 function pog_print_settings($project){
     pog_print_header(0,'settings',$project['pr_name']);
 
-    $data = urlencode(urlencode($_GET['data']));
+    $data = urlencode($_GET['data']);
    
     echo    pog_html_button('back_to_project',"<a href='project/${data}/'>Back to project</a>"),
             "<form class='settings form' id='settings-form' action='settings/${data}/' method='POST'>",
@@ -120,7 +120,7 @@ function pog_delete_process($id){
 
 pog_isLogged('.');
 
-$id = pog_decrypt_url($_GET['data'],1)[0];
+$id = pog_decrypt_url($_GET['data'],1,true)[0];
 
 if(!$id){
     pog_print_project_404();
