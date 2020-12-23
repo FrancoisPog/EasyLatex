@@ -11,7 +11,7 @@ function pog_print_project($project){
     $project = pog_db_protect_outputs($project);
     $content = $project['pr_content'];
     $filename = $project['pr_filename'];
-    $data = urlencode(urlencode($_GET['data']));
+    $data = urlencode($_GET['data']);
     
     pog_print_header(0,'project',$project['pr_name']);
     echo    '<article class="md-syntax">',
@@ -75,7 +75,7 @@ function pog_print_project($project){
                         '</section>',
                         
                 '</article>',
-                "<form action='project/${urldecode(data)}/' method='POST'>",
+                "<form action='project/${data}/' method='POST'>",
                     '<input type="hidden" name="markup">',
                     '<div class="editor">',
                         '<textarea class="editor-input input" name="content" placeholder="Your markup here">',$project['pr_content'],'</textarea>',
