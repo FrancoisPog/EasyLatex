@@ -14,7 +14,7 @@ require_once('_database.php');
 require_once('_project.php');
 
 
-define('ROOT_PATH', ($_SERVER['HTTP_HOST'] == 'localhost') ? "/my/Perso/EasyLatex/" : "/" );
+define('ROOT_PATH', ($_SERVER['HTTP_HOST'] == 'localhost') ? "/my/Perso/EasyLatex/" : "/EasyLatex/" );
 
 
 /**
