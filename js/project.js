@@ -32,6 +32,8 @@ form.onsubmit = (e) => {
   e.preventDefault();
   form.elements[0].value = preview_mode ? markup_svg : get_editor_input().value;
 
+  console.log(form.elements[0].value);
+
   res = converter_to_latex();
   console.log(res);
 
